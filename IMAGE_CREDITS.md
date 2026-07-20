@@ -1,0 +1,78 @@
+# Image credits
+
+The 49 images distributed in `assets/` come from Wikimedia Commons and are
+reproduced under the licence shown. Attribution was taken from the Commons API at
+download time. CC BY and CC BY-SA require this credit to accompany any redistribution.
+
+> **13 further figures are referenced by the dashboard but deliberately not published here.**
+> They are clinical photographs in which a patient - in most cases a child - is identifiable.
+> They are freely licensed on Wikimedia Commons, so this is an editorial choice rather than a
+> licensing one. Those slots render as an orange placeholder naming the expected file; supply
+> your own copy in `assets/` if you want them.
+
+## Licence summary
+
+| Licence | Images |
+|---|---|
+| Public domain | 21 |
+| CC BY-SA 4.0 | 13 |
+| CC BY-SA 3.0 | 6 |
+| CC BY 4.0 | 3 |
+| CC0 | 3 |
+| CC BY 2.5 | 1 |
+| CC BY 2.0 | 1 |
+| CC BY 3.0 | 1 |
+
+## Full list
+
+| Disease | File | Author | Licence | Source |
+|---|---|---|---|---|
+| Acute Bronchiolitis | `bronchiolitis_respiratory_syncytial_virus_rsv_em_ph.jpg` | Unknown author | Public domain | [source](https://commons.wikimedia.org/wiki/File:Respiratory_Syncytial_Virus_(RSV)_EM_PHIL_2175_lores.jpg) |
+| Acute Leukaemia | `all_leukaemia_acute_lymphoblastic_leukemia_jpg.jpg` | Animalculist | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Acute_lymphoblastic_leukemia.jpg) |
+| Acute Post-Streptococcal Glomerulonephritis | `apsgn_hematuria_with_positive_dip_stick_test.jpg` | John Campbell | CC0 | [source](https://commons.wikimedia.org/wiki/File:Hematuria,_with_positive_dip_stick_test_(31761330345).jpg) |
+| Acute Rheumatic Fever & Rheumatic Heart Disease | `rhd_erythema_marginatum_jpg.jpg` | Adsie | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Erythema_marginatum.jpg) |
+| Atrial Septal Defect | `asd_asd_atrial_septal_defect_repair_png.png` | DR. REDOY RANJAN | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:ASD_(Atrial_Septal_Defect)_repair.png) |
+| Bacterial Meningitis | `meningococcal_purpura.jpg` | Глей А.І., Шкурба А.В. | Public domain | [source](https://commons.wikimedia.org/wiki/File:%D0%A2%D0%B8%D0%BF%D0%BE%D0%B2%D0%B8%D0%B9_%D0%B2%D0%B8%D1%81%D0%B8%D0%BF_%D0%BD%D0%B0_%D0%BA%D0%B8%D1%81%D1%82%D1%96_%D0%BF%D1%80%D0%B8_%D0%BC%D0%B5%D0%BD%D1%96%D0%BD%D0%B3%D0%BE%D0%BA%D0%BE%D0%BA%D1%86%D0%B5%D0%BC%D1%96%D1%97.jpg) |
+| Beta-Thalassaemia Major | `thalassaemia_delta_beta_thalassemia_jpg.jpg` | Prof. Osaro Erhabor | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Delta_Beta_Thalassemia.jpg) |
+| Birth Injuries | `birth_injury_scalp_hematomas_jpg.jpg` | AMH Sheikh | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Scalp_hematomas.jpg) |
+| Childhood Asthma | `asthma_peak_flow_meter_horiz_jpg.jpg` | No machine-readable author provided. Tomhannen assumed (based on copyright claims). | Public domain | [source](https://commons.wikimedia.org/wiki/File:Peak_flow_meter_horiz.jpg) |
+| Childhood Immunisation Schedule | `vaccine_schedule_japanese_method_bcg_scar_jpg.jpg` | シトラマタ | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Japanese_method_BCG_scar.jpg) |
+| Childhood Tuberculosis | `tb_mantoux.jpg` | Greg Knobloch | Public domain | [source](https://commons.wikimedia.org/wiki/File:Mantoux_tuberculin_skin_test.jpg) |
+| Childhood Tuberculosis | `tb_miliary_cxr.jpg` | Herreros B, Plaza I, García R, Chichón M, Guerrero C, Pintor E | CC BY 4.0 | [source](https://commons.wikimedia.org/wiki/File:Chest_radiograph_of_miliary_tuberculosis_1.jpg) |
+| Coeliac Disease | `coeliac_histopathology_of_villous_atrophy_in_ce.jpg` | GeneFood | CC BY 4.0 | [source](https://commons.wikimedia.org/wiki/File:Histopathology_of_villous_atrophy_in_celiac_disease.jpg) |
+| Common Childhood Solid Tumours | `solid_tumours_part_of_whole_slide_image_of_a_wilms_t.jpg` | Mikael Häggström, M.D. Author info - Reusing images- Conflicts of interest: None Mikael Häggström, M.D.Consent note: Consent from the patient or patient's relatives is regarded as redundant, because of absence of identifiable features (List of HIPAA identifiers) in the media and case information (See also HIPAA case reports guidance). | Public domain | [source](https://commons.wikimedia.org/wiki/File:Part_of_whole_slide_image_of_a_Wilms%27_tumor_of_the_kidney.jpg) |
+| Common Viral Exanthems | `hfmd_hands.jpg` | James Heilman, MD | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Characteristic_rash_of_hand,_foot,_and_mouth_disease,_on_human_hands.jpg) |
+| Community-Acquired Pneumonia | `pneumonia_x_ray_of_lobar_pneumonia_jpg.jpg` | Mikael Häggström, M.D. Author info - Reusing images- Conflicts of interest: None Mikael Häggström, M.D.Consent note: Written informed consent was obtained from the individual, including online publication. | CC0 | [source](https://commons.wikimedia.org/wiki/File:X-ray_of_lobar_pneumonia.jpg) |
+| Cystic Fibrosis | `cystic_fibrosis_clubbingfingers1_jpg.jpg` | Ann McGrath | Public domain | [source](https://commons.wikimedia.org/wiki/File:ClubbingFingers1.jpg) |
+| Cystic Fibrosis | `cystic_fibrosis_sweat_test_infant_png.png` | BruceBlaus | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Sweat_Test_Infant.png) |
+| Dengue Fever | `dengue_tourniquet.gif` | CDC | Public domain | [source](https://commons.wikimedia.org/wiki/File:Positive-tourniquet-test.gif) |
+| Enteric Fever (Typhoid) | `typhoid_rose_spots.jpg` | CDC/Armed Forces Institute of Pathology, Charles N. Farmer | Public domain | [source](https://commons.wikimedia.org/wiki/File:Salmonella_typhi_typhoid_fever_PHIL_2215_lores.jpg) |
+| Epilepsy & Seizure Disorders | `epilepsy_eeg_absence_seizure_png.png` | Bromfield EB, Cavazos JE, Sirven JI, editors. | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:EEG_Absence_seizure.png) |
+| HIV in Children | `hiv_thrush.jpg` | CDC | Public domain | [source](https://commons.wikimedia.org/wiki/File:Oral_thrush_Aphthae_Candida_albicans._PHIL_1217_lores.jpg) |
+| HIV in Children | `hiv_virion.jpg` | National Institutes of Health (NIH) | Public domain | [source](https://commons.wikimedia.org/wiki/File:Structure_of_HIV.jpg) |
+| HPV, Hepatitis B & Adolescent Vaccines | `hpv_hepb_vaccines_humanpapillomavirus_jpg.jpg` | NIAID | Public domain | [source](https://commons.wikimedia.org/wiki/File:HumanPapillomavirus.jpg) |
+| Haemolytic Uraemic Syndrome | `hus_schistocytes_jpg.jpg` | Prof. Osaro Erhabor | CC0 | [source](https://commons.wikimedia.org/wiki/File:Schistocytes.jpg) |
+| Infantile Hypertrophic Pyloric Stenosis | `pyloricstenosis_pyloric_stenosis_jpg.jpg` | Dr Laughlin Dawes | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Pyloric-stenosis.jpg) |
+| Infectious Mononucleosis | `ebv_tonsils.jpg` | Fateagued at English Wikipedia | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Mono_tonsils.JPG) |
+| Intestinal Helminths & Scabies | `ascaris_worms.jpg` | Unknown author | Public domain | [source](https://commons.wikimedia.org/wiki/File:Ascaris_lumbricoides.jpeg) |
+| Intestinal Helminths & Scabies | `scabies_burrow.jpg` | Michael Geary | Public domain | [source](https://commons.wikimedia.org/wiki/File:Scabies-burrow.jpg) |
+| Intussusception | `intussusception_intussusception_hy_png.png` | Olek Remesz (wiki-pl: Orem, commons: Orem), Armenian translation by user:GgGevorg | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Intussusception_(hy).png) |
+| Iron Deficiency Anaemia | `ida_koilonychia_iron_deficiency_anemia_jpg.jpg` | CHeitz | CC BY 2.0 | [source](https://commons.wikimedia.org/wiki/File:Koilonychia_iron_deficiency_anemia.jpg) |
+| Malaria | `malaria_falciparum_film.jpg` | MichaelZahniser | Public domain | [source](https://commons.wikimedia.org/wiki/File:Plasmodium_falciparum_(malaria)_parasite_in_blood.jpg) |
+| Measles | `measles_koplik.jpg` | CDC | Public domain | [source](https://commons.wikimedia.org/wiki/File:Koplik_spots,_measles_6111_lores.jpg) |
+| Mumps & Rubella | `rubella_rash.jpg` | Unknown author | Public domain | [source](https://commons.wikimedia.org/wiki/File:Rash_of_rubella_on_skin_of_child%27s_back.JPG) |
+| Necrotising Enterocolitis | `nec_neonatal_necrotizing_enterocolitis_gro.jpg` | Unknown author | Public domain | [source](https://commons.wikimedia.org/wiki/File:Neonatal_necrotizing_enterocolitis,_gross_pathology_20G0022_lores.jpg) |
+| Neural Tube Defects | `neural_tube_defects_child_with_spina_bifida_in_the_lumbo_sa.jpg` | Mark, Leonard Portal | CC BY 4.0 | [source](https://commons.wikimedia.org/wiki/File:Child_with_spina_bifida_in_the_lumbo-sacral_region_Wellcome_L0062486.jpg) |
+| Neurocutaneous Syndromes | `neurocutaneous_sturge_weber_syndrome_jpg.jpg` | Imrankabirhossain | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Sturge%E2%80%93Weber_syndrome.jpg) |
+| Obstructive Sleep Apnoea in Children | `osa_child_adenoid_hypertrophy_jpg.jpg` | www.scientificanimations.com | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Adenoid_hypertrophy.jpg) |
+| Osteomyelitis & Septic Arthritis | `osteomyelitis_ct.jpg` | Pettit AC, Jahangir AA, Wright PW (Emerging Infectious Diseases, CDC) | Public domain | [source](https://commons.wikimedia.org/wiki/File:Mycobacterium_doricum_Osteomyelitis_and_Soft_Tissue_Infection.jpg) |
+| Pneumothorax | `pneumothorax_child_apical_pneumothorax_shown_on_ct_and_che.png` | Cerevisae | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Apical_pneumothorax_shown_on_CT_and_chest_X-ray_with_left_first_rib_fracture.png) |
+| Precocious & Delayed Puberty | `precocious_puberty_tanner_scale_female_jpg.jpg` | Frank K Shuttleworth | Public domain | [source](https://commons.wikimedia.org/wiki/File:Tanner_scale_female.jpg) |
+| Rotavirus, Hib & Pneumococcal Vaccines | `rotavirus_hib_pcv_multiple_rotavirus_particles_jpg.jpg` | Dr Graham Beards | CC BY 3.0 | [source](https://commons.wikimedia.org/wiki/File:Multiple_rotavirus_particles.jpg) |
+| Sickle Cell Disease | `sicklecell_sickle_cell_anaemia_jpg.jpg` | Osaretin | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Sickle_cell_anaemia.jpg) |
+| Tetralogy of Fallot | `tof_tetralogy_png.png` | Frank Gaillard | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Tetralogy.png) |
+| Turner & Klinefelter Syndromes | `turner_klinefelter_human_karyotype_259_30_karyotype_huma.jpg` | Doc. RNDr. Josef Reischig, CSc. | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Human_karyotype_(259_30)_Karyotype_Human_47,XXY_(Klinefelter).jpg) |
+| Type 1 Diabetes Mellitus & DKA | `t1dm_diabetic_ketoacidosis_png.png` | Gblanchard16 | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Diabetic_Ketoacidosis.png) |
+| Ventricular Septal Defect | `vsd_heart_right_vsd_jpg.jpg` | Patrick J. Lynch, medical illustrator | CC BY 2.5 | [source](https://commons.wikimedia.org/wiki/File:Heart_right_vsd.jpg) |
+| Viral Hepatitis | `hepatitis_child_hepatitis_b_virus_52444068124_jpg.jpg` | National Institute of Allergy and Infectious Diseases (NIAID) and Centers for Disease Control and Prevention (CDC) | Public domain | [source](https://commons.wikimedia.org/wiki/File:Hepatitis_B_Virus_(52444068124).jpg) |
+| Vitamin A Deficiency | `vitamina_bitot_jpg.jpg` | CDC/Nutrition Program | Public domain | [source](https://commons.wikimedia.org/wiki/File:Bitot.jpg) |

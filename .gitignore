@@ -1,0 +1,20 @@
+.claude/
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.tmp
+
+# Clinical photographs of identifiable patients — kept locally, never published.
+assets/varicella_child.jpg
+assets/mumps_parotitis.jpg
+assets/fifth_disease.jpg
+assets/neojaundice_bilisoft_phototherapy_jpg.jpg
+assets/neojaundice_jaundice_in_newborn_jpg.jpg
+assets/preterm_care_kangaroo_care_laquintinie_hospital_came.jpg
+assets/sam_kwashiorkor_6903_jpg.jpg
+assets/ricketsvitd_before_and_after_photographs_for_therap.jpg
+assets/asthma_baby_inhaler_jpg.jpg
+assets/adrenal_insufficiency_babycushing_png.png
+assets/fragile_x_syndromes_facial_features_of_fragile_x_syndrome_j.jpg
+assets/tetanus_neonatal_tetanus_6374_jpg.jpg
+assets/kawasaki_kawasaki_png.png
