@@ -179,6 +179,10 @@ td:first-child{font-weight:600;color:var(--ink)}
   padding:5px 11px;font:inherit;font-size:12.5px;cursor:pointer;color:var(--ink-soft);
 }
 .btn:hover{border-color:var(--moss);color:var(--moss)}
+.btn.reading{background:var(--moss);border-color:var(--moss);color:#fff}
+.btn.reading:hover{color:#fff}
+@keyframes readpulse{0%,100%{opacity:1}50%{opacity:.55}}
+.btn.reading{animation:readpulse 1.4s ease-in-out infinite}
 
 /* ---------- Search results ---------- */
 .hits{list-style:none;margin:20px 0 0;padding:0}
@@ -334,6 +338,7 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
       <button class="btn" id="prevbtn">← Previous</button>
       <button class="btn" id="nextbtn">Next →</button>
       <button class="btn" id="randombtn" title="Jump to a random topic (r)">🎲 Daily review</button>
+      <button class="btn" id="readbtn" title="Read this topic aloud (a). On the home page, reads a random topic.">🔊 Read aloud</button>
       <button class="btn" onclick="window.print()">Print</button>
       <button class="btn railbtn" id="railbtn">Lecture</button>
     </div>
@@ -7217,6 +7222,7 @@ function welcome(){
 function show(id){
   const d = DISEASES.find(x=>x.id===id);
   if(!d) return;
+  if(reading && id !== current) stopReading();  // don't keep narrating the previous topic
   current = id;
   markActive(id);
   $("#crumb").textContent = d.system;
@@ -7329,12 +7335,65 @@ function randomTopic(){
   show(id);
 }
 
+/* ============ NARRATOR (read a review aloud) ============ */
+/* Uses the browser's built-in speech synthesis — no network, no service.
+   Reads name, one-liner, each section, mnemonics and pearls; tables are
+   skipped because column data does not narrate cleanly. */
+const synth = window.speechSynthesis || null;
+let reading = false;
+
+function narrationText(d){
+  const p = [];
+  p.push(d.name + ".");
+  if(d.oneLiner) p.push(d.oneLiner);
+  (d.sections||[]).forEach(s => { p.push(s.h + "."); p.push(s.body); });
+  (d.mnemonics||[]).forEach(m => p.push("Remember. " + m.key + ". " + m.text));
+  if(d.pearls && d.pearls.length){ p.push("Exam pearls."); d.pearls.forEach(x => p.push(x)); }
+  p.push("End of review.");
+  return p.join(" ");
+}
+function pickVoice(){
+  const v = synth ? synth.getVoices() : [];
+  return v.find(x=>/en-GB/i.test(x.lang)) || v.find(x=>/^en[-_]/i.test(x.lang)) || v.find(x=>/^en/i.test(x.lang)) || v[0] || null;
+}
+function setReading(on){
+  reading = on;
+  const b = $("#readbtn");
+  if(b){ b.textContent = on ? "⏹ Stop" : "🔊 Read aloud"; b.classList.toggle("reading", on); }
+}
+function stopReading(){ if(synth) synth.cancel(); setReading(false); }
+function speakReview(d){
+  if(!synth){ alert("Sorry — this browser has no speech synthesis."); return; }
+  synth.cancel();
+  const text = narrationText(d);
+  // Chunk into sentences: some browsers truncate long single utterances.
+  const chunks = text.match(/[^.!?]+[.!?]+|\S[^.!?]*$/g) || [text];
+  const voice = pickVoice();
+  setReading(true);
+  chunks.forEach((c, i) => {
+    const u = new SpeechSynthesisUtterance(c.trim());
+    if(voice) u.voice = voice;
+    u.rate = 0.97; u.pitch = 1;
+    if(i === chunks.length - 1) u.onend = () => setReading(false);
+    u.onerror = () => setReading(false);
+    synth.speak(u);
+  });
+}
+function toggleRead(){
+  if(reading){ stopReading(); return; }
+  if(!current) randomTopic();          // from the home page, read a random review
+  const d = DISEASES.find(x => x.id === current);
+  if(d) speakReview(d);
+}
+if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = pickVoice; }
+
 /* ============ INIT ============ */
 buildNav();
 $("#search").addEventListener("input", e => runSearch(e.target.value));
 $("#prevbtn").onclick = ()=>step(-1);
 $("#nextbtn").onclick = ()=>step(1);
 $("#randombtn").onclick = randomTopic;
+$("#readbtn").onclick = toggleRead;
 $("#menubtn").onclick = ()=>$("#sidebar").classList.toggle("open");
 $("#railbtn").onclick = ()=>$("#rail").classList.toggle("open");
 $("#railclose").onclick = ()=>$("#rail").classList.remove("open");
@@ -7359,6 +7418,7 @@ document.addEventListener("keydown", e=>{
   if(e.key==="/"){ e.preventDefault(); $("#search").focus(); }
   if(e.key==="p"||e.key==="P"){ if(deck.length){ e.preventDefault(); present(0); } }
   if(e.key==="r"||e.key==="R"){ e.preventDefault(); randomTopic(); }
+  if(e.key==="a"||e.key==="A"){ e.preventDefault(); toggleRead(); }
   if(e.key==="ArrowRight") step(1);
   if(e.key==="ArrowLeft") step(-1);
 });
