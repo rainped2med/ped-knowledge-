@@ -211,7 +211,9 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
   background:var(--amber-light);border:1px solid var(--amber);border-radius:var(--r);
   padding:12px 16px;margin:18px 0 6px;font-size:14px;
 }
-.caselaunch span{flex:1 1 240px}
+.caselaunch span{flex:1 1 100%}
+.casepicker{display:flex;flex-direction:column;gap:6px;width:100%}
+.casepicker .btn{text-align:left;font-size:13px;padding:8px 14px;white-space:normal;line-height:1.4}
 .case .stem{
   font-size:16.5px;line-height:1.6;background:var(--paper-2);
   border:1px solid var(--line);border-left:4px solid var(--moss);
@@ -7907,7 +7909,124 @@ d:"MAS is a rheumatological emergency with double-digit mortality — treatment 
 {t:"The reflection", q:"Once she recovers, what should the team learn from the settling ESR that fooled them?",
 a:"That in systemic JIA, laboratory 'improvement' during clinical deterioration means consumption: track the TREND of ferritin, platelets, fibrinogen and AST together, and never interpret the ESR alone. A ferritin >10,000 in a child is MAS/HLH until proven otherwise.",
 d:"MAS complicates about 10% of systemic JIA overtly (more subclinically), and can be the presenting feature before the JIA is even diagnosed. Triggers — flares, infections (especially EBV), and medication changes — should prompt a low threshold for screening labs."}],
-wrap:"In systemic JIA, an unremitting fever with a falling ESR and rising ferritin is MAS — apply the 2016 criteria, treat on suspicion with steroid pulses, anakinra and ciclosporin, and remember that consumption masquerades as improvement."}
+wrap:"In systemic JIA, an unremitting fever with a falling ESR and rising ferritin is MAS — apply the 2016 criteria, treat on suspicion with steroid pulses, anakinra and ciclosporin, and remember that consumption masquerades as improvement."},
+
+"pals": [
+{label:"Shockable arrest (VF / pulseless VT)",
+stem:"A 14-year-old boy collapses on the school football field during practice. When you arrive he is unresponsive on the ground. A bystander is holding an AED that has not yet been applied. No pulse on carotid check.",
+steps:[
+{t:"Recognition", q:"He is pulseless. You attach the AED pads — the rhythm shows a rapid, chaotic, irregular waveform with no discernible QRS complexes. What is the rhythm and what do you do first?",
+a:"Ventricular fibrillation. Immediately start high-quality CPR — compressions 100–120/min, depth 5–6 cm (adolescent = adult depth), complete recoil. Charge the defibrillator while compressions continue.",
+d:"In paediatric VF/pVT, every second without compressions or a shock worsens neurological outcome. The AED was available but not applied — the first action after confirming pulselessness is CPR while preparing to shock, not standing back to analyse."},
+{t:"First shock", q:"CPR is running. What energy do you deliver, and what do you do immediately after the shock?",
+a:"First shock: 2 J/kg — for this adolescent roughly 50 kg, that is 100 J. Immediately resume CPR for 2 minutes without pausing to check the rhythm or pulse.",
+d:"The 2025 guideline accepts 2–4 J/kg for the first shock (registry data favours the 1.7–2.5 J/kg window). The critical point is NO pause after the shock — 2 full minutes of CPR before the next rhythm check. A brief post-shock organised rhythm may not yet produce a pulse; compressions bridge that gap."},
+{t:"Second shock and adrenaline", q:"Two minutes later the rhythm check still shows VF. What is your next move?",
+a:"Second shock at 4 J/kg (200 J). Resume CPR immediately. During this 2-minute cycle, give adrenaline 0.01 mg/kg IV or IO = 0.5 mg = 5 mL of 1:10,000 solution. Flush with 10–20 mL of normal saline.",
+d:"Adrenaline enters the shockable pathway AFTER the second shock — not before. In non-shockable arrest it is given as soon as possible, but in VF/pVT the sequence is shock-CPR-shock-CPR+adrenaline. The 2025 guideline is emphatic: early adrenaline in non-shockable, but timed to the second shock in shockable arrest. Establish IO access without hesitation if IV is not immediately available."},
+{t:"Third shock and antiarrhythmic", q:"Still in VF after the third shock. What drug do you add now, and what are your options?",
+a:"After the third shock: amiodarone 5 mg/kg IV bolus (250 mg for 50 kg, but max 300 mg per dose — so give 250 mg). Alternatively, lidocaine 1 mg/kg. Continue adrenaline every 3–5 minutes. May repeat amiodarone up to twice more.",
+d:"The 2025 evidence review found no outcome difference between amiodarone and lidocaine — either is acceptable. Do not combine amiodarone with procainamide (additive hypotension and QT prolongation). While drugs cycle, the team leader must be actively working through the H's and T's aloud — in a teenage athlete, think hypertrophic cardiomyopathy, long QT, commotio cordis, and anomalous coronary."},
+{t:"Ongoing resuscitation", q:"You are now 12 minutes into the arrest. What are the key quality metrics you should be monitoring, and what energy ceiling exists?",
+a:"Compression fraction target 90–100%. Rotate compressors every 2 minutes. Monitor with waveform capnography — EtCO2 should be trending up with good compressions; an abrupt sustained rise signals ROSC. Subsequent defibrillation doses escalate up to a maximum of 10 J/kg or the adult maximum energy of the device.",
+d:"The 10 J/kg ceiling is a 2025-retained recommendation. In this adolescent, 10 J/kg = 500 J, but most paediatric defibrillators deliver up to 200–360 J — document which machine you used. An EtCO2 consistently below 10 mmHg despite good technique suggests compressions are not generating adequate cardiac output — consider causes and consider ECPR if available."},
+{t:"ROSC", q:"After the fifth shock, the rhythm check shows an organised rhythm at 110/min with a palpable pulse. EtCO2 jumps to 38 mmHg. What is your immediate post-ROSC bundle?",
+a:"Confirm ROSC: pulse present, rising EtCO2, arterial waveform if available. Start the post-ROSC bundle: wean FiO2 to target SpO2 94–99% (avoid hyperoxia); continuous core temperature monitoring — keep temperature at or below 37.5°C and consider TTM at 32–34°C for 24 hours; maintain BP above 5th percentile for age with fluids and vasopressors; obtain 12-lead ECG, blood gas, glucose, electrolytes; arrange continuous EEG monitoring; do NOT prognosticate early.",
+d:"Post-ROSC care determines the neurological outcome. The 2025 guideline elevates fever prevention as critical — every degree above 37.5°C worsens brain injury. Hyperoxia is equally harmful: target normoxaemia. In a teenager who arrested during sport, the 12-lead ECG and echocardiography are essential to diagnose the underlying channelopathy or structural disease — this arrest will recur without a diagnosis."}],
+wrap:"VF in a teenager: shock at 2 J/kg, CPR 2 minutes, shock at 4 J/kg, CPR + adrenaline, shock + amiodarone or lidocaine, escalate to 10 J/kg max. Adrenaline enters after the second shock. Compression fraction 90–100%. Post-ROSC: prevent fever, prevent hyperoxia, and find the underlying cause."},
+
+{label:"Non-shockable arrest (asystole / PEA) — drowning",
+stem:"A 2-year-old boy is pulled from a garden fishpond by his grandmother. She estimates he was submerged for 3–5 minutes. He is limp, blue, and not breathing. The paramedics arrive and find no pulse.",
+steps:[
+{t:"Recognition and first actions", q:"He is pulseless with no respiratory effort. The monitor shows a flat line. Before you call it asystole — what must you confirm, and what is the IMMEDIATE priority?",
+a:"Confirm asystole: check leads are connected, gain is adequate, and check in two leads (or rotate 90°) to exclude fine VF masquerading as a flat line. Immediate priority: begin high-quality CPR — infant/child technique, two-thumb encircling compressions with two rescuers, 15:2 ratio. Ventilate with bag-mask and 100% oxygen.",
+d:"In a drowning child the arrest is asphyxial — the primary insult is hypoxia, not a cardiac arrhythmia. This means ventilation is every bit as important as compressions, unlike adult cardiac arrest where compression-only CPR may suffice. The 2025 guideline retains the higher paediatric ventilation rate (1 breath every 2–3 seconds with an advanced airway, 20–30/min) reflecting this physiology."},
+{t:"Adrenaline — timing", q:"You have confirmed asystole. When do you give adrenaline, and by what route?",
+a:"Give adrenaline AS SOON AS POSSIBLE — 0.01 mg/kg = 0.1 mL/kg of 1:10,000, IV or IO. For this 12 kg child: 0.12 mg = 1.2 mL. Repeat every 3–5 minutes. If no IV/IO access within 60 seconds, place an IO without hesitation — the proximal tibia is the fastest site in a toddler.",
+d:"This is the critical difference from the shockable pathway: in non-shockable arrest, adrenaline is given AS EARLY AS POSSIBLE, not sequenced to shocks. The 2025 guideline cites evidence that each cycle of delay in first adrenaline worsens survival and neurological outcome. Do not waste time on peripheral IV attempts — an IO needle takes 30 seconds."},
+{t:"Reversible causes", q:"While CPR runs, work through the reversible causes for this child. Which are most likely, and what do you do about them?",
+a:"Hypoxia — the headline cause in drowning. Already treating with ventilation and oxygen. Hypothermia — immersion hypothermia depends on water temperature and duration; check core temperature. Hypovolaemia — unlikely here but consider if trauma. Tension pneumothorax — possible from aggressive ventilation; check for unilateral chest rise and tracheal deviation.",
+d:"In drowning, the H's dominate: Hypoxia is the cause of the arrest, and Hypothermia can be protective (cold-water immersion <6 minutes in a small child — do not stop CPR until rewarmed to 32–34°C). Gastric distension from swallowed water impedes ventilation — decompress with an orogastric tube. The 2025 guideline notes that abdominal thrusts to 'drain the lungs' are harmful and must not be performed."},
+{t:"Rhythm checks and the cycle", q:"After 2 minutes of CPR you check the rhythm. Still asystole. What do you do? How do you know when to give another dose of adrenaline?",
+a:"Resume CPR immediately. Give adrenaline 0.12 mg every 3–5 minutes — practically, every other 2-minute cycle. At each rhythm check: if organised rhythm appears, check for a pulse; if VF/pVT appears, switch to the shockable pathway and deliver a shock. Keep interruptions under 10 seconds.",
+d:"The non-shockable algorithm is a loop: 2 minutes of CPR → brief rhythm check → resume CPR → adrenaline every other cycle. The most common transition is from asystole to PEA (an organised rhythm with no pulse) — this is NOT ROSC and does not change the algorithm. Only a perfusing rhythm with a palpable pulse is ROSC."},
+{t:"Airway decision", q:"Five minutes in, bag-mask is adequate but the team wants to intubate. Is this the right moment?",
+a:"Intubation is reasonable if a skilled operator is available AND it will not interrupt compressions for more than the seconds needed to pass the tube. Use a cuffed ETT: size = (age/4) + 3.5 = 4.0 mm cuffed, depth at lip = 3 × 4 = 12 cm. Confirm with waveform capnography. Once intubated, switch to continuous compressions with 1 breath every 2–3 seconds.",
+d:"The 2025 guideline is clear: bag-mask is not inferior to intubation for short resuscitations, and an intubation attempt that interrupts compressions for 30+ seconds kills. If the first attempt fails, go back to bag-mask and try again at the next rhythm check. Cuffed tubes are now preferred at all ages — they reduce the need for tube changes and give better capnography."},
+{t:"ROSC — the drowning-specific concerns", q:"After 8 minutes, the rhythm check shows sinus tachycardia at 160/min with a palpable femoral pulse. What are your immediate priorities, and what is different about post-ROSC care in a drowning child?",
+a:"Confirm ROSC. Post-ROSC bundle: wean FiO2 to SpO2 94–99%, prevent fever (target ≤37.5°C), support blood pressure. Drowning-specific: expect pulmonary oedema and poor compliance — gentle PEEP on the ventilator helps; anticipate ARDS requiring ICU ventilation; rewarm gradually if hypothermic; monitor for secondary drowning (delayed pulmonary oedema in the next 24–72 hours).",
+d:"Submersion victims who achieve ROSC have a better prognosis than equivalent dry-land arrests, partly because cold water is neuroprotective. But the lungs have been insulted — surfactant is washed out, alveoli are flooded, and ARDS can develop hours later. All near-drowning children who required CPR are admitted to PICU regardless of how well they look after ROSC."}],
+wrap:"Drowning arrest is asphyxial: ventilate early and well, give adrenaline as soon as possible (not sequenced to shocks), IO access fast, do not stop CPR in hypothermia until rewarmed, and expect pulmonary oedema post-ROSC. Every cycle of adrenaline delay costs."},
+
+{label:"Bradycardia with a pulse",
+stem:"A 6-month-old girl is 18 hours post-operative after VSD repair. The nurse calls you because her heart rate has dropped from 130 to 55 over the past 30 minutes. She looks pale and is less responsive.",
+steps:[
+{t:"Recognition", q:"HR 55 in a 6-month-old — is this always an emergency? What makes this one dangerous?",
+a:"Normal resting HR for 6 months is about 110–160. A heart rate below 60 with signs of poor perfusion — pallor, altered responsiveness, poor capillary refill — constitutes symptomatic bradycardia. This IS an emergency because she has cardiopulmonary compromise.",
+d:"Bradycardia itself is not the emergency — bradycardia WITH compromise is. A sleeping infant may have a HR of 80 and be perfectly well. The 2025 guideline defines the threshold: HR <60/min with signs of inadequate cardiac output despite oxygenation and ventilation triggers the bradycardia pathway."},
+{t:"First intervention", q:"What is the FIRST thing you do — before any drugs?",
+a:"Open the airway, deliver high-flow 100% oxygen, and assist ventilation with bag-mask if breathing is inadequate. Assess — is the bradycardia caused by hypoxia? In a post-cardiac-surgery infant, also consider complete heart block, tamponade, and bleeding.",
+d:"Bradycardia in a child is hypoxia until proven otherwise. The 2025 algorithm starts with airway-breathing-oxygen, not drugs. In most paediatric bradycardia, correcting hypoxia corrects the heart rate. However, this is a post-surgical patient — the differential includes surgical complications: complete heart block from sutures near the conduction system, pericardial tamponade, and haemorrhage."},
+{t:"Persistent bradycardia", q:"Despite 100% oxygen with adequate ventilation for 30 seconds, her HR remains 48, capillary refill is 5 seconds, and she is now mottled and limp. What is the next step?",
+a:"Start CPR — chest compressions at 100–120/min. This is the unique situation where compressions begin on a beating heart. The 2025 guideline makes this a class 1 recommendation: if HR remains <60 with poor perfusion DESPITE adequate oxygenation and ventilation, start compressions.",
+d:"This is the step that teams hesitate on — compressing a heart that is still beating feels wrong, but at a rate of 48 in an infant, cardiac output is inadequate to perfuse the brain and organs. CPR bridges the gap while you treat the cause. Two-thumb encircling technique, 15:2 ratio."},
+{t:"Drugs", q:"Compressions are running. What drug do you give first? A colleague suggests atropine — do you agree?",
+a:"Give adrenaline 0.01 mg/kg IV or IO first. For this ~7 kg infant: 0.07 mg = 0.7 mL of 1:10,000. Repeat every 3–5 minutes. Atropine 0.02 mg/kg (0.14 mg) is indicated ONLY if increased vagal tone or primary AV block is suspected — NOT for hypoxic bradycardia.",
+d:"The 2025 guideline is specific: atropine treats vagal or AV-block bradycardia, not hypoxic bradycardia (where the answer is oxygen, ventilation and CPR). In this post-surgical patient, complete heart block IS a real possibility — if the 12-lead shows dissociated P waves and QRS, atropine is appropriate AND you should call for transcutaneous pacing. The old minimum atropine dose of 0.1 mg is gone in 2025 — give 0.02 mg/kg regardless of weight."},
+{t:"The ECG reveals the cause", q:"The 12-lead ECG shows regular P waves at 120/min with completely independent QRS complexes at 48/min. What is this, and what is the definitive treatment?",
+a:"Complete (third-degree) atrioventricular block — the P waves march through the QRS complexes with no relationship. In this post-VSD-repair infant, this is likely surgical trauma to the bundle of His. Immediate management: continue CPR, adrenaline and atropine; arrange emergency transcutaneous pacing; call the cardiac surgeon — if the block persists beyond 7–10 days, a permanent pacemaker is needed.",
+d:"Complete heart block complicates about 1–3% of VSD repairs, especially perimembranous defects. Temporary epicardial pacing wires are often left in after surgery for exactly this reason — check if they are still in place. If they are, connect them to an external pacemaker immediately. Isoprenaline infusion (0.02–0.2 mcg/kg/min) is a temporising bridge to pacing if adrenaline and atropine are insufficient."},
+{t:"Resolution", q:"Transcutaneous pacing captures at 120/min. Her colour improves and capillary refill returns to 2 seconds. What happens next?",
+a:"Transition to transvenous or epicardial pacing. Monitor for return of AV conduction — some post-surgical heart block resolves within 7–10 days. If it persists, implant a permanent pacemaker before discharge. Continuous ECG monitoring throughout.",
+d:"The teaching point: bradycardia in a post-operative cardiac patient is not generic — it is a specific surgical complication with a specific fix. The PALS bradycardia algorithm got the child through the crisis, but the definitive treatment was pacing, not pharmacology."}],
+wrap:"Bradycardia <60 + poor perfusion despite oxygenation = CPR on a beating heart. Oxygen and ventilation first, adrenaline for all causes, atropine only for vagal or AV block (no minimum dose in 2025), and pace for complete heart block. In the post-surgical child, think conduction injury and check the epicardial wires."},
+
+{label:"SVT — narrow-complex tachycardia",
+stem:"A 4-month-old boy is brought to the emergency department because he has been irritable and feeding poorly for 12 hours. The triage nurse puts on a monitor and calls you urgently: heart rate 280/min.",
+steps:[
+{t:"Recognition", q:"HR 280 in an infant — is this sinus tachycardia or SVT? How do you tell?",
+a:"At 280/min with no beat-to-beat variability, absent P waves, and abrupt onset (the mother says he was fine yesterday), this is SVT, not sinus tachycardia. Sinus tachycardia in an infant rarely exceeds 220/min, shows beat-to-beat variability, has visible P waves, and has an identifiable cause (fever, pain, dehydration).",
+d:"The 2025 guideline uses the same thresholds: SVT is typically >220 in infants and >180 in children, with a fixed rate and no normal P waves. In contrast, sinus tachycardia responds to the cause and has a history that explains it. The distinction matters enormously — treating sinus tachycardia with adenosine or cardioversion while ignoring the underlying cause (sepsis, hypovolaemia) can be fatal."},
+{t:"Haemodynamic assessment", q:"Is he stable or unstable? What signs would push you to immediate cardioversion?",
+a:"He is pale, irritable, capillary refill 4 seconds, but blood pressure is 75/50 (adequate for age). No hepatomegaly yet. He is compensating — haemodynamically stable enough for medical management first. Unstable signs that would mandate immediate cardioversion: hypotension, altered consciousness, signs of heart failure (gallop, hepatomegaly, pulmonary oedema).",
+d:"SVT can be tolerated for hours in older children, but infants decompensate faster because they cannot increase stroke volume — they are rate-dependent. A 4-month-old with 12 hours of SVT is at risk of tachycardia-induced cardiomyopathy. Work quickly, but he is stable enough for vagal manoeuvres and adenosine first."},
+{t:"Vagal manoeuvres", q:"What vagal manoeuvre do you try in an infant, and what do you NOT do?",
+a:"Apply a bag of ice-water slurry to the face for 15–20 seconds, covering forehead, eyes and bridge of nose — this triggers the diving reflex. Do NOT apply ocular pressure (risk of retinal detachment) and do NOT attempt carotid sinus massage in infants.",
+d:"The diving reflex is the most reliable vagal manoeuvre in infants. In older children, blowing through an obstructed straw or syringe (modified Valsalva) is effective. Record a rhythm strip during the attempt — even if it fails to convert, the brief AV block may unmask the P-wave pattern and confirm the diagnosis."},
+{t:"Adenosine", q:"Ice to the face fails. What is your next step? Describe the technique precisely.",
+a:"Adenosine 0.1 mg/kg rapid IV push — for this ~6 kg infant, 0.6 mg. Use a two-syringe technique: adenosine in a syringe connected to a stopcock as close to the heart as possible (antecubital or higher), immediately followed by a rapid 5–10 mL normal saline flush. If no conversion, give a second dose at 0.2 mg/kg (1.2 mg, max 12 mg).",
+d:"Adenosine has a half-life of less than 10 seconds — it must reach the heart as a bolus. A slow push or a distal IV with a long line means the drug is metabolised before it arrives. The 2025 maximum doses are 6 mg first dose, 12 mg second dose. Record the rhythm strip continuously — the brief asystole and then resumption (or conversion) is both diagnostic and therapeutic."},
+{t:"Cardioversion", q:"Adenosine converts him briefly but SVT recurs within 30 seconds. On the third attempt, his BP drops to 50/30 and he becomes mottled and limp. What now?",
+a:"He is now haemodynamically unstable — synchronised cardioversion at 0.5–1 J/kg (3–6 J for 6 kg). Sedate with ketamine or midazolam if time allows, but do NOT delay cardioversion for sedation if he is deteriorating. If first shock fails, increase to 2 J/kg.",
+d:"Synchronised cardioversion delivers the shock on the R wave, avoiding the vulnerable T-wave period that could induce VF. The machine must be in SYNC mode — confirm the sync markers on the monitor before discharging. If the child is pulseless at any point, switch to unsynchronised defibrillation at 2 J/kg and follow the shockable arrest algorithm."},
+{t:"Post-conversion", q:"Cardioversion at 1 J/kg converts to sinus rhythm at 140/min. He pinks up quickly. What do you do now?",
+a:"12-lead ECG in sinus rhythm: look for pre-excitation (delta wave = WPW), short PR, or long QT. Start maintenance antiarrhythmic — options include oral propranolol or flecainide for infants. Echocardiography to exclude structural heart disease. Arrange paediatric cardiology follow-up. Counsel the parents on recognition of recurrence.",
+d:"About 30% of infant SVT recurs, and most grow out of it by 12 months. A delta wave on the resting ECG indicates Wolff-Parkinson-White — these patients must NEVER receive digoxin or verapamil (both enhance conduction down the accessory pathway and can cause VF in pre-excited AF). This is also why adenosine is contraindicated in irregular wide-complex tachycardia — it may be pre-excited atrial fibrillation."}],
+wrap:"SVT in an infant: rate >220 with no variability and no P waves. Stable → ice to the face → adenosine 0.1 then 0.2 mg/kg rapid push with flush. Unstable → synchronised cardioversion 0.5–1 then 2 J/kg. Post-conversion: 12-lead ECG for WPW, never digoxin or verapamil if a delta wave is present, and cardiology follow-up."},
+
+{label:"Wide-complex tachycardia with a pulse",
+stem:"A 12-year-old girl with repaired tetralogy of Fallot (age 2) presents to the emergency department with palpitations, dizziness, and one episode of near-syncope during a school exam. The monitor shows a wide-complex tachycardia at 190/min.",
+steps:[
+{t:"Recognition", q:"Wide QRS tachycardia in a child with repaired congenital heart disease — what is the differential, and why does her surgical history matter?",
+a:"Wide-complex tachycardia (QRS >0.09 s) in a child: ventricular tachycardia (VT), SVT with aberrant conduction (rate-related bundle branch block or pre-existing RBBB from her repair), or pre-excited tachycardia (antidromic AVRT). In repaired tetralogy of Fallot, the right ventriculotomy scar creates re-entrant circuits — VT is the most dangerous late complication and the leading cause of sudden death in this population.",
+d:"Repaired TOF patients have a lifelong risk of ventricular arrhythmias arising from the surgical scar, right ventricular dilation, and residual outflow obstruction. Any wide-complex tachycardia in a CHD patient should be treated as VT until proven otherwise — this is the safer assumption. Her known RBBB from the repair makes distinguishing aberrant SVT from VT harder."},
+{t:"Haemodynamic assessment", q:"She is conscious, anxious, and diaphoretic. BP 88/60, capillary refill 3 seconds. Is she stable or unstable?",
+a:"She has borderline haemodynamics — hypotension for a 12-year-old (normal systolic ~100–110), delayed capillary refill, and near-syncope. She is UNSTABLE — but still conscious and maintaining a blood pressure. This is the narrow window where the 2025 guideline gives a specific instruction.",
+d:"The 2025 guideline draws a clear line for wide-complex tachycardia WITHOUT haemodynamic compromise: obtain expert consultation BEFORE any antiarrhythmic, because the wrong drug can be lethal. But she IS compromised — near-syncope and hypotension. When there is haemodynamic compromise with wide-complex tachycardia, the answer is synchronised cardioversion, not a pharmacological guessing game."},
+{t:"Cardioversion", q:"You decide to cardiovert. Describe your approach.",
+a:"Synchronised cardioversion at 0.5–1 J/kg — for this ~40 kg girl, start at 20–40 J. Sedate with ketamine 1–2 mg/kg IV if she is still conscious — do not delay for sedation if she is deteriorating. Ensure SYNC mode is confirmed on the defibrillator. Have pads positioned and the team standing clear.",
+d:"Synchronised mode ensures the shock hits the R wave, not the T wave. In VT with very rapid rates, the machine may have difficulty identifying R waves — if sync fails to discharge, consider switching to unsynchronised. If the first shock fails, escalate to 2 J/kg. If at any point she becomes pulseless, immediately switch to unsynchronised defibrillation at 2 J/kg (this is now shockable cardiac arrest)."},
+{t:"Conversion and the 12-lead", q:"Cardioversion at 1 J/kg converts to sinus rhythm. HR 95, BP 102/68. She feels better. What do you look for on the 12-lead ECG?",
+a:"12-lead ECG shows sinus rhythm with the expected RBBB from her TOF repair (rsR' in V1, wide S in I and V6). No delta wave. QTc normal. But there are frequent premature ventricular complexes (PVCs) with the same morphology as the tachycardia — confirming the tachycardia was VT arising from the RV outflow tract scar.",
+d:"This ECG confirms monomorphic VT from a scar re-entry circuit — the most important late complication of repaired TOF. The matching PVC morphology is the smoking gun. If the 12-lead had shown a delta wave, pre-excited tachycardia (antidromic AVRT) would be the diagnosis — and AV-nodal blockers would be absolutely contraindicated."},
+{t:"Expert consultation", q:"The 2025 guideline says 'expert consultation before antiarrhythmics' for stable wide-complex tachycardia. She was unstable so you cardioverted — but now what?",
+a:"Paediatric cardiology and electrophysiology consultation is urgent. Maintenance options for recurrent VT in repaired TOF: IV amiodarone loading if recurrence is imminent, then transition to oral. Long-term: catheter ablation of the re-entrant circuit, ICD implantation for secondary prevention (she has already had a sustained VT episode with haemodynamic compromise), and optimisation of the RV — assess for pulmonary regurgitation requiring valve replacement.",
+d:"The 2025 guideline's insistence on expert input before antiarrhythmics exists because amiodarone, procainamide, and lidocaine each have scenarios where they worsen the arrhythmia. In this case, she needed cardioversion first, but the ongoing management — ablation versus ICD versus both — is a specialist decision. Never combine amiodarone and procainamide."},
+{t:"The deterioration scenario", q:"Imagine instead that during your assessment she suddenly becomes unresponsive and pulseless. The monitor still shows the same wide-complex rhythm. What changes?",
+a:"This is now pulseless VT — a shockable rhythm. Immediately switch to the cardiac arrest algorithm: unsynchronised defibrillation at 2 J/kg, followed by 2 minutes of CPR. Then 4 J/kg, CPR + adrenaline after the second shock, and amiodarone or lidocaine after the third shock. Maximum energy 10 J/kg.",
+d:"The transition from 'wide-complex tachycardia with a pulse' to 'pulseless VT' changes the algorithm entirely: SYNC mode off, full arrest doses, and the shockable pathway sequence. The team must be prepared for this transition during any wide-complex tachycardia — it is why you keep the defibrillator pads on and the team ready throughout."}],
+wrap:"Wide-complex tachycardia in repaired CHD is VT until proven otherwise. Stable → expert consultation before drugs. Unstable → synchronised cardioversion 0.5–1 then 2 J/kg. Pulseless → unsynchronised defibrillation and the arrest algorithm. In repaired TOF, the scar is the substrate — long-term management is ablation, ICD, and addressing residual haemodynamics."}
+]
 };
 
 const SENT_ABBR = /(?:\b[A-Z]|e\.g|i\.e|vs|approx|cf|etc|Fig|St|Dr|Prof|no|spp)\.$/;
@@ -8111,7 +8230,15 @@ function show(id){
     h += `<div class="tagrow">${d.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`;
   }
   if(typeof CASES !== "undefined" && CASES[d.id]){
-    h += `<div class="caselaunch"><span>📋 <b>Case study available</b> — work through this diagnosis as a stepwise case presentation.</span><button class="btn" id="casestart">Start the case</button></div>`;
+    const raw = CASES[d.id];
+    const multi = Array.isArray(raw);
+    if(multi){
+      h += `<div class="caselaunch"><span>📋 <b>${raw.length} case studies available</b></span>
+        <div class="casepicker">${raw.map((c,i) =>
+          `<button class="btn casepick" data-ci="${i}">Case ${i+1}: ${esc(c.label||'Untitled')}</button>`).join("")}</div></div>`;
+    } else {
+      h += `<div class="caselaunch"><span>📋 <b>Case study available</b> — work through this diagnosis as a stepwise case presentation.</span><button class="btn" id="casestart">Start the case</button></div>`;
+    }
   }
   if(d.id === "pals"){
     h += `<div id="palscalchost"></div>`;
@@ -8136,6 +8263,9 @@ function show(id){
   $("#view").innerHTML = h;
   const cs = document.getElementById("casestart");
   if(cs) cs.onclick = () => startCase(d.id);
+  document.querySelectorAll(".casepick").forEach(b => {
+    b.onclick = () => startCase(d.id, parseInt(b.dataset.ci));
+  });
   const ph = document.getElementById("palscalchost");
   if(ph){ ph.innerHTML = palsCalcShell(); wirePalsCalc(); }
   renderRail(d);
@@ -8152,7 +8282,8 @@ function blob(d){
     (d.mnemonics||[]).map(m=>m.key+" "+m.text).join(" "),
     (d.pearls||[]).join(" "),
     (typeof CASES!=="undefined" && CASES[d.id])
-      ? [CASES[d.id].stem, ...CASES[d.id].steps.map(s=>s.t+" "+s.q+" "+s.a+" "+s.d), CASES[d.id].wrap].join(" ")
+      ? (Array.isArray(CASES[d.id]) ? CASES[d.id] : [CASES[d.id]]).map(c =>
+          [c.stem, ...c.steps.map(s=>s.t+" "+s.q+" "+s.a+" "+s.d), c.wrap].join(" ")).join(" ")
       : ""].join(" ").toLowerCase();
 }
 DISEASES.forEach(d => d._blob = blob(d));
@@ -8282,11 +8413,18 @@ function wirePalsCalc(){
 /* ============ CASE ENGINE (stepwise think-then-reveal) ============ */
 let caseState = null;
 
-function startCase(id){
-  const c = CASES[id];
+function getCase(id, ci){
+  const raw = CASES[id];
+  if(!raw) return null;
+  if(Array.isArray(raw)) return raw[ci||0] || null;
+  return raw;
+}
+
+function startCase(id, ci){
+  const c = getCase(id, ci);
   if(!c) return;
   if(typeof reading !== "undefined" && reading) stopReading();
-  caseState = {id, revealed:0};
+  caseState = {id, ci: ci||0, revealed:0};
   current = id;
   markActive(id);
   location.hash = id;
@@ -8294,12 +8432,13 @@ function startCase(id){
 }
 
 function renderCase(){
-  const c = CASES[caseState.id];
+  const c = getCase(caseState.id, caseState.ci);
   const d = DISEASES.find(x=>x.id===caseState.id);
   const done = caseState.revealed >= c.steps.length;
+  const multi = Array.isArray(CASES[caseState.id]);
 
   let h = `<div class="content case">
-    <div class="eyebrow">Case study — ${esc(d.system)}</div>
+    <div class="eyebrow">Case study — ${esc(d.system)}${multi ? ' · '+esc(c.label||'') : ''}</div>
     <h2 class="title">${esc(d.name)}</h2>
     <div class="casedots">${c.steps.map((_,i)=>
       `<i class="${i<caseState.revealed?'done':(i===caseState.revealed?'open':'')}"></i>`).join("")}</div>
@@ -8347,20 +8486,29 @@ function renderCase(){
 }
 
 function randomCase(){
-  const ids = Object.keys(CASES);
-  if(!ids.length) return;
-  if(ids.length === 1){ startCase(ids[0]); return; }
-  let id = caseState ? caseState.id : null;
-  while(id === (caseState ? caseState.id : null)){
-    id = ids[Math.floor(Math.random()*ids.length)];
-  }
-  startCase(id);
+  const pool = [];
+  Object.keys(CASES).forEach(id => {
+    const raw = CASES[id];
+    if(Array.isArray(raw)) raw.forEach((_,i) => pool.push({id,ci:i}));
+    else pool.push({id,ci:0});
+  });
+  if(!pool.length) return;
+  if(pool.length === 1){ startCase(pool[0].id, pool[0].ci); return; }
+  let pick;
+  do { pick = pool[Math.floor(Math.random()*pool.length)]; }
+  while(caseState && pick.id === caseState.id && pick.ci === caseState.ci);
+  startCase(pick.id, pick.ci);
 }
 
 /* Toolbar behaviour: case for the current topic if one exists, else random. */
 function caseButton(){
-  if(current && CASES[current]) startCase(current);
-  else randomCase();
+  if(current && CASES[current]){
+    const raw = CASES[current];
+    if(Array.isArray(raw)){
+      const ci = Math.floor(Math.random()*raw.length);
+      startCase(current, ci);
+    } else startCase(current);
+  } else randomCase();
 }
 
 /* ============ NARRATOR (read a review aloud) ============ */
