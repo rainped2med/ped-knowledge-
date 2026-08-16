@@ -193,6 +193,38 @@ td:first-child{font-weight:600;color:var(--ink)}
 .hits .sys{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--amber);text-transform:uppercase;letter-spacing:.08em}
 mark{background:#fdf0c8;color:inherit;padding:0 1px}
 
+/* ---------- Case studies ---------- */
+.caselaunch{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  background:var(--amber-light);border:1px solid var(--amber);border-radius:var(--r);
+  padding:12px 16px;margin:18px 0 6px;font-size:14px;
+}
+.caselaunch span{flex:1 1 240px}
+.case .stem{
+  font-size:16.5px;line-height:1.6;background:var(--paper-2);
+  border:1px solid var(--line);border-left:4px solid var(--moss);
+  border-radius:var(--r);padding:16px 18px;margin:18px 0;
+}
+.cstep{margin:0 0 18px;border-left:3px solid var(--line);padding:2px 0 2px 18px}
+.cstep.open{border-left-color:var(--amber)}
+.cstep.done{border-left-color:var(--moss)}
+.cstep h3{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--amber);
+  text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px;font-weight:600}
+.cq{font-family:'Newsreader',Georgia,serif;font-size:18px;font-weight:600;
+  color:var(--ink);margin:0 0 10px;line-height:1.4}
+.cq::before{content:"Think: ";color:var(--amber);font-family:'IBM Plex Mono',monospace;
+  font-size:11px;text-transform:uppercase;letter-spacing:.08em;vertical-align:2px}
+.ca{background:var(--moss-light);border:1px solid var(--moss);border-radius:8px;
+  padding:12px 15px;margin:0 0 8px;font-size:14.5px}
+.cd{color:var(--ink-soft);font-size:14px;margin:0 0 4px}
+.revealbtn{background:var(--moss);color:#fff;border-color:var(--moss)}
+.revealbtn:hover{color:#fff;opacity:.9}
+.casedots{display:flex;gap:6px;margin:8px 0 20px}
+.casedots i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.casedots i.done{background:var(--moss)}
+.casedots i.open{background:var(--amber)}
+.caseend{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+
 /* ---------- Lecture rail ---------- */
 .workspace{display:grid;grid-template-columns:minmax(0,1fr) 430px;align-items:start;min-height:0}
 .rail{
@@ -339,6 +371,7 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
       <button class="btn" id="nextbtn">Next →</button>
       <button class="btn" id="randombtn" title="Jump to a random topic (r)">🎲 Daily review</button>
       <button class="btn" id="readbtn" title="Read this topic aloud (a). On the home page, reads a random topic.">🔊 Read aloud</button>
+      <button class="btn" id="casebtn" title="Case study for this topic if available, otherwise a random case (c)">📋 Case</button>
       <button class="btn" onclick="window.print()">Print</button>
       <button class="btn railbtn" id="railbtn">Lecture</button>
     </div>
@@ -7046,6 +7079,212 @@ const FIGURES = {
   ],
 };
 
+/* ============ CASE STUDIES ============ */
+/* Stepwise teaching cases. Each step: t = stage, q = the question to commit
+   to BEFORE revealing, a = the findings revealed, d = discussion of the
+   reasoning. Content mirrors the disease entries so the two never disagree. */
+const CASES = {
+"t1dm": {
+stem:"A 6-year-old girl is brought to the emergency department vomiting and breathing strangely. Her mother says she has been drinking constantly for two weeks and has started wetting the bed again after being dry for three years.",
+steps:[
+{t:"History", q:"What else do you want to ask — and what is your differential right now?",
+a:"She has lost about 2 kg. No diarrhoea, no cough. She is passing large volumes of urine despite being 'dehydrated'. No known illness; no medications.",
+d:"Polyuria with polydipsia, weight loss and secondary enuresis in a previously dry child is diabetes until proven otherwise. Vomiting plus deep breathing makes DKA the leading diagnosis — not gastroenteritis, whose vomiting has no polyuria, and not pneumonia. A finger-prick glucose takes seconds and should be done now."},
+{t:"Examination", q:"What will you specifically look for, and how dehydrated do you expect her to be?",
+a:"HR 138, BP 98/60, capillary refill 3 seconds, dry mucous membranes, sunken eyes. Deep sighing respirations at 32/min with a fruity smell. Drowsy but rousable, GCS 14. No focal signs.",
+d:"That breathing is Kussmaul respiration — respiratory compensation for metabolic acidosis, often misread as respiratory distress. Clinical assessment underestimates dehydration in DKA because intravascular volume is preserved until late; the guideline therefore assumes the deficit from severity, not from signs alone. She is not in shock."},
+{t:"Investigations", q:"Which investigations do you need immediately, and what severity do you predict?",
+a:"Glucose 480 mg/dL. Venous pH 7.06, bicarbonate 4.2 mmol/L, beta-hydroxybutyrate 5.8 mmol/L. Na 131, K 5.1, corrected Na ≈ 139. Urine ketones 3+.",
+d:"She meets all three diagnostic criteria — glucose >200 mg/dL, pH <7.3 or HCO3 <18, and ketones. By the Thai 2566 severity table this is severe DKA (pH <7.10, HCO3 <5), which means an assumed fluid deficit of 10%. Her potassium looks normal-high, but total body potassium is always depleted — insulin will unmask it."},
+{t:"Management — first hours", q:"She is not shocked. Write your fluid and insulin plan for the first 24 hours.",
+a:"0.9% NaCl 10–20 mL/kg over 30 minutes until perfusion improves. Then maintenance plus 10% deficit over 36 hours — half the deficit in the first 12 hours, half over the next 24 — subtracting the resuscitation volume. Insulin infusion 0.05–0.1 units/kg/hour started 1–2 hours AFTER fluids. Potassium 40 mmol/L added to fluids once she passes urine.",
+d:"The order matters: fluids first, insulin only after 1–2 hours, never as a bolus — glucose falls 50–200 mg/dL from rehydration alone. Add 5% dextrose when glucose reaches 250–300 mg/dL rather than slowing insulin, because insulin is what clears the ketones. If potassium had been below 3, we would delay insulin and give potassium first."},
+{t:"The complication", q:"Six hours in, she complains of a headache and becomes irritable. Heart rate has fallen from 130 to 88. What is happening and what do you do — right now?",
+a:"This is cerebral oedema until proven otherwise. Treat immediately: 3% NaCl 2.5–5 mL/kg (or 20% mannitol 0.5–1 g/kg) over 10–15 minutes, reduce fluids to two-thirds, head up 30 degrees, call PICU. CT only after treatment, to exclude other pathology.",
+d:"Cerebral oedema is the leading cause of DKA death and appears 4–12 hours into treatment — precisely when everyone relaxes. A new headache, falling heart rate with rising blood pressure, or any drop in conscious level is the alarm. Imaging must never delay treatment."}],
+wrap:"Severe DKA by the Thai 2566 guideline: diagnose at HCO3 <18, grade severity by pH and HCO3, assume 10% deficit for severe disease and replace it over 36 hours, insulin 1–2 hours after fluids with no bolus, potassium early at 40 mmol/L, and treat any neurological change as cerebral oedema without waiting for a scan."},
+
+"dengue": {
+stem:"A 9-year-old boy presents on day 4 of high fever with vomiting and abdominal pain. It is the rainy season and two classmates have dengue. His mother is relieved that his temperature has finally come down today.",
+steps:[
+{t:"History", q:"His fever is settling — is that reassuring? What do you want to know?",
+a:"He has vomited five times today and complains of continuous abdominal pain. He passed less urine this morning. Earlier in the week he had severe headache behind the eyes and aching legs.",
+d:"The mother's relief is the trap. In dengue, defervescence around day 3–7 marks the START of the critical phase, when plasma leakage begins. Persistent vomiting and abdominal pain are WHO warning signs — this child needs admission, not discharge."},
+{t:"Examination", q:"What specific signs will you look for to judge whether he is leaking plasma?",
+a:"T 37.2. HR 128, BP 100/85 — pulse pressure 15 mmHg. Hands cold, capillary refill 3 seconds. Liver palpable 3 cm, tender. No rash today; tourniquet test was positive on day 2.",
+d:"A pulse pressure of 20 mmHg or less IS compensated shock, even with a normal systolic — children hold their systolic pressure until they collapse. Cold extremities, prolonged refill and a tender enlarging liver all point the same way. This is dengue shock beginning, not recovery."},
+{t:"Investigations", q:"What will the full blood count show if you are right, and what confirms the diagnosis?",
+a:"Haematocrit 48% (a rise of ~25% from baseline 38%), platelets 42,000, WBC 3,200. AST 220. NS1 antigen positive.",
+d:"The rising haematocrit with falling platelets is the signature of plasma leakage — always read them together, and repeat 6–12 hourly through the critical phase. NS1 is positive from day 1 to about day 5; IgM takes over after day 5."},
+{t:"Management", q:"Write your fluid plan — and name two things you must NOT do.",
+a:"Isotonic crystalloid 10–20 mL/kg over 1 hour for compensated shock, then reassess and taper (5–7, then 3–5, then 2–3 mL/kg/h) against perfusion, haematocrit and urine output. Do NOT give NSAIDs or aspirin, and do NOT transfuse platelets prophylactically — transfuse only for clinically significant bleeding.",
+d:"Fluid is titrated to the leak, not run on autopilot: too little and he shocks, too much and he drowns in the recovery phase when leaked fluid returns to the circulation. A falling haematocrit in a still-shocked child means haemorrhage — that is when blood, not more crystalloid, is the answer."},
+{t:"The turn", q:"Thirty-six hours later his haematocrit is 36%, he is hungry, and an itchy confluent rash appears on his legs. What phase is this and what is your action?",
+a:"Recovery phase — reabsorption of leaked plasma, the classic convalescent rash ('isles of white in a sea of red'), and returning appetite. STOP intravenous fluids.",
+d:"The chief danger now is iatrogenic fluid overload and pulmonary oedema from fluids that are no longer needed. Total IV fluid should rarely exceed 48 hours in dengue. Discharge criteria: afebrile 48 hours, rising platelets, stable haematocrit, good urine output."}],
+wrap:"The fever falls, the danger rises: defervescence opens the critical phase, a narrow pulse pressure is shock before hypotension, rising haematocrit with falling platelets tracks the leak, no NSAIDs and no prophylactic platelets, and stop the fluids when recovery begins."},
+
+"kawasaki": {
+stem:"A 3-year-old boy has had a fever for 6 days despite two courses of antibiotics. He is miserable and irritable, his eyes are red, and today his mother noticed his lips are cracked and bleeding.",
+steps:[
+{t:"History", q:"Fever ≥5 days in a toddler unresponsive to antibiotics — what is your differential, and what features will you hunt for?",
+a:"A polymorphous rash came and went on day 3. He refuses food because his mouth hurts. No cough, no coryza, no diarrhoea. Immunisations complete; no measles contact.",
+d:"Prolonged fever with mucocutaneous inflammation and extreme irritability should always put Kawasaki disease at the top of the list, alongside measles, scarlet fever, adenovirus and systemic JIA. Antibiotic failure is itself a clue — this is not a bacterial pharyngitis."},
+{t:"Examination", q:"List the five criteria you will examine for.",
+a:"Bilateral non-exudative conjunctival injection; red cracked lips with a strawberry tongue; a polymorphous truncal rash; erythema and oedema of the hands and feet; a single right cervical node of 2 cm. All five present, plus 6 days of fever.",
+d:"Diagnosis requires fever ≥5 days plus 4 of the 5 criteria — he has all five, so this is complete Kawasaki disease. The conjunctivitis is non-exudative (pus suggests bacterial/adenoviral), the node is typically single and unilateral, and BCG-site erythema is a useful extra clue in BCG-vaccinated populations like Thailand."},
+{t:"Investigations", q:"Nothing confirms Kawasaki — so what do you order, and why?",
+a:"CRP 120, ESR 82, platelets 460 and climbing, sterile pyuria on urinalysis, mild transaminitis, albumin 28. Baseline echocardiogram arranged today.",
+d:"Investigations support and exclude: very high inflammatory markers, thrombocytosis (second week), sterile pyuria and hypoalbuminaemia all fit. The echocardiogram is not to make the diagnosis — it is to look at the coronary arteries, which are the entire reason this disease matters."},
+{t:"Management", q:"What treatment must he receive, and by when?",
+a:"IVIG 2 g/kg as a single infusion, ideally within 10 days of fever onset, plus aspirin. If fever persists or recurs 36 hours after IVIG, a second dose of IVIG is given.",
+d:"IVIG within the 10-day window cuts coronary aneurysm risk from about 25% to under 5% — this is the one paediatric indication where aspirin is deliberately used despite Reye syndrome concerns. About 10–15% are IVIG-resistant and need retreatment."},
+{t:"Follow-up", q:"He defervesces within 24 hours of IVIG. What follow-up does he still need?",
+a:"Echocardiography repeated at around 2 weeks and 6–8 weeks. Aspirin continues at antiplatelet dose until the 6–8 week echo is normal. Live vaccines (MMR, varicella) are deferred for about 11 months after IVIG.",
+d:"Aneurysms evolve over weeks, so a normal baseline echo never closes the case. The IVIG vaccine interaction is a frequently forgotten detail that matters in a Thai immunisation schedule."}],
+wrap:"Fever ≥5 days plus four of five mucocutaneous criteria; the echo is for the coronaries, not the diagnosis; IVIG 2 g/kg within 10 days plus aspirin; serial echocardiography; and defer live vaccines for 11 months after IVIG."},
+
+"intussusception": {
+stem:"An 8-month-old boy is brought in because he screams and draws his legs up in episodes lasting a few minutes, then goes pale and unusually quiet. He has vomited three times. Between episodes he is drowsy.",
+steps:[
+{t:"History", q:"Colicky episodes with lethargy between them — what is your differential, and which single diagnosis must you rule out first?",
+a:"Episodes every 15–20 minutes for six hours. Vomit is now green-tinged. One stool this morning was normal; nothing since. A viral illness last week.",
+d:"Paroxysmal colic with pallor and inter-episode lethargy in an infant of 3 months to 2 years is intussusception until proven otherwise. The drowsiness misleads teams toward sepsis or meningitis — the abdomen is the answer. Bilious vomiting says obstruction. The 'redcurrant jelly' stool is a LATE sign; waiting for it is waiting too long."},
+{t:"Examination", q:"What will you feel for, and where?",
+a:"A sausage-shaped mass in the right upper quadrant with emptiness in the right iliac fossa. Abdomen otherwise soft between spasms. HR 150, refill 2–3 seconds — mildly dehydrated. No peritonism.",
+d:"The ileocolic intussusceptum telescopes toward the transverse colon, leaving the right iliac fossa empty (Dance sign). No peritonism matters — it keeps non-operative reduction on the table."},
+{t:"Investigations", q:"What is the investigation of choice and what will it show?",
+a:"Ultrasound: a 'target' (doughnut) sign on transverse section and 'pseudokidney' on longitudinal section, in the right upper quadrant.",
+d:"Ultrasound is near-100% sensitive in experienced hands and shows reducibility markers (trapped fluid, absent flow). Plain films may be normal early and cannot exclude the diagnosis."},
+{t:"Management", q:"How is it treated — and when is that treatment contraindicated?",
+a:"IV fluids and nasogastric decompression first. Then air (pneumatic) enema reduction under fluoroscopic or ultrasound guidance. Contraindicated if there is peritonitis, perforation or shock — those go straight to theatre.",
+d:"Air enema succeeds in ~80–90%. Perforation risk is small but real, so surgery must be on standby. About 10% recur, mostly within 72 hours — parents are warned before discharge."},
+{t:"The twist", q:"A different child: 5 years old, same colic, but with palpable purpura on the shins. What changes?",
+a:"In Henoch–Schönlein purpura the intussusception is typically ILEO-ILEAL — small bowel only. An air enema neither reliably reduces nor excludes it; ultrasound and a surgical opinion are needed.",
+d:"Age outside 3 months–2 years or an atypical (ileo-ileal) location should also make you look for a pathological lead point — Meckel diverticulum, polyp, lymphoma."}],
+wrap:"Colic + pallor + lethargy in an infant = intussusception; ultrasound target sign; air enema unless peritonitis, perforation or shock; ~10% recur; and HSP intussusception is ileo-ileal — the enema rule does not apply."},
+
+"nephrotic": {
+stem:"A 3-year-old boy has had puffy eyes for five days. He was treated for 'allergy' with antihistamines. Today his mother reports his eyes are worse in the morning, his ankles swell by evening, and his urine looks frothy.",
+steps:[
+{t:"History", q:"Puffy eyes in a toddler — allergy, nephritis or nephrotic syndrome? What discriminates?",
+a:"No itch, no urticaria. Swelling is worst on waking and gravitates to the ankles by evening. Urine is frothy but not red or cola-coloured. A cold two weeks ago. Weight up 1.5 kg.",
+d:"Morning periorbital oedema that shifts with gravity plus frothy urine is proteinuria until proven otherwise. Cola-coloured urine with hypertension would swing toward nephritis (APSGN); itch and urticaria toward allergy. Weight gain quantifies the fluid."},
+{t:"Examination", q:"What do you examine for beyond the face?",
+a:"Pitting oedema of ankles and sacrum, shifting dullness, scrotal oedema. BP 96/58 — normal for age. No rash, no joint swelling, apyrexial.",
+d:"Normal blood pressure and the absence of haematuria keep this in nephrotic territory. Always check BP yourself — hypertension is a red flag pushing toward nephritis or an atypical cause needing biopsy."},
+{t:"Investigations", q:"Predict the results that would complete the diagnostic tetrad.",
+a:"Urine dipstick protein 4+, no blood. Urine protein:creatinine markedly raised. Serum albumin 18 g/L, cholesterol 9.2 mmol/L. Complement C3 normal. Creatinine normal.",
+d:"Heavy proteinuria, hypoalbuminaemia, oedema and hyperlipidaemia — the tetrad. Normal complement matters: low C3 would suggest post-infectious GN or lupus, both of which change the pathway entirely."},
+{t:"Management", q:"Does he need a biopsy? What do you start?",
+a:"No biopsy: age 1–10, normal BP, no gross haematuria, normal complement and renal function predict minimal change disease. Start prednisolone 60 mg/m²/day for 4–6 weeks, then 40 mg/m² on alternate days. Salt restriction; daily home urine dipsticks.",
+d:"About 85–90% of childhood idiopathic nephrotic syndrome is steroid-sensitive minimal change disease — response to steroids, not histology, defines prognosis. Biopsy is reserved for atypical features or steroid resistance."},
+{t:"The emergency", q:"Ten days later he develops fever and abdominal pain while still oedematous. What must you assume, and why is he vulnerable?",
+a:"Spontaneous bacterial peritonitis — classically pneumococcal — until proven otherwise: urgent assessment, ascitic tap if fluid is present, and antibiotics covering S. pneumoniae and gram-negatives.",
+d:"Nephrotic children lose immunoglobulin and complement factor B in the urine and are hypercoagulable from losing antithrombin III — so infection and thrombosis are the two killers. Fever plus abdominal pain in a nephrotic child is never 'just a virus'."}],
+wrap:"The tetrad plus normal BP, normal complement and no haematuria in a 1–10-year-old means steroids without biopsy; response defines prognosis; and fever with abdominal pain in a nephrotic child is spontaneous bacterial peritonitis until proven otherwise."},
+
+"febrileseizure": {
+stem:"An 18-month-old girl had a 3-minute episode of whole-body stiffening and jerking during a fever. By arrival she is alert and clinging to her mother. Her parents are terrified she has epilepsy or meningitis.",
+steps:[
+{t:"History", q:"What features decide whether this was a simple febrile seizure?",
+a:"Generalised from onset, lasted about 3 minutes, single episode, full recovery within 20 minutes. Fever and coryza since this morning. Development normal; father had febrile seizures as a child.",
+d:"Simple = generalised, under 15 minutes, not recurring within 24 hours, in a developmentally normal child aged 6 months to 6 years. Focal onset, duration >15 minutes or recurrence within the same illness would make it complex — a different conversation."},
+{t:"Examination", q:"What are you examining to exclude, and what will you check before reassuring anyone?",
+a:"T 39.1, alert, playful with a toy. No neck stiffness, fontanelle closed, no rash, no focal neurology. Right tympanic membrane red and bulging.",
+d:"The examination has one job: find the fever source and exclude CNS infection. An alert, interactive child post-ictally is the strongest reassurance. In infants under 12–18 months meningeal signs are unreliable — the threshold for LP drops, especially if unvaccinated or pretreated with antibiotics."},
+{t:"Investigations", q:"Her parents expect a brain scan and an EEG. What does she actually need?",
+a:"Nothing routinely — no EEG, no neuroimaging, no bloods for the seizure itself. Investigations target the fever source only; here, acute otitis media is treatable.",
+d:"A simple febrile seizure with a well child and an identified source needs no seizure work-up. EEG does not predict recurrence or epilepsy after a simple febrile seizure, and imaging is for focal deficits or signs of raised pressure."},
+{t:"Counselling", q:"What three numbers will you give these parents?",
+a:"About 1 in 3 will have another febrile seizure; about 1 in 30 febrile children have them at all (they are common); and the long-term epilepsy risk after a simple febrile seizure is only slightly above the background 1%.",
+d:"Also teach what to do: side-lying, nothing in the mouth, time it, and seek help — with buccal midazolam if any seizure passes 5 minutes. Antipyretics make the child comfortable but do NOT prevent seizures, a myth worth explicitly dismantling so families are not blamed for 'missing a dose'."},
+{t:"The contrast", q:"Same girl, but imagine the seizure had been left-sided, lasted 20 minutes and recurred that evening. What changes?",
+a:"That is a complex febrile seizure: admission and observation, a lower threshold for LP and neuroimaging, and consideration of the epilepsy syndromes it can herald — but even then most children do well.",
+d:"Complex features, young age, and family history of epilepsy raise later epilepsy risk moderately. Prolonged febrile seizures are also the setting for FEBSTAT-type concerns — a febrile seizure lasting >30 minutes is febrile status epilepticus and treated as an emergency."}],
+wrap:"Simple febrile seizures need a source found, no seizure investigations, and counselling built on three numbers — 1 in 3 recur, epilepsy risk barely rises, antipyretics do not prevent them. Complex features change the pathway."},
+
+"neojaundice": {
+stem:"A term breastfed boy, now 68 hours old and about to be discharged, looks yellow to the mid-abdomen. Mother is blood group O positive; this is her first baby. He is feeding eight times a day.",
+steps:[
+{t:"History", q:"Which historical facts separate physiological from pathological jaundice here?",
+a:"Jaundice was first noticed at about 50 hours. Born at 39 weeks, no instrumental delivery, no cephalhaematoma. Feeding well, wet nappies appropriate. Family origin Thai; an uncle 'had jaundice needing lights as a baby'.",
+d:"Onset after 24 hours with good feeding fits physiological or breastfeeding-associated jaundice. Onset WITHIN 24 hours is haemolysis until proven otherwise. Mother O+ raises ABO incompatibility; the family history and Thai origin put G6PD deficiency firmly on the list."},
+{t:"Examination", q:"How far down the body does jaundice at this level usually reach, and what else do you examine?",
+a:"Jaundice visible to the mid-abdomen (roughly zone 3). Alert, normal tone, strong suck. No pallor, no hepatosplenomegaly, no bruising or cephalhaematoma.",
+d:"Jaundice advances head-to-toe as bilirubin rises — visible on the face around 85 µmol/L (5 mg/dL) and on the soles only when severe. But visual estimation is unreliable: any jaundice reaching the abdomen, or any doubt, needs a measured bilirubin. Normal tone and a strong suck argue against early encephalopathy."},
+{t:"Investigations", q:"What do you measure, and against what do you interpret it?",
+a:"Total serum bilirubin 16 mg/dL (274 µmol/L) at 68 hours, conjugated fraction <10%. Blood group A positive, direct Coombs weakly positive. G6PD assay sent. Haematocrit and reticulocytes pending.",
+d:"A bilirubin value means nothing in isolation — it is plotted on the hour-specific treatment threshold chart for gestation and risk factors. Unconjugated jaundice with a positive DAT suggests ABO incompatibility; remember the G6PD assay can be falsely normal during brisk reticulocytosis and may need repeating."},
+{t:"Management", q:"His level sits above the phototherapy line. What do you do — and what do you NOT do?",
+a:"Intensive phototherapy with maximal skin exposure, eyes shielded; continue breastfeeding with support (no routine formula switch, no glucose water); recheck bilirubin in 4–6 hours to confirm the trajectory is falling; escalate toward exchange transfusion if it climbs toward the exchange line or any neurological signs appear.",
+d:"Phototherapy converts bilirubin to water-soluble photoisomers excreted without conjugation. Interrupting breastfeeding is rarely necessary and undermines supply. The feared outcome — acute bilirubin encephalopathy: lethargy, poor suck, high-pitched cry, arching — is precisely what makes 'a bit yellow, see you in clinic' dangerous at high levels."},
+{t:"The follow-through", q:"He responds well. What must still happen after discharge, and when does jaundice become 'prolonged'?",
+a:"Early review with feeding support and weight check; the G6PD result chased and the family counselled about oxidant triggers (naphthalene mothballs, certain drugs, fava beans) if positive. Jaundice persisting beyond 14 days in a term baby is prolonged — it needs a conjugated fraction to exclude biliary atresia.",
+d:"A conjugated fraction >20% or pale stools with dark urine demand urgent referral: biliary atresia outcomes hinge on a Kasai portoenterostomy done early. The 14-day check is the safety net that catches it."}],
+wrap:"Time of onset sorts jaundice; the level only means something on the hour-specific chart; phototherapy plus continued breastfeeding treats most; G6PD matters in Thai babies; and prolonged jaundice needs a conjugated split to catch biliary atresia in time."},
+
+"bronchiolitis": {
+stem:"A 4-month-old girl has had three days of runny nose and cough, and since last night she is wheezy, feeding poorly and breathing fast. It is the rainy season; her older brother has a cold.",
+steps:[
+{t:"History", q:"What do you ask to gauge severity, and which infants worry you most with this illness?",
+a:"Taking under half her usual feeds; nappies drier. No apnoea, no cyanosis. Born at 39 weeks, thriving, immunised. First episode of wheeze.",
+d:"Feeding is the functional severity gauge in infants — under 50–75% of normal intake is an admission criterion. The high-risk groups are the ex-preterm, under-3-month-olds, and infants with chronic lung disease, congenital heart disease or neuromuscular problems; in the youngest, apnoea can be the presenting feature before any wheeze."},
+{t:"Examination", q:"What pattern of findings distinguishes bronchiolitis from pneumonia and from asthma?",
+a:"RR 62, moderate subcostal and intercostal recession, nasal flaring. Widespread fine inspiratory crackles AND expiratory wheeze in all zones. SpO2 90% in air. T 38.0. Alert but tired.",
+d:"Diffuse bilateral crackles plus wheeze in a coryzal infant under 12 months is bronchiolitis. Focal crackles with high fever suggests pneumonia; recurrent episodic wheeze in an older child suggests asthma/preschool wheeze. The first wheezy episode in an infant in season needs no other label."},
+{t:"Investigations", q:"The admitting doctor requests a chest X-ray and blood tests. Do you agree?",
+a:"No — bronchiolitis is a clinical diagnosis. No routine chest X-ray (it shows hyperinflation and patchy atelectasis that tempt unnecessary antibiotics), no routine bloods. An RSV nasal swab only if it changes cohorting on the ward.",
+d:"Investigations in typical bronchiolitis mostly generate false leads. Imaging is reserved for diagnostic doubt, deterioration, or an atypical course."},
+{t:"Management", q:"She is admitted with SpO2 90% and poor feeding. Write the treatment — and list what does NOT work.",
+a:"Oxygen to keep saturations above target; nasogastric feeds (or IV fluids if not tolerated); gentle nasal suction before feeds; minimal handling. NOT effective: salbutamol, corticosteroids, antibiotics, nebulised adrenaline routinely, chest physiotherapy.",
+d:"Bronchiolitis management is supportive — oxygen and nutrition — and the discipline is in what you withhold. The airways of a 4-month-old are obstructed by oedema and debris, not bronchospasm, which is why bronchodilators fail."},
+{t:"The trajectory", q:"On day 2 she looks slightly worse. The parents ask if the treatment is failing. What do you tell them, and what defines readiness for home?",
+a:"The natural course peaks around day 3–5 before improving, so slight worsening on day 2 is expected, not treatment failure. Home when: feeding adequately (>75% of normal), saturations stable in air including a period of sleep, and parents confident — with the cough often lingering for weeks.",
+d:"Setting the expected trajectory prevents both panic and premature discharge. Persistent or recurrent wheeze after repeated episodes may later declare itself as preschool wheeze — a different problem with different treatment."}],
+wrap:"A clinical diagnosis in a coryzal infant with diffuse crackles and wheeze: support oxygen and feeding, withhold bronchodilators, steroids and antibiotics, expect the day 3–5 nadir, and admit the young, the ex-preterm and the poorly feeding."},
+
+"bactmeningitis": {
+stem:"An 18-month-old boy has had fever for two days and is now drowsy and vomiting. He cries when picked up and will not settle. He has had all vaccines to 12 months.",
+steps:[
+{t:"History", q:"What features push you toward meningitis, and what will you check before doing a lumbar puncture?",
+a:"Increasingly sleepy since morning, vomited four times, a brief shivering episode. No rash noticed. No sick contacts known; no recent antibiotics.",
+d:"Fever + vomiting + altered behaviour in a toddler is meningitis until proven otherwise; paradoxical irritability (crying more when handled) is a classic toddler sign. No prior oral antibiotics matters — partial treatment can decapitate the CSF findings."},
+{t:"Examination", q:"What do you examine, and what would make you DELAY the lumbar puncture?",
+a:"T 39.4, HR 150, BP normal. Drowsy, GCS 13, but no focal deficit. Neck stiffness with positive Kernig sign. No purpura. Fontanelle closed. Pupils equal and reactive.",
+d:"Contraindications to immediate LP: GCS ≤8 or falling, focal neurology, signs of raised ICP (unequal pupils, abnormal posturing, papilloedema, Cushing triad), shock, coagulopathy, or local infection. He has none — LP can proceed. If any were present, you would culture blood, give antibiotics immediately and defer the LP; antibiotics are never delayed for a scan or a tap."},
+{t:"Investigations", q:"Predict the CSF of bacterial meningitis before you see it.",
+a:"Turbid CSF: WBC 1,800/µL, 90% neutrophils; protein 1.8 g/L; CSF:blood glucose ratio 0.2. Gram stain: gram-positive diplococci. Blood cultures taken before the first dose.",
+d:"High neutrophil count, high protein and low glucose ratio (<0.4) is the bacterial pattern; lymphocytic CSF with normal glucose points viral, and lymphocytic with very high protein and low glucose suggests TB. Gram-positive diplococci = pneumococcus, the leading cause at this age."},
+{t:"Management", q:"Write the immediate treatment, including the one drug whose timing matters as much as the antibiotic's.",
+a:"IV ceftriaxone 100 mg/kg/day without delay, plus dexamethasone 0.15 mg/kg 6-hourly for 4 days, given before or with the first antibiotic dose. Careful fluids (not restricted by default), antipyretics, monitoring for seizures.",
+d:"Dexamethasone reduces hearing loss and neurological sequelae (best evidence in Hib, widely given in pneumococcal) but only works if it precedes or accompanies the first dose — bacterial lysis releases the inflammatory storm the steroid is meant to blunt. Watch sodium: SIADH is common, but hypovolaemia must not be created in the name of fluid restriction."},
+{t:"After the acute phase", q:"He recovers over ten days. What follow-up is mandatory, and what would a purpuric rash at presentation have changed?",
+a:"Formal audiology within 4–6 weeks — hearing loss is the commonest sequela — plus developmental surveillance. A purpuric rash would have meant meningococcal disease: immediate IM/IV antibiotics at first contact, and chemoprophylaxis (e.g. rifampicin or ciprofloxacin) for close contacts.",
+d:"Deafness can be silent and bilateral; audiology is not optional. Post-meningitis review also screens for the rarer sequelae — epilepsy, hydrocephalus, cognitive impairment — and any recurrent meningitis triggers a hunt for CSF leak or immunodeficiency."}],
+wrap:"Fever, vomiting and drowsiness in a toddler is meningitis until proven otherwise; know the LP contraindications cold; never delay antibiotics; give dexamethasone with or before the first dose; and book audiology for every survivor."},
+
+"sjia-mas": {
+stem:"A 5-year-old girl with known systemic JIA, partially controlled on methotrexate and a tapering steroid dose, is admitted with fever. Her mother says this fever feels different — it no longer comes and goes, and she is much more tired.",
+steps:[
+{t:"History", q:"Why does 'the fever no longer comes and goes' matter so much in systemic JIA?",
+a:"For two days the fever has been continuous at 39–40°C with no return to baseline. She is sleepy, off food, and bruised easily this week. The steroid dose was reduced three weeks ago; she had a viral illness last week.",
+d:"Systemic JIA fever is quotidian — spiking once or twice daily and RETURNING TO BASELINE. A change to unremitting fever, especially after a medication taper or an infection, is the classic opening of macrophage activation syndrome. Lethargy and easy bruising deepen the concern."},
+{t:"Examination", q:"What do you look for at the bedside?",
+a:"Continuous fever, drowsy but rousable. Liver 4 cm, spleen 3 cm — both larger than at her last clinic visit. Scattered bruises, a few petechiae. No arthritis flare; the salmon rash is absent.",
+d:"Worsening hepatosplenomegaly with bleeding signs and encephalopathy in a systemic JIA child is MAS at the bedside. Note the joints can be quiet — MAS is a cytokine storm, not an arthritis flare."},
+{t:"Investigations", q:"Her ESR has FALLEN from 80 to 18 and the team is reassured. Are you? Predict the rest of the panel.",
+a:"Ferritin 12,400 ng/mL (was 800). Platelets 95 (was 450). WBC falling. AST 210. Triglycerides 320 mg/dL. Fibrinogen 1.2 g/L and falling. Soluble CD25 raised; marrow later shows haemophagocytosis.",
+d:"The falling ESR is the trap — fibrinogen (which drives the ESR) is being consumed. By the 2016 EULAR/ACR/PRINTO criteria, a febrile systemic JIA child with ferritin >684 plus any two of platelets ≤181, AST >48, triglycerides >156 or fibrinogen ≤360 has MAS. She overshoots every threshold. 'Ferritin up, everything else down' is the signature."},
+{t:"Management", q:"What do you start, and where should she be?",
+a:"High-dose IV methylprednisolone pulses immediately, with anakinra (IL-1 blockade) and ciclosporin as the core additions; treat the infectious trigger; manage coagulopathy; escalate to PICU-level monitoring.",
+d:"MAS is a rheumatological emergency with double-digit mortality — treatment starts on clinical suspicion, not after the marrow. Anakinra has transformed outcomes and is safe enough to start empirically while infection is being covered."},
+{t:"The reflection", q:"Once she recovers, what should the team learn from the settling ESR that fooled them?",
+a:"That in systemic JIA, laboratory 'improvement' during clinical deterioration means consumption: track the TREND of ferritin, platelets, fibrinogen and AST together, and never interpret the ESR alone. A ferritin >10,000 in a child is MAS/HLH until proven otherwise.",
+d:"MAS complicates about 10% of systemic JIA overtly (more subclinically), and can be the presenting feature before the JIA is even diagnosed. Triggers — flares, infections (especially EBV), and medication changes — should prompt a low threshold for screening labs."}],
+wrap:"In systemic JIA, an unremitting fever with a falling ESR and rising ferritin is MAS — apply the 2016 criteria, treat on suspicion with steroid pulses, anakinra and ciclosporin, and remember that consumption masquerades as improvement."}
+};
+
 const SENT_ABBR = /(?:\b[A-Z]|e\.g|i\.e|vs|approx|cf|etc|Fig|St|Dr|Prof|no|spp)\.$/;
 function sentences(text){
   const parts = String(text).split(/(?<=\.)\s+/);
@@ -7224,6 +7463,7 @@ function welcome(){
       <div class="stat"><b>${DISEASES.length}</b><span>Diseases</span></div>
       <div class="stat"><b>${sysCount}</b><span>Systems</span></div>
       <div class="stat"><b>${tblCount}</b><span>Comparison tables</span></div>
+      <div class="stat"><b>${Object.keys(CASES).length}</b><span>Case studies</span></div>
     </div>
   </div>`;
   $("#crumb").textContent = "Overview";
@@ -7245,6 +7485,9 @@ function show(id){
   if(d.tags && d.tags.length){
     h += `<div class="tagrow">${d.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`;
   }
+  if(typeof CASES !== "undefined" && CASES[d.id]){
+    h += `<div class="caselaunch"><span>📋 <b>Case study available</b> — work through this diagnosis as a stepwise case presentation.</span><button class="btn" id="casestart">Start the case</button></div>`;
+  }
   (d.sections||[]).forEach(s=>{
     h += `<section class="blk"><h3>${esc(s.h)}</h3><p>${esc(s.body)}</p></section>`;
   });
@@ -7263,6 +7506,8 @@ function show(id){
   }
   h += `</div>`;
   $("#view").innerHTML = h;
+  const cs = document.getElementById("casestart");
+  if(cs) cs.onclick = () => startCase(d.id);
   renderRail(d);
   window.scrollTo(0,0);
   $("#sidebar").classList.remove("open");
@@ -7275,7 +7520,10 @@ function blob(d){
     (d.sections||[]).map(s=>s.h+" "+s.body).join(" "),
     (d.tables||[]).map(t=>t.title+" "+t.cols.join(" ")+" "+t.rows.flat().join(" ")).join(" "),
     (d.mnemonics||[]).map(m=>m.key+" "+m.text).join(" "),
-    (d.pearls||[]).join(" ")].join(" ").toLowerCase();
+    (d.pearls||[]).join(" "),
+    (typeof CASES!=="undefined" && CASES[d.id])
+      ? [CASES[d.id].stem, ...CASES[d.id].steps.map(s=>s.t+" "+s.q+" "+s.a+" "+s.d), CASES[d.id].wrap].join(" ")
+      : ""].join(" ").toLowerCase();
 }
 DISEASES.forEach(d => d._blob = blob(d));
 
@@ -7347,6 +7595,90 @@ function randomTopic(){
   show(id);
 }
 
+/* ============ CASE ENGINE (stepwise think-then-reveal) ============ */
+let caseState = null;
+
+function startCase(id){
+  const c = CASES[id];
+  if(!c) return;
+  if(typeof reading !== "undefined" && reading) stopReading();
+  caseState = {id, revealed:0};
+  current = id;
+  markActive(id);
+  location.hash = id;
+  renderCase();
+}
+
+function renderCase(){
+  const c = CASES[caseState.id];
+  const d = DISEASES.find(x=>x.id===caseState.id);
+  const done = caseState.revealed >= c.steps.length;
+
+  let h = `<div class="content case">
+    <div class="eyebrow">Case study — ${esc(d.system)}</div>
+    <h2 class="title">${esc(d.name)}</h2>
+    <div class="casedots">${c.steps.map((_,i)=>
+      `<i class="${i<caseState.revealed?'done':(i===caseState.revealed?'open':'')}"></i>`).join("")}</div>
+    <p class="stem">${esc(c.stem)}</p>`;
+
+  c.steps.forEach((s,i)=>{
+    if(i < caseState.revealed){
+      h += `<section class="cstep done"><h3>${esc(s.t)}</h3>
+        <p class="cq">${esc(s.q)}</p>
+        <div class="ca">${esc(s.a)}</div>
+        <div class="cd">${esc(s.d)}</div></section>`;
+    } else if(i === caseState.revealed){
+      h += `<section class="cstep open" id="openstep"><h3>${esc(s.t)}</h3>
+        <p class="cq">${esc(s.q)}</p>
+        <button class="btn revealbtn" id="revealbtn">Reveal</button></section>`;
+    }
+  });
+
+  if(done){
+    h += `<div class="pearls"><h4>Case wrap-up</h4><p>${esc(c.wrap)}</p></div>
+      <div class="caseend">
+        <button class="btn" id="backlecture">📖 Read the full lecture</button>
+        <button class="btn" id="anothercase">🎲 Another random case</button>
+      </div>`;
+  }
+  h += `</div>`;
+  $("#view").innerHTML = h;
+  $("#crumb").textContent = "Case study";
+  $("#sidebar").classList.remove("open");
+
+  const rb = document.getElementById("revealbtn");
+  if(rb) rb.onclick = () => { caseState.revealed++; renderCase(); };
+  const bl = document.getElementById("backlecture");
+  if(bl) bl.onclick = () => show(caseState.id);
+  const ac = document.getElementById("anothercase");
+  if(ac) ac.onclick = randomCase;
+
+  const os = document.getElementById("openstep");
+  if(os && caseState.revealed > 0) os.scrollIntoView({behavior:"smooth", block:"center"});
+  else if(caseState.revealed === 0) window.scrollTo(0,0);
+  if(done){
+    const w = document.querySelector(".caseend");
+    if(w) w.scrollIntoView({behavior:"smooth", block:"center"});
+  }
+}
+
+function randomCase(){
+  const ids = Object.keys(CASES);
+  if(!ids.length) return;
+  if(ids.length === 1){ startCase(ids[0]); return; }
+  let id = caseState ? caseState.id : null;
+  while(id === (caseState ? caseState.id : null)){
+    id = ids[Math.floor(Math.random()*ids.length)];
+  }
+  startCase(id);
+}
+
+/* Toolbar behaviour: case for the current topic if one exists, else random. */
+function caseButton(){
+  if(current && CASES[current]) startCase(current);
+  else randomCase();
+}
+
 /* ============ NARRATOR (read a review aloud) ============ */
 /* Uses the browser's built-in speech synthesis — no network, no service.
    Reads name, one-liner, each section, mnemonics and pearls; tables are
@@ -7406,6 +7738,7 @@ $("#prevbtn").onclick = ()=>step(-1);
 $("#nextbtn").onclick = ()=>step(1);
 $("#randombtn").onclick = randomTopic;
 $("#readbtn").onclick = toggleRead;
+$("#casebtn").onclick = caseButton;
 $("#menubtn").onclick = ()=>$("#sidebar").classList.toggle("open");
 $("#railbtn").onclick = ()=>$("#rail").classList.toggle("open");
 $("#railclose").onclick = ()=>$("#rail").classList.remove("open");
@@ -7431,6 +7764,7 @@ document.addEventListener("keydown", e=>{
   if(e.key==="p"||e.key==="P"){ if(deck.length){ e.preventDefault(); present(0); } }
   if(e.key==="r"||e.key==="R"){ e.preventDefault(); randomTopic(); }
   if(e.key==="a"||e.key==="A"){ e.preventDefault(); toggleRead(); }
+  if(e.key==="c"||e.key==="C"){ e.preventDefault(); caseButton(); }
   if(e.key==="ArrowRight") step(1);
   if(e.key==="ArrowLeft") step(-1);
 });
