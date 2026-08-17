@@ -1,6 +1,6 @@
 # Image credits
 
-The 64 images distributed in `assets/` come from Wikimedia Commons and are
+The 73 images distributed in `assets/` come from Wikimedia Commons and are
 reproduced under the licence shown. Attribution was taken from the Commons API at
 download time. CC BY and CC BY-SA require this credit to accompany any redistribution.
 
@@ -91,3 +91,12 @@ download time. CC BY and CC BY-SA require this credit to accompany any redistrib
 | PALS | `laryngoscopy_intubation.png` | Open Critical Care / WHO | CC BY 4.0 | [source](https://commons.wikimedia.org/wiki/File:Sagittal_cross_section_view_of_laryngoscopy_intubation_with_mac_3.png) |
 | PALS | `capnogram.png` | Rschiedon | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Capnogram.png) |
 | PALS | `sync_cardioversion.jpg` | StudentDoctorDG | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:LIFEPAK_20e_Defibrillator_and_Monitor_displaying_synchronization_with_QRS_complexes._(arrowheads).jpg) |
+| PALS Case | `aed_device.jpg` | AnBuKu | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:AED-Defilibrator_im_Burgerspital.jpg) |
+| PALS Case | `cpr_training.jpg` | Rama | CC BY-SA 2.0 FR | [source](https://commons.wikimedia.org/wiki/File:CPR_training-04.jpg) |
+| PALS Case | `bag_valve_mask.png` | Open Critical Care / WHO | CC BY 4.0 | [source](https://commons.wikimedia.org/wiki/File:Bag_valve_mask_with_BV_filter.png) |
+| PALS Case | `epinephrine_ampoule.jpg` | Jfoldmei | CC BY 3.0 | [source](https://commons.wikimedia.org/wiki/File:Epinephrine-ampule.JPG) |
+| PALS Case | `atropine_ampoule.jpg` | Skirtick | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Atropine_injection_ampoule.JPG) |
+| PALS Case | `three_way_stopcock.jpg` | Doc James | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:3waystopcock.jpg) |
+| PALS Case | `amiodarone_vial.jpg` | Intropin | CC BY 3.0 | [source](https://commons.wikimedia.org/wiki/File:Amiodarone_(1).JPG) |
+| PALS Case | `cardiac_monitor.jpg` | Ernstl | CC BY-SA 2.5 | [source](https://commons.wikimedia.org/wiki/File:Defibrillator_Monitor_Closeup.jpg) |
+| PALS Case | `lifepak_sync.jpg` | StudentDoctorDG | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:LIFEPAK_20e_Defibrillator_and_Monitor_displaying_synchronization_with_QRS_complexes._(arrowheads).jpg) |

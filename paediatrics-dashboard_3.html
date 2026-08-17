@@ -207,6 +207,34 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
 .pcout th{background:var(--moss);color:#fff}
 .pcnote{font-size:11px;color:var(--ink-soft);margin-top:8px}
 
+/* ---------- Diagnostic score calculators ---------- */
+.scorecalc{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin:18px 0}
+.scorecalc .sc-head{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--moss);margin-bottom:12px;font-weight:600;display:flex;align-items:center;gap:8px}
+.sc-comp{margin-bottom:10px;padding:8px 10px;background:var(--paper);border-radius:6px;border:1px solid var(--line)}
+.sc-comp-label{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.sc-opts{display:flex;flex-wrap:wrap;gap:6px}
+.sc-opt{font-size:12.5px;padding:5px 10px;border-radius:16px;border:1px solid var(--line);background:var(--paper-2);cursor:pointer;transition:all .15s;color:var(--ink-soft)}
+.sc-opt:hover{border-color:var(--moss);color:var(--moss)}
+.sc-opt.active{background:var(--moss);color:#fff;border-color:var(--moss);font-weight:600}
+.sc-chk{display:flex;align-items:center;gap:6px;font-size:12.5px;padding:3px 0;cursor:pointer;color:var(--ink-soft)}
+.sc-chk input[type=checkbox]{width:16px;height:16px;accent-color:var(--moss)}
+.sc-chk.checked{color:var(--moss);font-weight:600}
+.sc-input{display:flex;align-items:center;gap:8px;font-size:13px;margin:4px 0}
+.sc-input input{width:80px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;font:inherit;background:var(--paper-2)}
+.sc-input select{padding:5px 8px;border:1px solid var(--line);border-radius:6px;font:inherit;background:var(--paper-2)}
+.sc-result{margin-top:12px;padding:10px 14px;border-radius:8px;font-size:14px;font-weight:600;text-align:center;transition:all .2s}
+.sc-result .sc-total{font-size:28px;display:block;margin-bottom:4px}
+.sc-result .sc-grade{font-size:15px;display:block}
+.sc-result .sc-detail{font-size:12px;font-weight:400;display:block;margin-top:4px;color:var(--ink-soft)}
+.sc-result.mild{background:#e8f5e9;border:1px solid #66bb6a;color:#2e7d32}
+.sc-result.moderate{background:#fff3e0;border:1px solid #ffa726;color:#e65100}
+.sc-result.severe{background:#fce4ec;border:1px solid #ef5350;color:#b71c1c}
+.sc-result.neutral{background:var(--moss-light);border:1px solid var(--moss);color:var(--moss)}
+.sc-result.positive{background:#e8f5e9;border:1px solid #66bb6a;color:#2e7d32}
+.sc-result.negative{background:var(--paper-2);border:1px solid var(--line);color:var(--ink-soft)}
+.sc-section{margin:10px 0 6px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--amber);padding-top:6px;border-top:1px solid var(--line)}
+.sc-note{font-size:11px;color:var(--ink-soft);margin-top:8px;font-style:italic}
+
 /* ---------- PALS flow diagrams ---------- */
 .pflow{margin:22px 0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .pflow-title{background:var(--moss);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;
@@ -256,6 +284,9 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
 .cstep{margin:0 0 18px;border-left:3px solid var(--line);padding:2px 0 2px 18px}
 .cstep.open{border-left-color:var(--amber)}
 .cstep.done{border-left-color:var(--moss)}
+.cstep-fig{margin:10px 0;text-align:center}
+.cstep-fig img{max-width:340px;max-height:240px;border-radius:8px;border:1px solid var(--line);object-fit:contain}
+.cstep-fig figcaption{font-size:11px;color:var(--ink-soft);margin-top:4px;font-style:italic}
 .cstep h3{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--amber);
   text-transform:uppercase;letter-spacing:.08em;margin:0 0 6px;font-weight:600}
 .cq{font-family:'Newsreader',Georgia,serif;font-size:18px;font-weight:600;
@@ -8013,10 +8044,12 @@ stem:"A 14-year-old boy collapses on the school football field during practice. 
 steps:[
 {t:"Recognition", q:"He is pulseless. You attach the AED pads — the rhythm shows a rapid, chaotic, irregular waveform with no discernible QRS complexes. What is the rhythm and what do you do first?",
 a:"Ventricular fibrillation. Immediately start high-quality CPR — compressions 100–120/min, depth 5–6 cm (adolescent = adult depth), complete recoil. Charge the defibrillator while compressions continue.",
-d:"In paediatric VF/pVT, every second without compressions or a shock worsens neurological outcome. The AED was available but not applied — the first action after confirming pulselessness is CPR while preparing to shock, not standing back to analyse."},
+d:"In paediatric VF/pVT, every second without compressions or a shock worsens neurological outcome. The AED was available but not applied — the first action after confirming pulselessness is CPR while preparing to shock, not standing back to analyse.",
+img:"ventricular_fibrillation.png",imgAlt:"VF rhythm strip",imgCap:"Ventricular fibrillation — chaotic, no discernible QRS complexes"},
 {t:"First shock", q:"CPR is running. What energy do you deliver, and what do you do immediately after the shock?",
 a:"First shock: 2 J/kg — for this adolescent roughly 50 kg, that is 100 J. Immediately resume CPR for 2 minutes without pausing to check the rhythm or pulse.",
-d:"The 2025 guideline accepts 2–4 J/kg for the first shock (registry data favours the 1.7–2.5 J/kg window). The critical point is NO pause after the shock — 2 full minutes of CPR before the next rhythm check. A brief post-shock organised rhythm may not yet produce a pulse; compressions bridge that gap."},
+d:"The 2025 guideline accepts 2–4 J/kg for the first shock (registry data favours the 1.7–2.5 J/kg window). The critical point is NO pause after the shock — 2 full minutes of CPR before the next rhythm check. A brief post-shock organised rhythm may not yet produce a pulse; compressions bridge that gap.",
+img:"aed_device.jpg",imgAlt:"AED defibrillator device",imgCap:"AED ready for use — attach pads, analyse, deliver shock"},
 {t:"Second shock and adrenaline", q:"Two minutes later the rhythm check still shows VF. What is your next move?",
 a:"Second shock at 4 J/kg (200 J). Resume CPR immediately. During this 2-minute cycle, give adrenaline 0.01 mg/kg IV or IO = 0.5 mg = 5 mL of 1:10,000 solution. Flush with 10–20 mL of normal saline.",
 d:"Adrenaline enters the shockable pathway AFTER the second shock — not before. In non-shockable arrest it is given as soon as possible, but in VF/pVT the sequence is shock-CPR-shock-CPR+adrenaline. The 2025 guideline is emphatic: early adrenaline in non-shockable, but timed to the second shock in shockable arrest. Establish IO access without hesitation if IV is not immediately available."},
@@ -8025,7 +8058,8 @@ a:"After the third shock: amiodarone 5 mg/kg IV bolus (250 mg for 50 kg, but max
 d:"The 2025 evidence review found no outcome difference between amiodarone and lidocaine — either is acceptable. Do not combine amiodarone with procainamide (additive hypotension and QT prolongation). While drugs cycle, the team leader must be actively working through the H's and T's aloud — in a teenage athlete, think hypertrophic cardiomyopathy, long QT, commotio cordis, and anomalous coronary."},
 {t:"Ongoing resuscitation", q:"You are now 12 minutes into the arrest. What are the key quality metrics you should be monitoring, and what energy ceiling exists?",
 a:"Compression fraction target 90–100%. Rotate compressors every 2 minutes. Monitor with waveform capnography — EtCO2 should be trending up with good compressions; an abrupt sustained rise signals ROSC. Subsequent defibrillation doses escalate up to a maximum of 10 J/kg or the adult maximum energy of the device.",
-d:"The 10 J/kg ceiling is a 2025-retained recommendation. In this adolescent, 10 J/kg = 500 J, but most paediatric defibrillators deliver up to 200–360 J — document which machine you used. An EtCO2 consistently below 10 mmHg despite good technique suggests compressions are not generating adequate cardiac output — consider causes and consider ECPR if available."},
+d:"The 10 J/kg ceiling is a 2025-retained recommendation. In this adolescent, 10 J/kg = 500 J, but most paediatric defibrillators deliver up to 200–360 J — document which machine you used. An EtCO2 consistently below 10 mmHg despite good technique suggests compressions are not generating adequate cardiac output — consider causes and consider ECPR if available.",
+img:"cpr_training.jpg",imgAlt:"CPR chest compressions being performed",imgCap:"High-quality CPR — compress hard (5–6 cm), allow full recoil, 100–120/min"},
 {t:"ROSC", q:"After the fifth shock, the rhythm check shows an organised rhythm at 110/min with a palpable pulse. EtCO2 jumps to 38 mmHg. What is your immediate post-ROSC bundle?",
 a:"Confirm ROSC: pulse present, rising EtCO2, arterial waveform if available. Start the post-ROSC bundle: wean FiO2 to target SpO2 94–99% (avoid hyperoxia); continuous core temperature monitoring — keep temperature at or below 37.5°C and consider TTM at 32–34°C for 24 hours; maintain BP above 5th percentile for age with fluids and vasopressors; obtain 12-lead ECG, blood gas, glucose, electrolytes; arrange continuous EEG monitoring; do NOT prognosticate early.",
 d:"Post-ROSC care determines the neurological outcome. The 2025 guideline elevates fever prevention as critical — every degree above 37.5°C worsens brain injury. Hyperoxia is equally harmful: target normoxaemia. In a teenager who arrested during sport, the 12-lead ECG and echocardiography are essential to diagnose the underlying channelopathy or structural disease — this arrest will recur without a diagnosis."}],
@@ -8036,10 +8070,12 @@ stem:"A 2-year-old boy is pulled from a garden fishpond by his grandmother. She 
 steps:[
 {t:"Recognition and first actions", q:"He is pulseless with no respiratory effort. The monitor shows a flat line. Before you call it asystole — what must you confirm, and what is the IMMEDIATE priority?",
 a:"Confirm asystole: check leads are connected, gain is adequate, and check in two leads (or rotate 90°) to exclude fine VF masquerading as a flat line. Immediate priority: begin high-quality CPR — infant/child technique, two-thumb encircling compressions with two rescuers, 15:2 ratio. Ventilate with bag-mask and 100% oxygen.",
-d:"In a drowning child the arrest is asphyxial — the primary insult is hypoxia, not a cardiac arrhythmia. This means ventilation is every bit as important as compressions, unlike adult cardiac arrest where compression-only CPR may suffice. The 2025 guideline retains the higher paediatric ventilation rate (1 breath every 2–3 seconds with an advanced airway, 20–30/min) reflecting this physiology."},
+d:"In a drowning child the arrest is asphyxial — the primary insult is hypoxia, not a cardiac arrhythmia. This means ventilation is every bit as important as compressions, unlike adult cardiac arrest where compression-only CPR may suffice. The 2025 guideline retains the higher paediatric ventilation rate (1 breath every 2–3 seconds with an advanced airway, 20–30/min) reflecting this physiology.",
+img:"asystole.svg",imgAlt:"Asystole — flat line on monitor",imgCap:"Asystole — confirm in 2 leads before calling it a flat line"},
 {t:"Adrenaline — timing", q:"You have confirmed asystole. When do you give adrenaline, and by what route?",
 a:"Give adrenaline AS SOON AS POSSIBLE — 0.01 mg/kg = 0.1 mL/kg of 1:10,000, IV or IO. For this 12 kg child: 0.12 mg = 1.2 mL. Repeat every 3–5 minutes. If no IV/IO access within 60 seconds, place an IO without hesitation — the proximal tibia is the fastest site in a toddler.",
-d:"This is the critical difference from the shockable pathway: in non-shockable arrest, adrenaline is given AS EARLY AS POSSIBLE, not sequenced to shocks. The 2025 guideline cites evidence that each cycle of delay in first adrenaline worsens survival and neurological outcome. Do not waste time on peripheral IV attempts — an IO needle takes 30 seconds."},
+d:"This is the critical difference from the shockable pathway: in non-shockable arrest, adrenaline is given AS EARLY AS POSSIBLE, not sequenced to shocks. The 2025 guideline cites evidence that each cycle of delay in first adrenaline worsens survival and neurological outcome. Do not waste time on peripheral IV attempts — an IO needle takes 30 seconds.",
+img:"epinephrine_ampoule.jpg",imgAlt:"Epinephrine (adrenaline) ampoule",imgCap:"Adrenaline 1 mg ampoule — dilute to 1:10,000 for paediatric use"},
 {t:"Reversible causes", q:"While CPR runs, work through the reversible causes for this child. Which are most likely, and what do you do about them?",
 a:"Hypoxia — the headline cause in drowning. Already treating with ventilation and oxygen. Hypothermia — immersion hypothermia depends on water temperature and duration; check core temperature. Hypovolaemia — unlikely here but consider if trauma. Tension pneumothorax — possible from aggressive ventilation; check for unilateral chest rise and tracheal deviation.",
 d:"In drowning, the H's dominate: Hypoxia is the cause of the arrest, and Hypothermia can be protective (cold-water immersion <6 minutes in a small child — do not stop CPR until rewarmed to 32–34°C). Gastric distension from swallowed water impedes ventilation — decompress with an orogastric tube. The 2025 guideline notes that abdominal thrusts to 'drain the lungs' are harmful and must not be performed."},
@@ -8048,7 +8084,8 @@ a:"Resume CPR immediately. Give adrenaline 0.12 mg every 3–5 minutes — pract
 d:"The non-shockable algorithm is a loop: 2 minutes of CPR → brief rhythm check → resume CPR → adrenaline every other cycle. The most common transition is from asystole to PEA (an organised rhythm with no pulse) — this is NOT ROSC and does not change the algorithm. Only a perfusing rhythm with a palpable pulse is ROSC."},
 {t:"Airway decision", q:"Five minutes in, bag-mask is adequate but the team wants to intubate. Is this the right moment?",
 a:"Intubation is reasonable if a skilled operator is available AND it will not interrupt compressions for more than the seconds needed to pass the tube. Use a cuffed ETT: size = (age/4) + 3.5 = 4.0 mm cuffed, depth at lip = 3 × 4 = 12 cm. Confirm with waveform capnography. Once intubated, switch to continuous compressions with 1 breath every 2–3 seconds.",
-d:"The 2025 guideline is clear: bag-mask is not inferior to intubation for short resuscitations, and an intubation attempt that interrupts compressions for 30+ seconds kills. If the first attempt fails, go back to bag-mask and try again at the next rhythm check. Cuffed tubes are now preferred at all ages — they reduce the need for tube changes and give better capnography."},
+d:"The 2025 guideline is clear: bag-mask is not inferior to intubation for short resuscitations, and an intubation attempt that interrupts compressions for 30+ seconds kills. If the first attempt fails, go back to bag-mask and try again at the next rhythm check. Cuffed tubes are now preferred at all ages — they reduce the need for tube changes and give better capnography.",
+img:"bag_valve_mask.png",imgAlt:"Bag-valve-mask device",imgCap:"Bag-valve-mask — the default airway device in paediatric resuscitation"},
 {t:"ROSC — the drowning-specific concerns", q:"After 8 minutes, the rhythm check shows sinus tachycardia at 160/min with a palpable femoral pulse. What are your immediate priorities, and what is different about post-ROSC care in a drowning child?",
 a:"Confirm ROSC. Post-ROSC bundle: wean FiO2 to SpO2 94–99%, prevent fever (target ≤37.5°C), support blood pressure. Drowning-specific: expect pulmonary oedema and poor compliance — gentle PEEP on the ventilator helps; anticipate ARDS requiring ICU ventilation; rewarm gradually if hypothermic; monitor for secondary drowning (delayed pulmonary oedema in the next 24–72 hours).",
 d:"Submersion victims who achieve ROSC have a better prognosis than equivalent dry-land arrests, partly because cold water is neuroprotective. But the lungs have been insulted — surfactant is washed out, alveoli are flooded, and ARDS can develop hours later. All near-drowning children who required CPR are admitted to PICU regardless of how well they look after ROSC."}],
@@ -8068,10 +8105,12 @@ a:"Start CPR — chest compressions at 100–120/min. This is the unique situati
 d:"This is the step that teams hesitate on — compressing a heart that is still beating feels wrong, but at a rate of 48 in an infant, cardiac output is inadequate to perfuse the brain and organs. CPR bridges the gap while you treat the cause. Two-thumb encircling technique, 15:2 ratio."},
 {t:"Drugs", q:"Compressions are running. What drug do you give first? A colleague suggests atropine — do you agree?",
 a:"Give adrenaline 0.01 mg/kg IV or IO first. For this ~7 kg infant: 0.07 mg = 0.7 mL of 1:10,000. Repeat every 3–5 minutes. Atropine 0.02 mg/kg (0.14 mg) is indicated ONLY if increased vagal tone or primary AV block is suspected — NOT for hypoxic bradycardia.",
-d:"The 2025 guideline is specific: atropine treats vagal or AV-block bradycardia, not hypoxic bradycardia (where the answer is oxygen, ventilation and CPR). In this post-surgical patient, complete heart block IS a real possibility — if the 12-lead shows dissociated P waves and QRS, atropine is appropriate AND you should call for transcutaneous pacing. The old minimum atropine dose of 0.1 mg is gone in 2025 — give 0.02 mg/kg regardless of weight."},
+d:"The 2025 guideline is specific: atropine treats vagal or AV-block bradycardia, not hypoxic bradycardia (where the answer is oxygen, ventilation and CPR). In this post-surgical patient, complete heart block IS a real possibility — if the 12-lead shows dissociated P waves and QRS, atropine is appropriate AND you should call for transcutaneous pacing. The old minimum atropine dose of 0.1 mg is gone in 2025 — give 0.02 mg/kg regardless of weight.",
+img:"atropine_ampoule.jpg",imgAlt:"Atropine ampoule",imgCap:"Atropine 0.5 mg — for vagal/AV block bradycardia only, not hypoxic bradycardia"},
 {t:"The ECG reveals the cause", q:"The 12-lead ECG shows regular P waves at 120/min with completely independent QRS complexes at 48/min. What is this, and what is the definitive treatment?",
 a:"Complete (third-degree) atrioventricular block — the P waves march through the QRS complexes with no relationship. In this post-VSD-repair infant, this is likely surgical trauma to the bundle of His. Immediate management: continue CPR, adrenaline and atropine; arrange emergency transcutaneous pacing; call the cardiac surgeon — if the block persists beyond 7–10 days, a permanent pacemaker is needed.",
-d:"Complete heart block complicates about 1–3% of VSD repairs, especially perimembranous defects. Temporary epicardial pacing wires are often left in after surgery for exactly this reason — check if they are still in place. If they are, connect them to an external pacemaker immediately. Isoprenaline infusion (0.02–0.2 mcg/kg/min) is a temporising bridge to pacing if adrenaline and atropine are insufficient."},
+d:"Complete heart block complicates about 1–3% of VSD repairs, especially perimembranous defects. Temporary epicardial pacing wires are often left in after surgery for exactly this reason — check if they are still in place. If they are, connect them to an external pacemaker immediately. Isoprenaline infusion (0.02–0.2 mcg/kg/min) is a temporising bridge to pacing if adrenaline and atropine are insufficient.",
+img:"complete_heart_block.jpg",imgAlt:"Complete heart block ECG",imgCap:"Complete (3rd degree) AV block — P waves and QRS complexes march independently"},
 {t:"Resolution", q:"Transcutaneous pacing captures at 120/min. Her colour improves and capillary refill returns to 2 seconds. What happens next?",
 a:"Transition to transvenous or epicardial pacing. Monitor for return of AV conduction — some post-surgical heart block resolves within 7–10 days. If it persists, implant a permanent pacemaker before discharge. Continuous ECG monitoring throughout.",
 d:"The teaching point: bradycardia in a post-operative cardiac patient is not generic — it is a specific surgical complication with a specific fix. The PALS bradycardia algorithm got the child through the crisis, but the definitive treatment was pacing, not pharmacology."}],
@@ -8082,7 +8121,8 @@ stem:"A 4-month-old boy is brought to the emergency department because he has be
 steps:[
 {t:"Recognition", q:"HR 280 in an infant — is this sinus tachycardia or SVT? How do you tell?",
 a:"At 280/min with no beat-to-beat variability, absent P waves, and abrupt onset (the mother says he was fine yesterday), this is SVT, not sinus tachycardia. Sinus tachycardia in an infant rarely exceeds 220/min, shows beat-to-beat variability, has visible P waves, and has an identifiable cause (fever, pain, dehydration).",
-d:"The 2025 guideline uses the same thresholds: SVT is typically >220 in infants and >180 in children, with a fixed rate and no normal P waves. In contrast, sinus tachycardia responds to the cause and has a history that explains it. The distinction matters enormously — treating sinus tachycardia with adenosine or cardioversion while ignoring the underlying cause (sepsis, hypovolaemia) can be fatal."},
+d:"The 2025 guideline uses the same thresholds: SVT is typically >220 in infants and >180 in children, with a fixed rate and no normal P waves. In contrast, sinus tachycardia responds to the cause and has a history that explains it. The distinction matters enormously — treating sinus tachycardia with adenosine or cardioversion while ignoring the underlying cause (sepsis, hypovolaemia) can be fatal.",
+img:"svt_lead_ii.jpg",imgAlt:"SVT rhythm strip",imgCap:"SVT — narrow-complex, regular, ~280/min, no visible P waves"},
 {t:"Haemodynamic assessment", q:"Is he stable or unstable? What signs would push you to immediate cardioversion?",
 a:"He is pale, irritable, capillary refill 4 seconds, but blood pressure is 75/50 (adequate for age). No hepatomegaly yet. He is compensating — haemodynamically stable enough for medical management first. Unstable signs that would mandate immediate cardioversion: hypotension, altered consciousness, signs of heart failure (gallop, hepatomegaly, pulmonary oedema).",
 d:"SVT can be tolerated for hours in older children, but infants decompensate faster because they cannot increase stroke volume — they are rate-dependent. A 4-month-old with 12 hours of SVT is at risk of tachycardia-induced cardiomyopathy. Work quickly, but he is stable enough for vagal manoeuvres and adenosine first."},
@@ -8091,10 +8131,12 @@ a:"Apply a bag of ice-water slurry to the face for 15–20 seconds, covering for
 d:"The diving reflex is the most reliable vagal manoeuvre in infants. In older children, blowing through an obstructed straw or syringe (modified Valsalva) is effective. Record a rhythm strip during the attempt — even if it fails to convert, the brief AV block may unmask the P-wave pattern and confirm the diagnosis."},
 {t:"Adenosine", q:"Ice to the face fails. What is your next step? Describe the technique precisely.",
 a:"Adenosine 0.1 mg/kg rapid IV push — for this ~6 kg infant, 0.6 mg. Use a two-syringe technique: adenosine in a syringe connected to a stopcock as close to the heart as possible (antecubital or higher), immediately followed by a rapid 5–10 mL normal saline flush. If no conversion, give a second dose at 0.2 mg/kg (1.2 mg, max 12 mg).",
-d:"Adenosine has a half-life of less than 10 seconds — it must reach the heart as a bolus. A slow push or a distal IV with a long line means the drug is metabolised before it arrives. The 2025 maximum doses are 6 mg first dose, 12 mg second dose. Record the rhythm strip continuously — the brief asystole and then resumption (or conversion) is both diagnostic and therapeutic."},
+d:"Adenosine has a half-life of less than 10 seconds — it must reach the heart as a bolus. A slow push or a distal IV with a long line means the drug is metabolised before it arrives. The 2025 maximum doses are 6 mg first dose, 12 mg second dose. Record the rhythm strip continuously — the brief asystole and then resumption (or conversion) is both diagnostic and therapeutic.",
+img:"three_way_stopcock.jpg",imgAlt:"Three-way stopcock for adenosine rapid push",imgCap:"Three-way stopcock — key to the two-syringe rapid-push adenosine technique"},
 {t:"Cardioversion", q:"Adenosine converts him briefly but SVT recurs within 30 seconds. On the third attempt, his BP drops to 50/30 and he becomes mottled and limp. What now?",
 a:"He is now haemodynamically unstable — synchronised cardioversion at 0.5–1 J/kg (3–6 J for 6 kg). Sedate with ketamine or midazolam if time allows, but do NOT delay cardioversion for sedation if he is deteriorating. If first shock fails, increase to 2 J/kg.",
-d:"Synchronised cardioversion delivers the shock on the R wave, avoiding the vulnerable T-wave period that could induce VF. The machine must be in SYNC mode — confirm the sync markers on the monitor before discharging. If the child is pulseless at any point, switch to unsynchronised defibrillation at 2 J/kg and follow the shockable arrest algorithm."},
+d:"Synchronised cardioversion delivers the shock on the R wave, avoiding the vulnerable T-wave period that could induce VF. The machine must be in SYNC mode — confirm the sync markers on the monitor before discharging. If the child is pulseless at any point, switch to unsynchronised defibrillation at 2 J/kg and follow the shockable arrest algorithm.",
+img:"sync_cardioversion.jpg",imgAlt:"Synchronized cardioversion setup",imgCap:"Synchronized cardioversion — always confirm SYNC markers on monitor before discharging"},
 {t:"Post-conversion", q:"Cardioversion at 1 J/kg converts to sinus rhythm at 140/min. He pinks up quickly. What do you do now?",
 a:"12-lead ECG in sinus rhythm: look for pre-excitation (delta wave = WPW), short PR, or long QT. Start maintenance antiarrhythmic — options include oral propranolol or flecainide for infants. Echocardiography to exclude structural heart disease. Arrange paediatric cardiology follow-up. Counsel the parents on recognition of recurrence.",
 d:"About 30% of infant SVT recurs, and most grow out of it by 12 months. A delta wave on the resting ECG indicates Wolff-Parkinson-White — these patients must NEVER receive digoxin or verapamil (both enhance conduction down the accessory pathway and can cause VF in pre-excited AF). This is also why adenosine is contraindicated in irregular wide-complex tachycardia — it may be pre-excited atrial fibrillation."}],
@@ -8105,7 +8147,8 @@ stem:"A 12-year-old girl with repaired tetralogy of Fallot (age 2) presents to t
 steps:[
 {t:"Recognition", q:"Wide QRS tachycardia in a child with repaired congenital heart disease — what is the differential, and why does her surgical history matter?",
 a:"Wide-complex tachycardia (QRS >0.09 s) in a child: ventricular tachycardia (VT), SVT with aberrant conduction (rate-related bundle branch block or pre-existing RBBB from her repair), or pre-excited tachycardia (antidromic AVRT). In repaired tetralogy of Fallot, the right ventriculotomy scar creates re-entrant circuits — VT is the most dangerous late complication and the leading cause of sudden death in this population.",
-d:"Repaired TOF patients have a lifelong risk of ventricular arrhythmias arising from the surgical scar, right ventricular dilation, and residual outflow obstruction. Any wide-complex tachycardia in a CHD patient should be treated as VT until proven otherwise — this is the safer assumption. Her known RBBB from the repair makes distinguishing aberrant SVT from VT harder."},
+d:"Repaired TOF patients have a lifelong risk of ventricular arrhythmias arising from the surgical scar, right ventricular dilation, and residual outflow obstruction. Any wide-complex tachycardia in a CHD patient should be treated as VT until proven otherwise — this is the safer assumption. Her known RBBB from the repair makes distinguishing aberrant SVT from VT harder.",
+img:"ventricular_tachycardia.jpg",imgAlt:"Ventricular tachycardia ECG",imgCap:"Ventricular tachycardia — wide QRS, regular, no P waves visible"},
 {t:"Haemodynamic assessment", q:"She is conscious, anxious, and diaphoretic. BP 88/60, capillary refill 3 seconds. Is she stable or unstable?",
 a:"She has borderline haemodynamics — hypotension for a 12-year-old (normal systolic ~100–110), delayed capillary refill, and near-syncope. She is UNSTABLE — but still conscious and maintaining a blood pressure. This is the narrow window where the 2025 guideline gives a specific instruction.",
 d:"The 2025 guideline draws a clear line for wide-complex tachycardia WITHOUT haemodynamic compromise: obtain expert consultation BEFORE any antiarrhythmic, because the wrong drug can be lethal. But she IS compromised — near-syncope and hypotension. When there is haemodynamic compromise with wide-complex tachycardia, the answer is synchronised cardioversion, not a pharmacological guessing game."},
@@ -8117,10 +8160,12 @@ a:"12-lead ECG shows sinus rhythm with the expected RBBB from her TOF repair (rs
 d:"This ECG confirms monomorphic VT from a scar re-entry circuit — the most important late complication of repaired TOF. The matching PVC morphology is the smoking gun. If the 12-lead had shown a delta wave, pre-excited tachycardia (antidromic AVRT) would be the diagnosis — and AV-nodal blockers would be absolutely contraindicated."},
 {t:"Expert consultation", q:"The 2025 guideline says 'expert consultation before antiarrhythmics' for stable wide-complex tachycardia. She was unstable so you cardioverted — but now what?",
 a:"Paediatric cardiology and electrophysiology consultation is urgent. Maintenance options for recurrent VT in repaired TOF: IV amiodarone loading if recurrence is imminent, then transition to oral. Long-term: catheter ablation of the re-entrant circuit, ICD implantation for secondary prevention (she has already had a sustained VT episode with haemodynamic compromise), and optimisation of the RV — assess for pulmonary regurgitation requiring valve replacement.",
-d:"The 2025 guideline's insistence on expert input before antiarrhythmics exists because amiodarone, procainamide, and lidocaine each have scenarios where they worsen the arrhythmia. In this case, she needed cardioversion first, but the ongoing management — ablation versus ICD versus both — is a specialist decision. Never combine amiodarone and procainamide."},
+d:"The 2025 guideline's insistence on expert input before antiarrhythmics exists because amiodarone, procainamide, and lidocaine each have scenarios where they worsen the arrhythmia. In this case, she needed cardioversion first, but the ongoing management — ablation versus ICD versus both — is a specialist decision. Never combine amiodarone and procainamide.",
+img:"amiodarone_vial.jpg",imgAlt:"Amiodarone vial for IV use",imgCap:"Amiodarone 150 mg/3 mL — 5 mg/kg IV for refractory VT (max 300 mg/dose)"},
 {t:"The deterioration scenario", q:"Imagine instead that during your assessment she suddenly becomes unresponsive and pulseless. The monitor still shows the same wide-complex rhythm. What changes?",
 a:"This is now pulseless VT — a shockable rhythm. Immediately switch to the cardiac arrest algorithm: unsynchronised defibrillation at 2 J/kg, followed by 2 minutes of CPR. Then 4 J/kg, CPR + adrenaline after the second shock, and amiodarone or lidocaine after the third shock. Maximum energy 10 J/kg.",
-d:"The transition from 'wide-complex tachycardia with a pulse' to 'pulseless VT' changes the algorithm entirely: SYNC mode off, full arrest doses, and the shockable pathway sequence. The team must be prepared for this transition during any wide-complex tachycardia — it is why you keep the defibrillator pads on and the team ready throughout."}],
+d:"The transition from 'wide-complex tachycardia with a pulse' to 'pulseless VT' changes the algorithm entirely: SYNC mode off, full arrest doses, and the shockable pathway sequence. The team must be prepared for this transition during any wide-complex tachycardia — it is why you keep the defibrillator pads on and the team ready throughout.",
+img:"lifepak_sync.jpg",imgAlt:"LIFEPAK defibrillator monitor showing sync markers",imgCap:"Defibrillator monitor — note sync markers on QRS. Switch SYNC off for pulseless VT."}],
 wrap:"Wide-complex tachycardia in repaired CHD is VT until proven otherwise. Stable → expert consultation before drugs. Unstable → synchronised cardioversion 0.5–1 then 2 J/kg. Pulseless → unsynchronised defibrillation and the arrest algorithm. In repaired TOF, the scar is the substrate — long-term management is ablation, ICD, and addressing residual haemodynamics."}
 ]
 };
@@ -8355,6 +8400,10 @@ function show(id){
       t.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("") +
       `</tbody></table></div>`;
   });
+  /* Diagnostic score calculator (if one exists for this disease) */
+  if(SCORES[d.id]){
+    h += scoreCalcHTML(d.id);
+  }
   (d.mnemonics||[]).forEach(m=>{
     h += `<div class="mnem"><b>${esc(m.key)}</b><span>${esc(m.text)}</span></div>`;
   });
@@ -8371,6 +8420,7 @@ function show(id){
   });
   const ph = document.getElementById("palscalchost");
   if(ph){ ph.innerHTML = palsCalcShell(); wirePalsCalc(); }
+  if(SCORES[d.id]) wireScoreCalc(d.id);
   document.querySelectorAll(".pflow-title").forEach(t => {
     t.onclick = () => t.parentElement.classList.toggle("open");
   });
@@ -8460,6 +8510,447 @@ function randomTopic(){
   if(flatOrder.length === 1){ id = flatOrder[0]; }
   else { while(id === current){ id = flatOrder[Math.floor(Math.random()*flatOrder.length)]; } }
   show(id);
+}
+
+/* ============ DIAGNOSTIC SCORE CALCULATORS ============ */
+const SCORES = {
+/* --- Westley Croup Score --- */
+"croup":{name:"Westley Croup Score",type:"radio",
+components:[
+  {label:"Level of consciousness",opts:[{t:"Normal",p:0},{t:"Disoriented",p:5}]},
+  {label:"Cyanosis",opts:[{t:"None",p:0},{t:"With agitation",p:4},{t:"At rest",p:5}]},
+  {label:"Stridor",opts:[{t:"None",p:0},{t:"With agitation",p:1},{t:"At rest",p:2}]},
+  {label:"Air entry",opts:[{t:"Normal",p:0},{t:"Decreased",p:1},{t:"Markedly decreased",p:2}]},
+  {label:"Retractions",opts:[{t:"None",p:0},{t:"Mild",p:1},{t:"Moderate",p:2},{t:"Severe",p:3}]}
+],
+interpret(total){
+  if(total<=2) return {grade:"Mild croup",cls:"mild",detail:"Dexamethasone 0.15–0.6 mg/kg PO single dose. Discharge if tolerating."};
+  if(total<=5) return {grade:"Moderate croup",cls:"moderate",detail:"Dexamethasone 0.6 mg/kg PO/IM. Consider nebulised adrenaline. Observe ≥2 h."};
+  if(total<=11) return {grade:"Severe croup",cls:"severe",detail:"Dexamethasone 0.6 mg/kg + nebulised adrenaline 0.5 mL/kg of 1:1,000 (max 5 mL). Admission."};
+  return {grade:"Impending respiratory failure",cls:"severe",detail:"Immediate ENT/anaesthesia. Prepare for intubation. ICU."};
+}},
+
+/* --- Revised Jones Criteria (ARF/RHD) --- */
+"rhd":{name:"Revised Jones Criteria for Acute Rheumatic Fever",type:"criteria",
+sections:[
+  {label:"Evidence of preceding streptococcal infection (REQUIRED)",items:[
+    {t:"Positive throat culture or rapid antigen test",cat:"strep"},
+    {t:"Elevated or rising anti-streptolysin O (ASO) or anti-DNase B",cat:"strep"},
+    {t:"Recent scarlet fever",cat:"strep"}
+  ]},
+  {label:"Major criteria",items:[
+    {t:"Carditis (clinical or subclinical on echo)",cat:"major"},
+    {t:"Polyarthritis (or monoarthritis in moderate-to-high-risk populations)",cat:"major"},
+    {t:"Sydenham chorea",cat:"major"},
+    {t:"Erythema marginatum",cat:"major"},
+    {t:"Subcutaneous nodules",cat:"major"}
+  ]},
+  {label:"Minor criteria",items:[
+    {t:"Fever ≥38.5 °C (or ≥38 °C in moderate-to-high-risk populations)",cat:"minor"},
+    {t:"Arthralgia (polyarthralgia in moderate-to-high-risk populations)",cat:"minor"},
+    {t:"Elevated ESR ≥30 mm/h or CRP ≥3 mg/dL",cat:"minor"},
+    {t:"Prolonged PR interval (age-adjusted)",cat:"minor"}
+  ]}
+],
+interpret(counts){
+  const hasStrep = counts.strep > 0;
+  const maj = counts.major || 0;
+  const min = counts.minor || 0;
+  if(!hasStrep) return {grade:"Incomplete — no strep evidence",cls:"negative",detail:"Evidence of preceding streptococcal infection is required for diagnosis."};
+  if(maj >= 2) return {grade:"DEFINITE ARF",cls:"severe",detail:`${maj} major criteria + strep evidence. Initiate secondary prophylaxis.`};
+  if(maj >= 1 && min >= 2) return {grade:"DEFINITE ARF",cls:"severe",detail:`${maj} major + ${min} minor criteria + strep evidence. Initiate secondary prophylaxis.`};
+  if(maj === 1 && min === 1) return {grade:"Possible ARF",cls:"moderate",detail:"1 major + 1 minor — does not meet Jones criteria. Consider clinical judgement."};
+  if(maj === 1) return {grade:"Possible ARF",cls:"moderate",detail:"Only 1 major criterion — need ≥2 minor to confirm. Monitor closely."};
+  if(min >= 2) return {grade:"Insufficient",cls:"negative",detail:`${min} minor criteria only — need at least 1 major. Consider alternative diagnoses.`};
+  return {grade:"Insufficient",cls:"negative",detail:"Criteria not met for diagnosis of ARF."};
+}},
+
+/* --- Kawasaki Disease --- */
+"kawasaki":{name:"Kawasaki Disease Diagnostic Criteria",type:"criteria",
+sections:[
+  {label:"Mandatory criterion",items:[
+    {t:"Fever ≥5 days (or fever at diagnosis if classic criteria present)",cat:"mandatory"}
+  ]},
+  {label:"Clinical features (need ≥4 of 5 for classic KD)",items:[
+    {t:"Bilateral non-exudative conjunctival injection",cat:"feature"},
+    {t:"Oral mucous membrane changes (strawberry tongue, red/cracked lips)",cat:"feature"},
+    {t:"Polymorphous rash",cat:"feature"},
+    {t:"Extremity changes (erythema, oedema, desquamation)",cat:"feature"},
+    {t:"Cervical lymphadenopathy (≥1.5 cm, usually unilateral)",cat:"feature"}
+  ]}
+],
+interpret(counts){
+  const fever = counts.mandatory > 0;
+  const feat = counts.feature || 0;
+  if(!fever && feat < 4) return {grade:"Criteria not met",cls:"negative",detail:"Fever ≥5 days is the mandatory criterion. Features: "+feat+"/5."};
+  if(!fever && feat >= 4) return {grade:"Possible — confirm fever duration",cls:"moderate",detail:feat+"/5 features present but fever criterion not confirmed."};
+  if(fever && feat >= 4) return {grade:"CLASSIC KAWASAKI DISEASE",cls:"severe",detail:"Fever + "+feat+"/5 features. Start IVIG 2 g/kg + high-dose aspirin immediately."};
+  if(fever && feat >= 2) return {grade:"INCOMPLETE KAWASAKI — consider workup",cls:"moderate",detail:"Fever + "+feat+"/5 features. Obtain echo, CRP, ESR, CBC, albumin, ALT, urinalysis. If lab criteria met → treat as KD."};
+  if(fever && feat < 2) return {grade:"Unlikely KD",cls:"negative",detail:"Only "+feat+"/5 features. Consider alternative diagnoses."};
+  return {grade:"Criteria not met",cls:"negative",detail:"Reassess clinically."};
+}},
+
+/* --- Modified Duke Criteria (IE) --- */
+"infective-endocarditis":{name:"Modified Duke Criteria for Infective Endocarditis",type:"criteria",
+sections:[
+  {label:"Major criteria",items:[
+    {t:"Positive blood cultures — typical organism from 2 separate cultures (Viridans strep, S. bovis, HACEK, S. aureus, Enterococcus — community-acquired, no primary focus)",cat:"major"},
+    {t:"Positive blood cultures — persistently positive (drawn >12 h apart, or all of 3, or majority of ≥4 separated ≥1 h)",cat:"major"},
+    {t:"Positive echocardiogram — vegetation, abscess, new partial dehiscence of prosthetic valve",cat:"major"},
+    {t:"New valvular regurgitation (change in pre-existing murmur not sufficient)",cat:"major"}
+  ]},
+  {label:"Minor criteria",items:[
+    {t:"Predisposing heart condition or injection drug use",cat:"minor"},
+    {t:"Fever ≥38 °C",cat:"minor"},
+    {t:"Vascular phenomena (Janeway lesions, arterial emboli, mycotic aneurysm, conjunctival haemorrhage, intracranial haemorrhage)",cat:"minor"},
+    {t:"Immunological phenomena (Osler nodes, Roth spots, glomerulonephritis, positive RF)",cat:"minor"},
+    {t:"Microbiological evidence not meeting major criteria or serological evidence of active infection",cat:"minor"}
+  ]}
+],
+interpret(counts){
+  const maj = counts.major || 0;
+  const min = counts.minor || 0;
+  if(maj >= 2) return {grade:"DEFINITE IE",cls:"severe",detail:`${maj} major criteria. Definite infective endocarditis by Duke criteria.`};
+  if(maj >= 1 && min >= 3) return {grade:"DEFINITE IE",cls:"severe",detail:`${maj} major + ${min} minor criteria. Definite IE.`};
+  if(min >= 5) return {grade:"DEFINITE IE",cls:"severe",detail:`${min} minor criteria (no major). Definite IE.`};
+  if(maj === 1 && min >= 1) return {grade:"POSSIBLE IE",cls:"moderate",detail:`${maj} major + ${min} minor — possible IE. Pursue further workup.`};
+  if(min >= 3) return {grade:"POSSIBLE IE",cls:"moderate",detail:`${min} minor criteria — possible IE. Continue investigations.`};
+  return {grade:"Rejected",cls:"negative",detail:"Does not meet Duke criteria. Alternative diagnosis likely."};
+}},
+
+/* --- Glasgow Coma Scale (Paediatric) --- */
+"head-injury":{name:"Paediatric Glasgow Coma Scale",type:"radio",
+components:[
+  {label:"Eye opening",opts:[{t:"Spontaneous",p:4},{t:"To voice",p:3},{t:"To pain",p:2},{t:"None",p:1}]},
+  {label:"Verbal response (child >5 y)",opts:[{t:"Oriented, converses",p:5},{t:"Confused",p:4},{t:"Inappropriate words",p:3},{t:"Incomprehensible sounds",p:2},{t:"None",p:1}]},
+  {label:"Motor response",opts:[{t:"Obeys commands",p:6},{t:"Localises pain",p:5},{t:"Withdraws (flexion)",p:4},{t:"Abnormal flexion",p:3},{t:"Extension",p:2},{t:"None",p:1}]}
+],
+interpret(total){
+  if(total >= 13) return {grade:"Mild (GCS 13–15)",cls:"mild",detail:"Low risk. Observe. CT if red flags present."};
+  if(total >= 9) return {grade:"Moderate (GCS 9–12)",cls:"moderate",detail:"CT head required. Admit for observation. Neurosurgical consult."};
+  return {grade:"Severe (GCS 3–8)",cls:"severe",detail:"Intubate for airway protection. Urgent CT. ICU admission. Neurosurgery."};
+}},
+/* Also wire GCS for bacterial meningitis */
+"bactmeningitis":{name:"Paediatric Glasgow Coma Scale",type:"radio",
+components:[
+  {label:"Eye opening",opts:[{t:"Spontaneous",p:4},{t:"To voice",p:3},{t:"To pain",p:2},{t:"None",p:1}]},
+  {label:"Verbal response (infant <2 y)",opts:[{t:"Coos, babbles, smiles",p:5},{t:"Irritable, consolable cry",p:4},{t:"Cries to pain",p:3},{t:"Moans to pain",p:2},{t:"None",p:1}]},
+  {label:"Motor response",opts:[{t:"Spontaneous movement",p:6},{t:"Withdraws to touch",p:5},{t:"Withdraws from pain",p:4},{t:"Abnormal flexion",p:3},{t:"Extension",p:2},{t:"None",p:1}]}
+],
+interpret(total){
+  if(total >= 13) return {grade:"Mild (GCS 13–15)",cls:"mild",detail:"Low risk. Proceed with LP if indicated."};
+  if(total >= 9) return {grade:"Moderate (GCS 9–12)",cls:"moderate",detail:"Significant concern. Empiric antibiotics stat. CT before LP if focal signs."};
+  return {grade:"Severe (GCS ≤8)",cls:"severe",detail:"Airway compromise risk. Intubate. Empiric antibiotics immediately. Delay LP. ICU."};
+}},
+
+/* --- Kocher Criteria (Septic Arthritis) --- */
+"osteomyelitis-septic-arthritis":{name:"Kocher Criteria for Septic Arthritis of the Hip",type:"criteria",
+sections:[
+  {label:"Predictors (each present = 1 point)",items:[
+    {t:"Fever >38.5 °C",cat:"predictor"},
+    {t:"Non-weight-bearing on affected side",cat:"predictor"},
+    {t:"ESR >40 mm/h",cat:"predictor"},
+    {t:"WBC >12,000/mm³",cat:"predictor"}
+  ]}
+],
+interpret(counts){
+  const n = counts.predictor || 0;
+  const probs = ["<0.2%","3%","40%","93.1%","99.6%"];
+  if(n === 0) return {grade:"0 predictors — probability "+probs[0],cls:"mild",detail:"Septic arthritis very unlikely. Consider transient synovitis."};
+  if(n === 1) return {grade:"1 predictor — probability "+probs[1],cls:"mild",detail:"Low probability. Observe. Repeat labs if clinical concern persists."};
+  if(n === 2) return {grade:"2 predictors — probability "+probs[2],cls:"moderate",detail:"Significant probability. Joint aspiration strongly recommended."};
+  if(n === 3) return {grade:"3 predictors — probability "+probs[3],cls:"severe",detail:"Very high probability. Urgent joint aspiration + empiric antibiotics."};
+  return {grade:"4 predictors — probability "+probs[4],cls:"severe",detail:"Near-certain. Urgent surgical drainage + IV antibiotics."};
+}},
+
+/* --- Alvarado Score (MANTRELS) for Appendicitis --- */
+"appendicitis":{name:"Alvarado Score (MANTRELS) for Appendicitis",type:"mixed",
+components:[
+  {label:"Migration of pain to RIF",type:"check",pts:1,cat:"symptom"},
+  {label:"Anorexia",type:"check",pts:1,cat:"symptom"},
+  {label:"Nausea / vomiting",type:"check",pts:1,cat:"symptom"},
+  {label:"Tenderness in RIF",type:"check",pts:2,cat:"sign"},
+  {label:"Rebound pain",type:"check",pts:1,cat:"sign"},
+  {label:"Elevated temperature (≥37.3 °C)",type:"check",pts:1,cat:"sign"},
+  {label:"Leukocytosis (WBC >10,000)",type:"check",pts:2,cat:"lab"},
+  {label:"Shift to left (>75% neutrophils)",type:"check",pts:1,cat:"lab"}
+],
+interpret(total){
+  if(total <= 4) return {grade:"Low risk (score "+total+"/10)",cls:"mild",detail:"Appendicitis unlikely. Observe or discharge with safety-net advice."};
+  if(total <= 6) return {grade:"Equivocal (score "+total+"/10)",cls:"moderate",detail:"Consider CT or US abdomen. Observation with serial exams."};
+  if(total <= 8) return {grade:"Probable appendicitis (score "+total+"/10)",cls:"severe",detail:"Surgical consultation. Imaging to confirm."};
+  return {grade:"Very probable (score "+total+"/10)",cls:"severe",detail:"Urgent surgical consultation for appendicectomy."};
+}},
+
+/* --- WHO Dehydration Assessment --- */
+"acutediarrhoea":{name:"WHO Dehydration Assessment",type:"radio",
+components:[
+  {label:"General condition",opts:[{t:"Well, alert",p:0},{t:"Restless, irritable",p:1},{t:"Lethargic / unconscious",p:2}]},
+  {label:"Eyes",opts:[{t:"Normal",p:0},{t:"Sunken",p:1},{t:"Very sunken",p:2}]},
+  {label:"Thirst",opts:[{t:"Drinks normally, not thirsty",p:0},{t:"Thirsty, drinks eagerly",p:1},{t:"Unable to drink / drinks poorly",p:2}]},
+  {label:"Skin pinch",opts:[{t:"Goes back quickly",p:0},{t:"Goes back slowly (<2 s)",p:1},{t:"Goes back very slowly (≥2 s)",p:2}]},
+  {label:"Tears",opts:[{t:"Present",p:0},{t:"Absent",p:1},{t:"Absent",p:2}]},
+  {label:"Mucous membranes",opts:[{t:"Moist",p:0},{t:"Dry",p:1},{t:"Very dry",p:2}]}
+],
+interpret(total){
+  if(total <= 1) return {grade:"No dehydration — Plan A",cls:"mild",detail:"Give extra fluids + zinc. Continue feeding. Educate on danger signs."};
+  if(total <= 5) return {grade:"Some dehydration (5–10%) — Plan B",cls:"moderate",detail:"ORS 75 mL/kg over 4 h. Reassess frequently. If no improvement → Plan C."};
+  return {grade:"Severe dehydration (>10%) — Plan C",cls:"severe",detail:"IV Ringer lactate or NS 20 mL/kg bolus stat. Refer/admit. NGT ORS if IV not possible."};
+}},
+
+/* --- DKA Severity --- */
+"t1dm":{name:"DKA Severity Classification",type:"input",
+fields:[
+  {label:"Venous pH",id:"dka_ph",type:"number",step:"0.01",placeholder:"e.g. 7.15"},
+  {label:"Serum bicarbonate (mmol/L)",id:"dka_bicarb",type:"number",step:"0.1",placeholder:"e.g. 8"}
+],
+interpret(vals){
+  const ph = parseFloat(vals.dka_ph);
+  const bic = parseFloat(vals.dka_bicarb);
+  if(isNaN(ph) && isNaN(bic)) return null;
+  let severity = "mild";
+  if(!isNaN(ph)){
+    if(ph < 7.10) severity = "severe";
+    else if(ph < 7.20) severity = "moderate";
+  }
+  if(!isNaN(bic)){
+    if(bic < 5 && severity !== "severe") severity = "severe";
+    else if(bic < 10 && severity === "mild") severity = "moderate";
+  }
+  const map = {
+    mild:{grade:"Mild DKA",cls:"mild",detail:"pH 7.20–7.29, HCO₃ 10–17.9 mmol/L. Fluid deficit ~5%. Consider SC insulin protocol."},
+    moderate:{grade:"Moderate DKA",cls:"moderate",detail:"pH 7.10–7.19, HCO₃ 5–9.9 mmol/L. Fluid deficit ~7%. IV insulin infusion 0.05–0.1 U/kg/h. Monitor q1 h."},
+    severe:{grade:"Severe DKA",cls:"severe",detail:"pH <7.10, HCO₃ <5 mmol/L. Fluid deficit ~10%. ICU. Risk of cerebral oedema — avoid rapid correction."}
+  };
+  return map[severity];
+}},
+
+/* --- Sarnat Staging (HIE) --- */
+"hie":{name:"Sarnat Staging for HIE",type:"radio",
+components:[
+  {label:"Level of consciousness",opts:[{t:"Hyperalert",p:1},{t:"Lethargic / obtunded",p:2},{t:"Stupor / coma",p:3}]},
+  {label:"Muscle tone",opts:[{t:"Normal",p:1},{t:"Mild hypotonia",p:2},{t:"Flaccid",p:3}]},
+  {label:"Posture",opts:[{t:"Mild distal flexion",p:1},{t:"Strong distal flexion",p:2},{t:"Decerebrate",p:3}]},
+  {label:"Reflexes (Moro)",opts:[{t:"Strong / exaggerated",p:1},{t:"Weak / incomplete",p:2},{t:"Absent",p:3}]},
+  {label:"Pupils",opts:[{t:"Mydriasis",p:1},{t:"Miosis",p:2},{t:"Unequal / fixed",p:3}]},
+  {label:"Seizures",opts:[{t:"None",p:1},{t:"Common",p:2},{t:"Uncommon (decerebrate)",p:3}]}
+],
+interpret(total){
+  const avg = total / 6;
+  if(avg <= 1.4) return {grade:"Stage 1 — Mild HIE",cls:"mild",detail:"Hyperalert, normal tone, no seizures. Duration <24 h. Good prognosis. Hypothermia NOT indicated."};
+  if(avg <= 2.4) return {grade:"Stage 2 — Moderate HIE",cls:"moderate",detail:"Lethargic, hypotonia, seizures likely. Therapeutic hypothermia if <6 h old. 20–30% disability risk."};
+  return {grade:"Stage 3 — Severe HIE",cls:"severe",detail:"Coma, flaccid, absent reflexes. Hypothermia may be considered. High mortality/severe disability risk."};
+}},
+
+/* --- KDIGO AKI Staging --- */
+"aki-child":{name:"KDIGO AKI Staging",type:"input",
+fields:[
+  {label:"Creatinine rise from baseline (×fold)",id:"aki_cr",type:"number",step:"0.1",placeholder:"e.g. 2.5"},
+  {label:"Urine output (mL/kg/h)",id:"aki_uo",type:"number",step:"0.1",placeholder:"e.g. 0.3"}
+],
+interpret(vals){
+  const cr = parseFloat(vals.aki_cr);
+  const uo = parseFloat(vals.aki_uo);
+  if(isNaN(cr) && isNaN(uo)) return null;
+  let stage = 0;
+  if(!isNaN(cr)){
+    if(cr >= 3) stage = 3;
+    else if(cr >= 2) stage = Math.max(stage, 2);
+    else if(cr >= 1.5) stage = Math.max(stage, 1);
+  }
+  if(!isNaN(uo)){
+    if(uo < 0.3) stage = Math.max(stage, 3);
+    else if(uo < 0.5) stage = Math.max(stage, 2);
+    if(uo < 0.5 && stage < 1) stage = 1;
+  }
+  const map = {
+    0:{grade:"No AKI",cls:"mild",detail:"Creatinine <1.5× baseline and urine output adequate."},
+    1:{grade:"KDIGO Stage 1",cls:"mild",detail:"Creatinine 1.5–1.9× baseline OR UO <0.5 mL/kg/h for 6–12 h. Optimise fluids, avoid nephrotoxins."},
+    2:{grade:"KDIGO Stage 2",cls:"moderate",detail:"Creatinine 2–2.9× baseline OR UO <0.5 mL/kg/h for ≥12 h. Nephrology consult. Monitor electrolytes."},
+    3:{grade:"KDIGO Stage 3",cls:"severe",detail:"Creatinine ≥3× baseline (or ≥353 µmol/L) OR UO <0.3 mL/kg/h for ≥24 h or anuria ≥12 h. Consider RRT."}
+  };
+  return map[stage];
+}},
+
+/* --- Rome IV Functional Constipation (≥4 y) --- */
+"constipation":{name:"Rome IV Criteria — Functional Constipation (≥4 y)",type:"criteria",
+sections:[
+  {label:"Must include ≥2 for ≥1 month (insufficient criteria for IBS)",items:[
+    {t:"≤2 defecations per week",cat:"criterion"},
+    {t:"≥1 episode of faecal incontinence per week",cat:"criterion"},
+    {t:"History of excessive stool retention / retentive posturing",cat:"criterion"},
+    {t:"History of painful or hard bowel movements",cat:"criterion"},
+    {t:"Presence of a large faecal mass in the rectum",cat:"criterion"},
+    {t:"History of large-diameter stools that may obstruct the toilet",cat:"criterion"}
+  ]}
+],
+interpret(counts){
+  const n = counts.criterion || 0;
+  if(n >= 2) return {grade:"MEETS Rome IV criteria ("+n+"/6)",cls:"moderate",detail:"Functional constipation diagnosed. Start disimpaction (PEG 1.5 g/kg/day × 3–6 days) then maintenance (PEG 0.4 g/kg/day). Behaviour + diet + toilet training."};
+  return {grade:"Criteria NOT met ("+n+"/6)",cls:"negative",detail:"Need ≥2 of 6 criteria for ≥1 month. Consider other diagnoses if symptomatic."};
+}},
+
+/* --- Beighton Hypermobility Score --- */
+"jia-rheum":{name:"Beighton Hypermobility Score",type:"criteria",
+sections:[
+  {label:"Bilateral tests (1 point each side)",items:[
+    {t:"Passive dorsiflexion of 5th MCP >90° — LEFT",cat:"joint"},
+    {t:"Passive dorsiflexion of 5th MCP >90° — RIGHT",cat:"joint"},
+    {t:"Thumb to forearm — LEFT",cat:"joint"},
+    {t:"Thumb to forearm — RIGHT",cat:"joint"},
+    {t:"Elbow hyperextension >10° — LEFT",cat:"joint"},
+    {t:"Elbow hyperextension >10° — RIGHT",cat:"joint"},
+    {t:"Knee hyperextension >10° — LEFT",cat:"joint"},
+    {t:"Knee hyperextension >10° — RIGHT",cat:"joint"}
+  ]},
+  {label:"Single test",items:[
+    {t:"Forward flexion — palms flat on floor with knees straight",cat:"joint"}
+  ]}
+],
+interpret(counts){
+  const n = counts.joint || 0;
+  if(n >= 6) return {grade:"Generalised hypermobility ("+n+"/9)",cls:"moderate",detail:"Score ≥6 in prepubertal children (≥5 in pubertal/post-pubertal). Consider hypermobility spectrum disorder or hEDS if symptomatic."};
+  if(n >= 4) return {grade:"Moderate flexibility ("+n+"/9)",cls:"mild",detail:"Below threshold for generalised hypermobility. May still have localised hypermobility."};
+  return {grade:"Not hypermobile ("+n+"/9)",cls:"negative",detail:"Beighton score below threshold."};
+}},
+
+/* --- Bell Staging (NEC) --- */
+"nec":{name:"Modified Bell Staging for NEC",type:"radio",
+components:[
+  {label:"Systemic signs",opts:[{t:"Temperature instability, apnoea, bradycardia",p:1},{t:"As stage I + metabolic acidosis, thrombocytopenia",p:2},{t:"As stage II + hypotension, DIC, acidosis",p:3}]},
+  {label:"Intestinal signs",opts:[{t:"Feeding intolerance, mild distension, occult blood",p:1},{t:"Marked distension, absent bowel sounds, gross blood",p:2},{t:"Marked distension + peritonitis signs",p:3}]},
+  {label:"Radiological signs",opts:[{t:"Normal or mild ileus",p:1},{t:"Pneumatosis intestinalis ± portal venous gas",p:2},{t:"Pneumoperitoneum (perforation)",p:3}]}
+],
+interpret(total){
+  const avg = total / 3;
+  if(avg <= 1.4) return {grade:"Stage I — Suspected NEC",cls:"mild",detail:"NPO, NGT decompression, blood cultures, antibiotics × 48–72 h, serial AXR."};
+  if(avg <= 2.4) return {grade:"Stage II — Definite NEC",cls:"moderate",detail:"As stage I + IV antibiotics × 7–14 days. Monitor for perforation. Surgical consult."};
+  return {grade:"Stage III — Advanced NEC",cls:"severe",detail:"Surgical emergency if pneumoperitoneum. Resuscitate, ventilate, inotropes. Peritoneal drain or laparotomy."};
+}},
+
+/* --- Ross Classification (Heart Failure) --- */
+"heartfailure-child":{name:"Ross Classification for Paediatric Heart Failure",type:"radio",
+components:[
+  {label:"Feeding / exercise tolerance",opts:[{t:"Asymptomatic",p:1},{t:"Mild tachypnoea or diaphoresis with feeding (infant) / exercise intolerance (child)",p:2},{t:"Marked tachypnoea or diaphoresis with feeding / prolonged feeds / growth failure",p:3},{t:"Symptoms at rest — tachypnoea, grunting, retractions",p:4}]}
+],
+interpret(total){
+  if(total === 1) return {grade:"Ross Class I — Asymptomatic",cls:"mild",detail:"No limitation. Monitor. Treat underlying cause."};
+  if(total === 2) return {grade:"Ross Class II — Mild HF",cls:"mild",detail:"Mild symptoms with feeding/exercise. Start diuretics (furosemide 1–2 mg/kg/day). Consider ACEi."};
+  if(total === 3) return {grade:"Ross Class III — Moderate HF",cls:"moderate",detail:"Growth failure, prolonged feeds. Diuretics + ACEi + high-calorie feeds. Cardiology follow-up."};
+  return {grade:"Ross Class IV — Severe HF",cls:"severe",detail:"Symptomatic at rest. Admission. IV diuretics, inotropes. Consider ICU. Evaluate for surgical intervention."};
+}}
+};
+
+/* Render a score calculator */
+function scoreCalcHTML(id){
+  const sc = SCORES[id];
+  if(!sc) return "";
+  let h = `<div class="scorecalc" id="scorecalc-${id}"><div class="sc-head">🧮 ${esc(sc.name)}</div>`;
+
+  if(sc.type === "radio"){
+    sc.components.forEach((c,ci) => {
+      h += `<div class="sc-comp"><div class="sc-comp-label">${esc(c.label)}</div><div class="sc-opts">`;
+      c.opts.forEach((o,oi) => {
+        h += `<span class="sc-opt" data-ci="${ci}" data-oi="${oi}" data-pts="${o.p}">${esc(o.t)} <small>(${o.p})</small></span>`;
+      });
+      h += `</div></div>`;
+    });
+  } else if(sc.type === "criteria"){
+    sc.sections.forEach(sec => {
+      h += `<div class="sc-section">${esc(sec.label)}</div>`;
+      sec.items.forEach((it,ii) => {
+        h += `<label class="sc-chk"><input type="checkbox" data-cat="${it.cat}"> ${esc(it.t)}</label>`;
+      });
+    });
+  } else if(sc.type === "mixed"){
+    sc.components.forEach((c,ci) => {
+      h += `<label class="sc-chk"><input type="checkbox" data-pts="${c.pts}" data-ci="${ci}"> ${esc(c.label)} <small>(${c.pts} pt${c.pts>1?'s':''})</small></label>`;
+    });
+  } else if(sc.type === "input"){
+    sc.fields.forEach(f => {
+      h += `<div class="sc-input"><label>${esc(f.label)}: <input type="${f.type}" id="sc-${f.id}" step="${f.step||'any'}" placeholder="${f.placeholder||''}"></label></div>`;
+    });
+  }
+
+  h += `<div class="sc-result neutral" id="scr-${id}"><span class="sc-total">—</span><span class="sc-grade">Select options above</span></div>`;
+  h += `<div class="sc-note">Interactive teaching calculator — verify against clinical guidelines.</div></div>`;
+  return h;
+}
+
+/* Wire interactivity for a score calculator */
+function wireScoreCalc(id){
+  const sc = SCORES[id];
+  const el = document.getElementById("scorecalc-"+id);
+  const res = document.getElementById("scr-"+id);
+  if(!sc || !el || !res) return;
+
+  function update(){
+    let result;
+
+    if(sc.type === "radio"){
+      let total = 0, allPicked = true;
+      sc.components.forEach((c,ci) => {
+        const active = el.querySelector(`.sc-opt.active[data-ci="${ci}"]`);
+        if(active) total += parseInt(active.dataset.pts);
+        else allPicked = false;
+      });
+      if(!allPicked){ res.className = "sc-result neutral"; res.innerHTML = `<span class="sc-total">${total}</span><span class="sc-grade">Select all components</span>`; return; }
+      result = sc.interpret(total);
+      res.innerHTML = `<span class="sc-total">${total}</span><span class="sc-grade">${esc(result.grade)}</span><span class="sc-detail">${esc(result.detail)}</span>`;
+
+    } else if(sc.type === "criteria"){
+      const counts = {};
+      el.querySelectorAll("input[type=checkbox]").forEach(cb => {
+        const cat = cb.dataset.cat;
+        if(!counts[cat]) counts[cat] = 0;
+        if(cb.checked) counts[cat]++;
+        cb.closest(".sc-chk").classList.toggle("checked", cb.checked);
+      });
+      result = sc.interpret(counts);
+      const total = Object.values(counts).reduce((a,b)=>a+b,0);
+      res.innerHTML = `<span class="sc-total">${total}</span><span class="sc-grade">${esc(result.grade)}</span><span class="sc-detail">${esc(result.detail)}</span>`;
+
+    } else if(sc.type === "mixed"){
+      let total = 0;
+      el.querySelectorAll("input[type=checkbox]").forEach(cb => {
+        if(cb.checked) total += parseInt(cb.dataset.pts);
+        cb.closest(".sc-chk").classList.toggle("checked", cb.checked);
+      });
+      result = sc.interpret(total);
+      res.innerHTML = `<span class="sc-total">${total}</span><span class="sc-grade">${esc(result.grade)}</span><span class="sc-detail">${esc(result.detail)}</span>`;
+
+    } else if(sc.type === "input"){
+      const vals = {};
+      sc.fields.forEach(f => {
+        const inp = document.getElementById("sc-"+f.id);
+        if(inp) vals[f.id] = inp.value;
+      });
+      result = sc.interpret(vals);
+      if(!result){ res.className = "sc-result neutral"; res.innerHTML = `<span class="sc-total">—</span><span class="sc-grade">Enter values above</span>`; return; }
+      res.innerHTML = `<span class="sc-total">⬤</span><span class="sc-grade">${esc(result.grade)}</span><span class="sc-detail">${esc(result.detail)}</span>`;
+    }
+
+    if(result) res.className = "sc-result " + (result.cls || "neutral");
+  }
+
+  /* Wire events */
+  if(sc.type === "radio"){
+    el.querySelectorAll(".sc-opt").forEach(opt => {
+      opt.onclick = () => {
+        const ci = opt.dataset.ci;
+        el.querySelectorAll(`.sc-opt[data-ci="${ci}"]`).forEach(o => o.classList.remove("active"));
+        opt.classList.add("active");
+        update();
+      };
+    });
+  } else if(sc.type === "criteria" || sc.type === "mixed"){
+    el.querySelectorAll("input[type=checkbox]").forEach(cb => { cb.onchange = update; });
+  } else if(sc.type === "input"){
+    sc.fields.forEach(f => {
+      const inp = document.getElementById("sc-"+f.id);
+      if(inp) inp.oninput = update;
+    });
+  }
 }
 
 /* ============ PALS DOSE CALCULATOR ============ */
@@ -8730,10 +9221,12 @@ function renderCase(){
     <p class="stem">${esc(c.stem)}</p>`;
 
   c.steps.forEach((s,i)=>{
+    const imgH = s.img ? `<figure class="cstep-fig"><img src="assets/${esc(s.img)}" alt="${esc(s.imgAlt||s.t)}" onerror="this.parentElement.style.display='none'"><figcaption>${esc(s.imgCap||'')}</figcaption></figure>` : "";
     if(i < caseState.revealed){
       h += `<section class="cstep done"><h3>${esc(s.t)}</h3>
         <p class="cq">${esc(s.q)}</p>
         <div class="ca">${esc(s.a)}</div>
+        ${imgH}
         <div class="cd">${esc(s.d)}</div></section>`;
     } else if(i === caseState.revealed){
       h += `<section class="cstep open" id="openstep"><h3>${esc(s.t)}</h3>
