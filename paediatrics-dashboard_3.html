@@ -394,6 +394,13 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
   font-size:12px;line-height:1.7;word-break:break-word;
 }
 .fig.missing .figslot{display:block}
+.entryfigs{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;
+  margin:-14px 0 30px;padding:14px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--paper-2);
+}
+.entryfigs .fig img{max-height:340px;object-fit:contain;cursor:zoom-in}
+@media print{.entryfigs{break-inside:avoid}}
 
 /* ---------- Presenter ---------- */
 .presenter{
@@ -559,6 +566,7 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
     </div>
     <button class="skingalbtn" id="skingalbtn" title="Visual atlas of paediatric skin conditions (g)">🔬 Skin Disease Gallery</button>
     <button class="skingalbtn" id="imggalbtn" title="X-rays, ultrasound, CT, ECG rhythms and blood films (i)">🩻 Imaging, ECG &amp; Lab Gallery</button>
+    <button class="skingalbtn" id="signsgalbtn" title="Bedside clinical signs: eyes, face, hands, growth (s)">👁 Clinical Signs Gallery</button>
     <button class="skingalbtn quiz" id="quizbtn" title="Spot-diagnosis self-test (q)">🎯 Spot Diagnosis Quiz</button>
     <nav class="navscroll" id="nav"></nav>
   </aside>
@@ -8043,6 +8051,236 @@ const FIGURES = {
      caption:"DKA: hyperglycaemia, ketosis and acidosis. Fluids before insulin.",
      credit:"Gblanchard16, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Diabetic_Ketoacidosis.png)"},
   ],
+  "dka-emergency": [
+    {after:"Recognition & Diagnosis", file:"t1dm_diabetic_ketoacidosis_png.png",
+     alt:"Diagram of the metabolic pathway leading to diabetic ketoacidosis",
+     caption:"Insulin deficiency drives lipolysis and ketogenesis: hyperglycaemia + ketones + acidosis. Fluids before insulin, potassium in every bag.",
+     credit:"Gblanchard16, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Diabetic_Ketoacidosis.png)"},
+  ],
+  "eczema": [
+    {after:"Pathophysiology & Features", file:"skin_eczema_flexural.jpg",
+     alt:"Erythema and excoriation in the elbow flexure",
+     caption:"Flexural atopic eczema — the classic childhood distribution. Infants instead involve the face and extensor surfaces.",
+     credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Atopy2010.JPG)"},
+    {after:"Management", file:"skin_eczema_hands.jpg",
+     alt:"Scaly erythematous plaques with excoriation over the dorsal hands",
+     caption:"Subacute eczema: ill-defined erythema, scale and excoriation. Under-treating with too weak a steroid perpetuates the itch–scratch cycle.",
+     credit:"James Heilman, MD, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dermatitis2015.jpg)"},
+  ],
+  "sjs-ten": [
+    {after:"Recognition", file:"skin_sjs.jpg",
+     alt:"Severe haemorrhagic crusting of the lips and oral mucosa",
+     caption:"SJS mucositis. Painful involvement of two or more mucosal surfaces plus a positive Nikolsky sign — stop the culprit drug immediately.",
+     credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Mucosal_desquamation_in_a_person_with_Stevens%E2%80%93Johnson_syndrome.jpg)"},
+  ],
+  "acne-adolescent-skin": [
+    {after:"Pathogenesis & Assessment", file:"skin_acne.jpg",
+     alt:"Comedones and inflammatory papules over the forehead",
+     caption:"Acne vulgaris. Comedones are what distinguish acne from folliculitis and rosacea — treat early, because scarring is preventable.",
+     credit:"Roshu Bangal, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Acne_vulgaris_on_a_very_oily_skin.jpg)"},
+  ],
+  "neonatal-skin": [
+    {after:"Benign Transient Eruptions", file:"skin_erythema_toxicum.jpg",
+     alt:"Scattered yellow-white papules and pustules on a newborn",
+     caption:"Erythema toxicum neonatorum: benign, appears day 1–3, resolves in 1–2 weeks. A pustular rash in an UNWELL baby is infection until proven otherwise.",
+     credit:"Mohammad2018, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Erytherma_toxicum_neonatorum.jpg)"},
+    {after:"Vascular and Pigmented Birthmarks", file:"skin_mongolian_spot.jpg",
+     alt:"Blue-grey macular patches over an infant's lower back",
+     caption:"Congenital dermal melanocytosis. DOCUMENT it at the newborn check — it is repeatedly mistaken for bruising, and can also mask real bruising.",
+     credit:"abby lu, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Mongolianspotphoto.jpg)"},
+  ],
+  "common-rashes": [
+    {after:"Napkin Dermatitis", file:"skin_nappy_candida.png",
+     alt:"Beefy-red confluent erythema involving the skin folds with satellite lesions",
+     caption:"Candidal nappy dermatitis: involves the FOLDS with satellite papules. Irritant dermatitis spares the folds — that distinction sets the treatment.",
+     credit:"Siegfried & Hebert, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:DiaperRashCandida.png)"},
+    {after:"Bacterial and Fungal Skin Infection", file:"skin_impetigo.jpg",
+     alt:"Honey-coloured crusts on erythematous erosions around the chin",
+     caption:"Impetigo: golden crusts. Highly contagious — exclude from school until 48 h of treatment or the lesions have crusted over.",
+     credit:"James Heilman, MD, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Impetigo2020.jpg)"},
+    {after:"Urticaria and Birthmarks", file:"skin_urticaria.jpg",
+     alt:"Raised oedematous wheals with surrounding flare",
+     caption:"Urticaria: each wheal lasts under 24 hours and MOVES — draw around one to prove it. A fixed lesion leaving bruising suggests urticarial vasculitis.",
+     credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Hives2010.JPG)"},
+  ],
+  "psoriasis-alopecia": [
+    {after:"Psoriasis", file:"skin_psoriasis.jpg",
+     alt:"Well-demarcated plaque with thick silvery scale",
+     caption:"Plaque psoriasis: sharp borders and silvery scale, versus eczema's ill-defined itchier patches. In children, guttate psoriasis after strep throat is classic.",
+     credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Psoriasis2010.JPG)"},
+    {after:"Vitiligo", file:"skin_vitiligo.jpg",
+     alt:"Sharply demarcated depigmented macules on the hands",
+     caption:"Vitiligo is DEpigmented (chalk-white), not hypopigmented — that separates it from pityriasis alba and post-inflammatory change. Check thyroid function.",
+     credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Vitiligo2.JPG)"},
+  ],
+  "iga-vasculitis": [
+    {after:"Clinical Features", file:"skin_hsp_purpura.jpg",
+     alt:"Palpable purpura over the legs and feet of a child",
+     caption:"Palpable purpura in a gravity-dependent distribution with NORMAL platelets. The child is well — unlike meningococcaemia. Dip the urine and check the BP.",
+     credit:"Okwikikim, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Purpura2.JPG)"},
+  ],
+  "shock-sepsis": [
+    {after:"Sepsis Recognition and Management", file:"meningococcal_purpura.jpg",
+     alt:"Non-blanching purpuric lesions on the skin",
+     caption:"Fever + non-blanching rash = meningococcal sepsis until proven otherwise. Give parenteral antibiotics immediately; do not wait to reconfirm.",
+     credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+  ],
+  "croup": [
+    {after:"Clinical Features", file:"rad_croup_steeple.jpg",
+     alt:"AP neck radiograph showing subglottic narrowing",
+     caption:"The steeple sign — subglottic narrowing. Know it, but do NOT order it: croup is a clinical diagnosis and the sign appears in only about half of cases.",
+     credit:"Frank Gaillard, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Croup_steeple_sign.jpg)"},
+  ],
+  "epiglottitis": [
+    {after:"Clinical Features", file:"rad_epiglottitis_thumb.jpg",
+     alt:"Lateral neck radiograph showing a swollen rounded epiglottis",
+     caption:"The thumb sign. Recognise it — but never send a suspected epiglottitis to X-ray: distress can precipitate complete airway obstruction.",
+     credit:"Med Chaos, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Epiglottitis.jpg)"},
+  ],
+  "foreign-body": [
+    {after:"Investigation & Management", file:"rad_foreign_body.jpg",
+     alt:"Chest radiograph showing a round radio-opaque foreign body at the thoracic inlet",
+     caption:"A coin seen EN FACE on AP lies in the oesophagus; edge-on means trachea. A button battery in this position burns within hours — emergency removal.",
+     credit:"Samir, CC BY 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Foreign_body_aspiration.jpg)"},
+  ],
+  "nrds": [
+    {after:"Investigations", file:"rad_rds.png",
+     alt:"Preterm chest radiograph with diffuse ground-glass opacification",
+     caption:"RDS: ground-glass opacification, air bronchograms and LOW lung volumes. TTN by contrast shows fluid in the fissures with normal-to-increased volumes.",
+     credit:"Mikael Häggström, M.D., CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:X-ray_of_infant_respiratory_distress_syndrome_(IRDS).png)"},
+  ],
+  "head-injury": [
+    {after:"Deciding on Imaging", file:"rad_epidural_haematoma.jpg",
+     alt:"CT head showing a biconvex hyperdense extra-axial collection",
+     caption:"Extradural haematoma: biconvex, does NOT cross sutures, classic lucid interval. Subdural is crescentic, DOES cross sutures — and in infants raises abusive head trauma.",
+     credit:"James Heilman, MD, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:EpiduralHematoma.jpg)"},
+  ],
+  "limping-child": [
+    {after:"Perthes Disease", file:"rad_perthes.jpg",
+     alt:"Pelvic radiograph showing a flattened fragmented femoral head",
+     caption:"Perthes: flattened, sclerotic, fragmented capital femoral epiphysis. Boys 4–8 with an insidious PAINLESS limp. Early films can be normal.",
+     credit:"J. Lengerke, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Roe-perthes.jpg)"},
+    {after:"Slipped Capital Femoral Epiphysis", file:"rad_scfe.jpg",
+     alt:"Frog-leg lateral hip radiograph showing posterior slip of the epiphysis",
+     caption:"SCFE — 'ice cream slipping off the cone'. Klein's line should intersect the epiphysis. Beware REFERRED KNEE PAIN: always examine and image the hip.",
+     credit:"Dr. Jochen Lengerke, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Slipped_capital_femoral_epiphysis.jpg)"},
+  ],
+  "fractures-child": [
+    {after:"Why Children's Fractures Differ", file:"rad_anterior_humeral_line.jpg",
+     alt:"Lateral elbow radiograph with the anterior humeral line drawn",
+     caption:"The anterior humeral line should cross the MIDDLE THIRD of the capitellum. A posterior fat pad is always abnormal — it means an occult fracture.",
+     credit:"Kilborn et al., CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Anterior_humeral_line_in_a_6_month_old_child.jpg)"},
+    {after:"Salter–Harris Classification & Specific Injuries", file:"rad_supracondylar.jpg",
+     alt:"Elbow radiograph after fixation with crossed Kirschner wires",
+     caption:"Supracondylar fracture after reduction and K-wire fixation. Document pulses and each nerve before and after manipulation; watch for compartment syndrome.",
+     credit:"Lindsaydavidson, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Healing_supracondylar_fracture.jpg)"},
+  ],
+  "congenital-anomalies-surgical": [
+    {after:"Intestinal Obstruction", file:"rad_double_bubble.jpg",
+     alt:"Abdominal radiograph showing two gas-filled upper abdominal structures",
+     caption:"Double bubble. NO distal gas = duodenal atresia (a third have Down syndrome). WITH distal gas = malrotation with volvulus until excluded — a surgical emergency.",
+     credit:"JasonRobertYoungMD, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Radiograph_with_Double_Bubble_Sign.jpg)"},
+    {after:"Abdominal Wall Defects", file:"clin_umbilical_hernia.jpg",
+     alt:"Infant abdomen with a soft protrusion at the umbilicus",
+     caption:"Umbilical hernia: soft, easily reducible, and very common — especially in preterm and Afro-Caribbean infants. Most close spontaneously by 3–5 years; incarceration is rare. Do NOT strap or tape it.",
+     credit:"Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Umbilical_Hernia.JPG)"},
+  ],
+  "svt": [
+    {after:"ECG & Differential", file:"svt_lead_ii.jpg",
+     alt:"Rhythm strip showing a narrow-complex tachycardia",
+     caption:"SVT: fast, narrow, monotonously regular with no beat-to-beat variability — that lack of variability is what separates it from sinus tachycardia.",
+     credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+  ],
+  "tb-pulmonary": [
+    {after:"Diagnosis", file:"tb_mantoux.jpg",
+     alt:"Raised indurated wheal at an intradermal injection site",
+     caption:"Mantoux: measure the INDURATION, not the erythema. A negative test never excludes TB — malnutrition and disseminated disease cause false negatives.",
+     credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+    {after:"Clinical Features", file:"tb_miliary_cxr.jpg",
+     alt:"Chest radiograph with innumerable small nodules throughout both lungs",
+     caption:"Miliary TB — uniform 1–3 mm 'millet seed' nodules. High risk of concurrent TB meningitis: consider LP and CNS imaging.",
+     credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+  ],
+  "measles-outbreak": [
+    {after:"Clinical Features & Complications", file:"skin_measles_rash.jpg",
+     alt:"Confluent maculopapular rash on a child with measles",
+     caption:"Measles: cephalocaudal maculopapular rash that becomes confluent, on day 3–4 of fever, in a miserable child with cough, coryza and conjunctivitis.",
+     credit:"CDC/NIP/Barbara Rice, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:RougeoleDP.jpg)"},
+  ],
+  "red-reflex-leukocoria": [
+    {after:"The Red Reflex Examination", file:"clin_leukocoria.jpg",
+     alt:"Child's eyes: the right pupil appears white while the left is normal",
+     caption:"LEUKOCORIA — a white pupillary reflex on one side. In a young child this is retinoblastoma until proven otherwise: same-week specialist referral, and never biopsy.",
+     credit:"National Cancer Institute, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Retinoblastoma.jpg)"},
+  ],
+  "down-syndrome": [
+    {after:"Clinical Features", file:"clin_down_syndrome.jpg",
+     alt:"Infant with upslanting palpebral fissures, flat nasal bridge and protruding tongue",
+     caption:"Down syndrome facies: upslanting palpebral fissures, epicanthic folds, flat nasal bridge, protruding tongue, and Brushfield spots in the iris.",
+     credit:"Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Brushfield_eyes.jpg)"},
+  ],
+  "jsle": [
+    {after:"Clinical Features", file:"clin_sle_malar.jpg",
+     alt:"Erythematous rash across both cheeks and the nasal bridge",
+     caption:"Malar ('butterfly') rash: photosensitive erythema over the cheeks and nasal bridge that SPARES the nasolabial folds — the sparing is the diagnostic detail.",
+     credit:"CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Lupusfoto.jpg)"},
+  ],
+  "jdm": [
+    {after:"Clinical Features", file:"clin_gottron.jpg",
+     alt:"Discrete erythematous papules over the knuckles",
+     caption:"Gottron papules — erythematous papules over the EXTENSOR surfaces of the knuckles. Pathognomonic of dermatomyositis (in SLE the rash spares the knuckles).",
+     credit:"IMACS, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dermatomyositis6.jpg)"},
+    {after:"Overview & Pathogenesis", file:"clin_heliotrope.jpg",
+     alt:"Violaceous discolouration and swelling of both upper eyelids",
+     caption:"Heliotrope rash: violaceous periorbital discolouration with oedema. With proximal muscle weakness (difficulty climbing stairs, rising from the floor) this is juvenile dermatomyositis.",
+     credit:"IMACS, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dermatomyositis11.jpg)"},
+  ],
+  "behcet": [
+    {after:"Clinical Features", file:"clin_aphthous_ulcer.jpg",
+     alt:"Round shallow ulcer with a white base on the inner lip",
+     caption:"Aphthous oral ulceration — recurrent, painful, round with a white/yellow base and red halo. Recurrent oral ulcers are the entry criterion for Behçet disease.",
+     credit:"CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Aphthous_stomatitis_on_the_labial_mucosa.jpg)"},
+  ],
+  "obesity-metabolic": [
+    {after:"Comorbidities & Assessment", file:"clin_acanthosis.jpg",
+     alt:"Velvety thickened hyperpigmented skin in the neck folds",
+     caption:"Acanthosis nigricans: velvety hyperpigmented thickening of the neck and axillae — a visible marker of INSULIN RESISTANCE. Its presence should prompt screening for type 2 diabetes.",
+     credit:"CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Acanthious_nigricans_new_photo_for_diagnosis,_pigmentation_appears_in_neck_,arm,elbow,it_be_related_often_to_insulin_it_related_to_obesity_and_some_times_called_pseudonigricans.jpg)"},
+  ],
+  "t2dm-obesity-endo": [
+    {after:"Presentation & Distinguishing from Type 1", file:"clin_acanthosis.jpg",
+     alt:"Velvety thickened hyperpigmented skin in the neck folds",
+     caption:"Acanthosis nigricans marks insulin resistance and helps separate type 2 from type 1 diabetes at presentation — alongside obesity, family history, and absent autoantibodies.",
+     credit:"CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Acanthious_nigricans_new_photo_for_diagnosis,_pigmentation_appears_in_neck_,arm,elbow,it_be_related_often_to_insulin_it_related_to_obesity_and_some_times_called_pseudonigricans.jpg)"},
+  ],
+  "hyperthyroidism-child": [
+    {after:"Clinical Features", file:"clin_goitre.jpg",
+     alt:"Diffuse swelling of the anterior neck",
+     caption:"Diffuse goitre. In Graves disease it is smooth, symmetrical and may have a BRUIT from increased vascularity — a nodular gland suggests a different diagnosis.",
+     credit:"CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Struma_001.jpg)"},
+    {after:"Aetiology", file:"clin_proptosis.jpg",
+     alt:"Bilateral protrusion of the eyes with lid retraction",
+     caption:"Proptosis with lid retraction (adult shown). Eye signs from orbital autoimmune inflammation are SPECIFIC to Graves disease, unlike lid lag which occurs in any thyrotoxicosis.",
+     credit:"CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Proptosis.jpg)"},
+  ],
+  "vitamin-deficiencies": [
+    {after:"Vitamin C Deficiency (Scurvy)", file:"clin_scurvy_gums.jpg",
+     alt:"Swollen haemorrhagic gums around the teeth",
+     caption:"Scorbutic gums: swollen, spongy, bleeding gingivae. Scurvy in children also causes bone pain, refusal to walk, and subperiosteal haemorrhage — often mistaken for arthritis or leukaemia.",
+     credit:"CDC, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Scorbutic_gums.jpg)"},
+  ],
+  "red-eye-child": [
+    {after:"Conjunctivitis", file:"clin_conjunctivitis.jpg",
+     alt:"Intensely red eye with marked conjunctival swelling and discharge",
+     caption:"Severe purulent conjunctivitis with chemosis and corneal involvement. RED FLAGS that mean same-day ophthalmology: pain, photophobia, reduced vision, corneal haze, or a neonate under 4 weeks.",
+     credit:"CDC, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Conjunctivitis_5174.jpg)"},
+  ],
+  "ibd-child": [
+    {after:"Clinical Features", file:"clin_erythema_nodosum.jpg",
+     alt:"Tender erythematous nodule on the skin",
+     caption:"Erythema nodosum — tender red nodules, classically on the shins. An extraintestinal manifestation of IBD; also seen with streptococcal infection, TB, and sarcoidosis.",
+     credit:"CC BY 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Erythema_nodosum_-_Kolkata_2012-01-03_7753.JPG)"},
+  ],
 };
 
 /* ============ CASE STUDIES ============ */
@@ -10440,12 +10678,26 @@ function show(id){
   if(d.id === "hyponatraemia"){
     h += `<div id="hyponacalchost"></div>`;
   }
+  /* Figures for this disease, anchored to the section named in `after`.
+     Anything with no `after` (or an anchor that no longer matches a heading)
+     is shown up front rather than silently dropped. */
+  const dFigs = (typeof FIGURES !== "undefined" && FIGURES[d.id]) ? FIGURES[d.id] : [];
+  const headings = (d.sections||[]).map(s=>s.h);
+  const figsAfter = hd => dFigs.filter(f => f.after === hd);
+  const orphanFigs = dFigs.filter(f => !f.after || !headings.includes(f.after));
+  if(orphanFigs.length){
+    h += `<div class="entryfigs">${orphanFigs.map(figHTML).join("")}</div>`;
+  }
   (d.sections||[]).forEach(s=>{
     const pts = sentences(s.body);
     if(pts.length > 1){
       h += `<section class="blk"><h3>${esc(s.h)}</h3><ul class="bullets">${pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></section>`;
     } else {
       h += `<section class="blk"><h3>${esc(s.h)}</h3><p>${esc(s.body)}</p></section>`;
+    }
+    const fs = figsAfter(s.h);
+    if(fs.length){
+      h += `<div class="entryfigs">${fs.map(figHTML).join("")}</div>`;
     }
   });
   (d.tables||[]).forEach(t=>{
@@ -10471,6 +10723,11 @@ function show(id){
   if(cs) cs.onclick = () => startCase(d.id);
   document.querySelectorAll(".casepick").forEach(b => {
     b.onclick = () => startCase(d.id, parseInt(b.dataset.ci));
+  });
+  /* Click any entry figure to view it full size */
+  document.querySelectorAll(".entryfigs .fig img").forEach((im,i)=>{
+    im.onclick = ()=> figZoom(im.getAttribute("src"), im.getAttribute("alt"),
+      im.closest(".fig").querySelector("figcaption")?.textContent.trim() || "");
   });
   const ph = document.getElementById("palscalchost");
   if(ph){ ph.innerHTML = palsCalcShell(); wirePalsCalc(); }
@@ -11568,6 +11825,7 @@ document.addEventListener("keydown", e=>{
   if(e.key==="c"||e.key==="C"){ e.preventDefault(); caseButton(); }
   if(e.key==="g"||e.key==="G"){ e.preventDefault(); showSkinGallery(); }
   if(e.key==="i"||e.key==="I"){ e.preventDefault(); showImagingGallery(); }
+  if(e.key==="s"||e.key==="S"){ e.preventDefault(); showSignsGallery(); }
   if(e.key==="q"||e.key==="Q"){ e.preventDefault(); quizHome(); }
   if(e.key==="ArrowRight") step(1);
   if(e.key==="ArrowLeft") step(-1);
@@ -11875,6 +12133,106 @@ const IMAGING_GALLERY = [
  credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"}
 ];
 
+/* ============ CLINICAL SIGNS GALLERY ============ */
+const SIGNS_GALLERY = [
+/* — Eyes — */
+{file:"clin_leukocoria.jpg", name:"Leukocoria", cat:"Eyes",
+ find:"White pupillary reflex in the right eye where the left shows a normal dark/red pupil.",
+ teach:"RETINOBLASTOMA until proven otherwise — same-week referral, and never biopsy (it seeds tumour outside the globe). Other causes (congenital cataract, Coats disease, persistent fetal vasculature, ROP) are all sight-threatening too, so the pathway is identical. Often first noticed by parents in flash photographs.",
+ credit:"National Cancer Institute, Public domain, via Wikimedia Commons"},
+{file:"clin_conjunctivitis.jpg", name:"Severe conjunctivitis", cat:"Eyes",
+ find:"Intensely injected conjunctiva with marked chemosis, purulent discharge and corneal haze.",
+ teach:"Most childhood conjunctivitis is benign and self-limiting. RED FLAGS demanding same-day ophthalmology: pain, photophobia, reduced vision, corneal haze, or any neonate under 4 weeks (ophthalmia neonatorum — gonococcal disease perforates the cornea within days).",
+ credit:"CDC, Public domain, via Wikimedia Commons"},
+{file:"clin_proptosis.jpg", name:"Proptosis (Graves)", cat:"Eyes",
+ find:"Bilateral forward protrusion of the globes with lid retraction and visible sclera above the iris (adult shown).",
+ teach:"Orbital autoimmune inflammation is SPECIFIC to Graves disease. Lid lag alone is a sympathetic sign of any thyrotoxicosis — proptosis is not. In children, behavioural change and falling school performance usually precede the eye signs by months.",
+ credit:"CC BY-SA 4.0, via Wikimedia Commons"},
+/* — Face, mouth & neck — */
+{file:"clin_down_syndrome.jpg", name:"Down syndrome facies", cat:"Face, mouth & neck",
+ find:"Upslanting palpebral fissures, epicanthic folds, flat nasal bridge, protruding tongue, and Brushfield spots in the iris.",
+ teach:"Confirm with karyotype — 95% trisomy 21, 4% translocation (may be inherited: karyotype the parents), 1% mosaic. Every infant needs an ECHOCARDIOGRAM: up to half have congenital heart disease, most commonly AVSD, which may have NO murmur in the newborn period.",
+ credit:"Public domain, via Wikimedia Commons"},
+{file:"clin_cleft_lip.jpg", name:"Cleft lip", cat:"Face, mouth & neck",
+ find:"Unilateral defect of the upper lip extending to the nostril (medical illustration).",
+ teach:"Cleft lip is visible; CLEFT PALATE is missed unless you look and feel inside the mouth at the newborn check. Palate involvement drives the real problems: feeding difficulty, speech, and persistent glue ear needing early ENT input. Managed by a specialist multidisciplinary cleft team.",
+ credit:"CC0, via Wikimedia Commons"},
+{file:"clin_aphthous_ulcer.jpg", name:"Aphthous ulcer", cat:"Face, mouth & neck",
+ find:"Round shallow ulcer with a white-yellow base and erythematous halo on the labial mucosa.",
+ teach:"Common and benign in isolation. RECURRENT oral ulceration is the entry criterion for Behçet disease (with genital ulcers, uveitis, pathergy). Also think coeliac disease, IBD, cyclical neutropenia, and HIV when ulcers are recurrent or severe.",
+ credit:"CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"clin_goitre.jpg", name:"Goitre", cat:"Face, mouth & neck",
+ find:"Diffuse symmetrical swelling of the anterior neck that moves on swallowing.",
+ teach:"Diffuse and smooth with a bruit suggests Graves; diffuse and firm suggests Hashimoto; a NODULE in a child carries a higher malignancy risk than in an adult and needs ultrasound and specialist assessment. Check thyroid function before assuming the cause.",
+ credit:"CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"clin_scurvy_gums.jpg", name:"Scorbutic gums", cat:"Face, mouth & neck",
+ find:"Swollen, spongy, haemorrhagic gingivae surrounding the teeth.",
+ teach:"Vitamin C deficiency. In children scurvy classically presents as BONE PAIN AND REFUSAL TO WALK from subperiosteal haemorrhage — routinely misdiagnosed as arthritis, leukaemia, or even non-accidental injury. Think of it in restricted diets and autism-related food selectivity.",
+ credit:"CDC, Public domain, via Wikimedia Commons"},
+{file:"mumps_parotitis.jpg", name:"Mumps parotitis", cat:"Face, mouth & neck",
+ find:"Swelling in front of and below the ear that obscures the angle of the mandible and lifts the earlobe upward and outward.",
+ teach:"Parotid, not cervical node: the swelling crosses the angle of the jaw and pushes the ear out. Complications matter more than the swelling — orchitis, aseptic meningitis, pancreatitis, and sensorineural deafness. Notifiable; prevented by MMR.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"ebv_tonsils.jpg", name:"Infectious mononucleosis", cat:"Face, mouth & neck",
+ find:"Grossly enlarged tonsils covered with membranous white exudate.",
+ teach:"EBV: exudative tonsillitis with POSTERIOR as well as anterior cervical nodes, marked fatigue, and hepatosplenomegaly. AVOID AMOXICILLIN — it produces a florid rash. Advise no contact sports for at least 4 weeks because of splenic rupture risk.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"hiv_thrush.jpg", name:"Oral candidiasis", cat:"Face, mouth & neck",
+ find:"Adherent white plaques on the tongue and palate that leave a raw surface when scraped.",
+ teach:"Normal in young infants and with inhaled steroids (rinse after use). PERSISTENT or recurrent thrush beyond infancy is a red flag for immunodeficiency — HIV or primary immunodeficiency — especially with failure to thrive or recurrent serious infection.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+/* — Hands, skin & limbs — */
+{file:"clin_gottron.jpg", name:"Gottron papules", cat:"Hands, skin & limbs",
+ find:"Discrete erythematous scaly papules over the EXTENSOR surfaces of the knuckles.",
+ teach:"Pathognomonic of dermatomyositis. The distinction from lupus is the location: dermatomyositis rash sits ON the knuckles, lupus rash SPARES them. Look for proximal muscle weakness — difficulty climbing stairs or rising from the floor.",
+ credit:"IMACS, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"clin_heliotrope.jpg", name:"Heliotrope rash", cat:"Hands, skin & limbs",
+ find:"Violaceous (lilac) discolouration with oedema of both upper eyelids.",
+ teach:"With Gottron papules and proximal weakness this is juvenile dermatomyositis. Confirm with raised muscle enzymes (CK, LDH, aldolase) and MRI showing muscle oedema. Screen for the complications that kill: dysphagia with aspiration, respiratory muscle weakness, and calcinosis.",
+ credit:"IMACS, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"clin_sle_malar.jpg", name:"Malar (butterfly) rash", cat:"Hands, skin & limbs",
+ find:"Erythema over both cheeks and the bridge of the nose, sparing the nasolabial folds.",
+ teach:"Photosensitive and SPARES the nasolabial folds — that sparing is what separates it from rosacea and seborrhoeic dermatitis. Juvenile SLE is more aggressive than adult disease with high rates of nephritis: dip the urine at every visit.",
+ credit:"CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"clin_acanthosis.jpg", name:"Acanthosis nigricans", cat:"Hands, skin & limbs",
+ find:"Velvety, thickened, hyperpigmented skin in the neck folds — most easily seen on darker skin.",
+ teach:"A visible marker of INSULIN RESISTANCE. Its presence in an overweight child should prompt screening for type 2 diabetes, dyslipidaemia, fatty liver, and PCOS in girls. It is not dirt — families are often told to scrub it, which is both wrong and stigmatising.",
+ credit:"CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"clin_erythema_nodosum.jpg", name:"Erythema nodosum", cat:"Hands, skin & limbs",
+ find:"Tender, erythematous, deep-seated nodule with indistinct borders.",
+ teach:"Panniculitis, classically on the shins, that bruises as it fades and heals WITHOUT scarring. It is a sign, not a diagnosis — hunt the cause: streptococcal infection, TB, IBD, sarcoidosis, drugs. In Thailand, always consider TB.",
+ credit:"CC BY 3.0, via Wikimedia Commons"},
+{file:"cystic_fibrosis_clubbingfingers1_jpg.jpg", name:"Finger clubbing", cat:"Hands, skin & limbs",
+ find:"Loss of the normal nail-fold angle with increased nail curvature and a fluctuant nail bed.",
+ teach:"Never normal in a child. Causes: suppurative lung disease (cystic fibrosis, bronchiectasis, empyema), cyanotic congenital heart disease, infective endocarditis, IBD, and cirrhosis. Schamroth window test: the normal diamond gap between opposed nails disappears.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"ida_koilonychia_iron_deficiency_anemia_jpg.jpg", name:"Koilonychia", cat:"Hands, skin & limbs",
+ find:"Flattened then spoon-shaped concave nails.",
+ teach:"A late sign of iron deficiency. Do not wait for it — look instead for the history (cow's milk over a litre a day, pica) and check ferritin. Treat iron deficiency because of NEURODEVELOPMENT, not just the haemoglobin number.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"clin_umbilical_hernia.jpg", name:"Umbilical hernia", cat:"Hands, skin & limbs",
+ find:"Soft, reducible protrusion at the umbilicus that becomes more prominent on crying.",
+ teach:"Very common, especially in preterm and Afro-Caribbean infants; the great majority close spontaneously by 3–5 years and incarceration is rare. Do NOT tape or strap it. Contrast with an INGUINAL hernia, which in infants needs prompt surgical repair because of incarceration risk.",
+ credit:"Public domain, via Wikimedia Commons"},
+/* — Nutrition & growth — */
+{file:"sam_kwashiorkor_6903_jpg.jpg", name:"Kwashiorkor", cat:"Nutrition & growth",
+ find:"Bilateral pitting oedema with skin changes and apathy in a young child.",
+ teach:"Bilateral pitting OEDEMA defines oedematous severe acute malnutrition regardless of weight-for-height. The first hours kill: hypoglycaemia, hypothermia, and masked infection — give glucose, warmth, and empirical antibiotics. Rehydrate with ReSoMal, never standard ORS or IV boluses.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"vitamina_bitot_jpg.jpg", name:"Bitot spots", cat:"Nutrition & growth",
+ find:"Foamy, greyish-white triangular plaques on the temporal bulbar conjunctiva.",
+ teach:"Vitamin A deficiency — the leading preventable cause of childhood blindness. The sequence is night blindness → Bitot spots → corneal xerosis → keratomalacia and irreversible blindness. Give high-dose vitamin A to every child with measles, and to those with SAM.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"ricketsvitd_before_and_after_photographs_for_therap.jpg", name:"Rickets — bow legs", cat:"Nutrition & growth",
+ find:"Genu varum (bowing of the legs) before and after treatment.",
+ teach:"Nutritional rickets: bossing, rachitic rosary, wrist widening, delayed walking. Check 25-OH vitamin D (NOT 1,25), calcium, phosphate, PTH and especially ALKALINE PHOSPHATASE. Give vitamin D PLUS calcium. Bow legs remodel over 1–2 years once the biochemistry corrects — surgery is rarely needed.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"neojaundice_jaundice_in_newborn_jpg.jpg", name:"Neonatal jaundice", cat:"Nutrition & growth",
+ find:"Yellow discolouration of the skin and sclerae in a newborn.",
+ teach:"Jaundice in the FIRST 24 HOURS is always pathological (haemolysis, sepsis). Jaundice persisting beyond 14 DAYS needs a SPLIT bilirubin — conjugated hyperbilirubinaemia with pale stools and dark urine means biliary atresia, where Kasai success falls sharply after 60 days.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"}
+];
+
 const GALLERIES = {
   "skin": {hash:"skin-gallery", crumb:"Dermatology", eyebrow:"Visual atlas",
     title:"Skin Disease Gallery",
@@ -11883,7 +12241,11 @@ const GALLERIES = {
   "imaging": {hash:"imaging-gallery", crumb:"Imaging & investigations", eyebrow:"Visual atlas",
     title:"Imaging, ECG & Lab Gallery",
     blurb:"radiographs, ultrasound, CT, ECG rhythms and blood films — click any image for the findings, the teaching point, and the trap.",
-    items:IMAGING_GALLERY}
+    items:IMAGING_GALLERY},
+  "signs": {hash:"signs-gallery", crumb:"Clinical signs", eyebrow:"Visual atlas",
+    title:"Clinical Signs Gallery",
+    blurb:"bedside signs across eyes, face, hands, skin and growth — click any image for the findings, the teaching point, and the trap.",
+    items:SIGNS_GALLERY}
 };
 
 let galCat = "All";
@@ -11931,6 +12293,7 @@ function showGallery(key){
 }
 function showSkinGallery(){ showGallery("skin"); }
 function showImagingGallery(){ showGallery("imaging"); }
+function showSignsGallery(){ showGallery("signs"); }
 function galLightbox(i, key){
   const items = GALLERIES[key||galKey].items;
   const g = items[i];
@@ -11956,6 +12319,20 @@ function galLightbox(i, key){
   document.body.appendChild(lb);
 }
 
+/* Simple full-size viewer for figures shown inside a disease entry. */
+function figZoom(src, alt, caption){
+  const lb = document.createElement("div");
+  lb.className = "gallightbox";
+  lb.innerHTML = `<button class="lbclose" title="Close (Esc)">✕</button>
+    <img src="${esc(src)}" alt="${esc(alt||"")}">
+    ${caption ? `<div class="lbpanel"><p>${esc(caption)}</p></div>` : ""}`;
+  const close = ()=>{ lb.remove(); document.removeEventListener("keydown", onkey); };
+  const onkey = e=>{ if(e.key==="Escape") close(); };
+  lb.onclick = e=>{ if(e.target===lb || e.target.classList.contains("lbclose")) close(); };
+  document.addEventListener("keydown", onkey);
+  document.body.appendChild(lb);
+}
+
 /* ============ SPOT-DIAGNOSIS QUIZ ============ */
 let quiz = null;
 function shuffle(a){ const r=a.slice(); for(let i=r.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [r[i],r[j]]=[r[j],r[i]]; } return r; }
@@ -11970,6 +12347,7 @@ function buildQuizPool(source){
   };
   if(source==="skin" || source==="images") addGallery("skin");
   if(source==="imaging" || source==="images") addGallery("imaging");
+  if(source==="signs" || source==="images") addGallery("signs");
   if(source==="cases"){
     Object.keys(CASES).forEach(k=>{
       if(k==="pals") return;
@@ -12017,8 +12395,9 @@ function quizHome(){
     <p class="oneliner">Ten questions per round, drawn from the galleries and case studies. Answer, then see the teaching point. Nothing is recorded — it is a practice tool.</p>
     <div class="quizpick">
       <button class="quizsrc" data-src="skin"><b>Skin</b><span>${SKIN_GALLERY.length} dermatology images</span></button>
-      <button class="quizsrc" data-src="imaging"><b>Imaging, ECG &amp; lab</b><span>${IMAGING_GALLERY.length} films, rhythms &amp; films</span></button>
-      <button class="quizsrc" data-src="images"><b>All images</b><span>${SKIN_GALLERY.length+IMAGING_GALLERY.length} mixed — hardest</span></button>
+      <button class="quizsrc" data-src="imaging"><b>Imaging, ECG &amp; lab</b><span>${IMAGING_GALLERY.length} films, rhythms &amp; blood films</span></button>
+      <button class="quizsrc" data-src="signs"><b>Clinical signs</b><span>${SIGNS_GALLERY.length} bedside signs</span></button>
+      <button class="quizsrc" data-src="images"><b>All images</b><span>${SKIN_GALLERY.length+IMAGING_GALLERY.length+SIGNS_GALLERY.length} mixed — hardest</span></button>
       <button class="quizsrc" data-src="cases"><b>Case vignettes</b><span>${nCases} clinical stems — name the diagnosis</span></button>
     </div></div>`;
   document.querySelectorAll(".quizsrc").forEach(b=>{ b.onclick = ()=> startQuiz(b.dataset.src); });
@@ -12104,9 +12483,11 @@ function renderQuizEnd(){
 
 $("#skingalbtn").onclick = showSkinGallery;
 $("#imggalbtn").onclick = showImagingGallery;
+$("#signsgalbtn").onclick = showSignsGallery;
 $("#quizbtn").onclick = quizHome;
 
-const ROUTES = {"skin-gallery":showSkinGallery, "imaging-gallery":showImagingGallery, "quiz":quizHome};
+const ROUTES = {"skin-gallery":showSkinGallery, "imaging-gallery":showImagingGallery,
+                "signs-gallery":showSignsGallery, "quiz":quizHome};
 window.addEventListener("hashchange", ()=>{
   const id = location.hash.slice(1);
   if(ROUTES[id]){ if(current!==id) ROUTES[id](); return; }
