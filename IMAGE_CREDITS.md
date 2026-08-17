@@ -1,6 +1,6 @@
 # Image credits
 
-The 59 images distributed in `assets/` come from Wikimedia Commons and are
+The 64 images distributed in `assets/` come from Wikimedia Commons and are
 reproduced under the licence shown. Attribution was taken from the Commons API at
 download time. CC BY and CC BY-SA require this credit to accompany any redistribution.
 
@@ -15,9 +15,9 @@ download time. CC BY and CC BY-SA require this credit to accompany any redistrib
 | Licence | Images |
 |---|---|
 | Public domain | 23 |
-| CC BY-SA 4.0 | 14 |
-| CC BY-SA 3.0 | 10 |
-| CC BY 4.0 | 3 |
+| CC BY-SA 4.0 | 17 |
+| CC BY-SA 3.0 | 11 |
+| CC BY 4.0 | 4 |
 | CC0 | 4 |
 | CC BY 2.5 | 2 |
 | CC BY 2.0 | 2 |
@@ -86,3 +86,8 @@ download time. CC BY and CC BY-SA require this credit to accompany any redistrib
 | PALS | `long_qt_syndrome.jpg` | PeaBrainC | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Long_QT_syndrome_type_1.jpg) |
 | PALS | `broselow_tape.jpg` | Stkittschris | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:BTape1.jpg) |
 | PALS | `io_access_pediatric.jpg` | tim kubacki | CC BY 2.0 | [source](https://commons.wikimedia.org/wiki/File:Intraosseous_infusion,_pediatric.jpg) |
+| PALS | `defib_electrode_placement.svg` | Hariadhi | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Defibrilation_electrode_placement_svg_hariadhi.svg) |
+| PALS | `endotracheal_tube.png` | BruceBlaus | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Endotracheal_Tube.png) |
+| PALS | `laryngoscopy_intubation.png` | Open Critical Care / WHO | CC BY 4.0 | [source](https://commons.wikimedia.org/wiki/File:Sagittal_cross_section_view_of_laryngoscopy_intubation_with_mac_3.png) |
+| PALS | `capnogram.png` | Rschiedon | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Capnogram.png) |
+| PALS | `sync_cardioversion.jpg` | StudentDoctorDG | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:LIFEPAK_20e_Defibrillator_and_Monitor_displaying_synchronization_with_QRS_complexes._(arrowheads).jpg) |
