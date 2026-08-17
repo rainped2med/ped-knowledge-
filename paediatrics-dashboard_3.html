@@ -8405,10 +8405,9 @@ function show(id){
     h += `<div id="palscalchost"></div>`;
     h += palsFlowHTML();
   }
-  const BULLET_RE = /aetiol|etiol|pathophys|pathogen|cause|mechanism|manage|treat|therap|interven|resuscit|drug|medicat|pharmacol|support|step/i;
   (d.sections||[]).forEach(s=>{
-    if(BULLET_RE.test(s.h)){
-      const pts = sentences(s.body);
+    const pts = sentences(s.body);
+    if(pts.length > 1){
       h += `<section class="blk"><h3>${esc(s.h)}</h3><ul class="bullets">${pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></section>`;
     } else {
       h += `<section class="blk"><h3>${esc(s.h)}</h3><p>${esc(s.body)}</p></section>`;
