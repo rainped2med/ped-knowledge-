@@ -503,6 +503,45 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
   position:fixed;top:14px;right:18px;font-size:26px;background:none;border:none;color:#fff;cursor:pointer;
 }
 @media print{.gallightbox{display:none}}
+/* ---------- Spot diagnosis quiz ---------- */
+.skingalbtn.quiz{background:var(--amber-light);color:var(--amber);border-color:#e8d6b4}
+.skingalbtn.quiz:hover{background:var(--amber);color:#fff}
+.quizpick{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:22px}
+.quizsrc{
+  text-align:left;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--paper-2);cursor:pointer;font-family:inherit;box-shadow:var(--shadow);
+  transition:transform .12s ease;
+}
+.quizsrc:hover{transform:translateY(-2px);border-color:var(--moss)}
+.quizsrc b{display:block;font-size:16px;font-family:'Newsreader',serif;margin-bottom:3px;color:var(--ink)}
+.quizsrc span{font-size:13px;color:var(--ink-soft)}
+.quizbar{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:18px 0;
+  padding:10px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2);font-size:14px}
+.quizbar span:first-child{flex:1}
+.quizq{margin-top:6px}
+.quizimg{max-width:100%;max-height:52vh;border-radius:var(--r);border:1px solid var(--line);background:var(--paper-2);display:block;margin:0 auto}
+.quizstem{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--moss);
+  border-radius:var(--r);padding:14px 16px;font-size:15px;line-height:1.6}
+.quizprompt{margin:16px 0 10px;font-size:15.5px}
+.quizopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.quizopt{
+  padding:12px 15px;border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2);
+  font-family:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;text-align:left;
+}
+.quizopt:hover:not(:disabled){border-color:var(--moss);background:var(--moss-light)}
+.quizopt:disabled{cursor:default;opacity:.72}
+.quizopt.correct{background:var(--moss-light);border-color:var(--moss);color:var(--moss);font-weight:600;opacity:1}
+.quizopt.wrong{background:var(--rose-light);border-color:var(--rose);color:var(--rose);opacity:1}
+.quizfb{margin-top:18px;padding:15px 17px;border-radius:var(--r);border:1px solid var(--line);background:var(--paper-2)}
+.quizfb.ok{border-left:3px solid var(--moss)}
+.quizfb.no{border-left:3px solid var(--rose)}
+.quizfb .quizfind{margin:9px 0 0;font-size:14px;color:var(--ink-soft)}
+.quizfb .quizteach{margin:9px 0 13px;font-size:14.5px;line-height:1.6}
+.quizfb .btn{margin-right:8px}
+.quizscore{margin:22px 0;padding:22px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--paper-2);text-align:center;box-shadow:var(--shadow)}
+.quizscore b{display:block;font-size:38px;font-family:'Newsreader',serif;color:var(--moss)}
+.quizscore span{font-size:14.5px;color:var(--ink-soft)}
 :focus-visible{outline:2px solid var(--moss);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -519,6 +558,8 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
       <div class="searchmeta" id="searchmeta"></div>
     </div>
     <button class="skingalbtn" id="skingalbtn" title="Visual atlas of paediatric skin conditions (g)">🔬 Skin Disease Gallery</button>
+    <button class="skingalbtn" id="imggalbtn" title="X-rays, ultrasound, CT, ECG rhythms and blood films (i)">🩻 Imaging, ECG &amp; Lab Gallery</button>
+    <button class="skingalbtn quiz" id="quizbtn" title="Spot-diagnosis self-test (q)">🎯 Spot Diagnosis Quiz</button>
     <nav class="navscroll" id="nav"></nav>
   </aside>
   <div class="main">
@@ -9698,7 +9739,487 @@ d:"The emergency regimen letter is the survival document: intercurrent illnesses
 {t:"The family", q:"What does this diagnosis mean for the parents and future pregnancies?",
 a:"Genetic counselling: identify the mutation, clarify inheritance (X-linked OTC — maternal carrier testing, implications for her own health as some carriers are symptomatic, and for male fetuses; autosomal recessive defects — 25% recurrence with consanguinity amplifying risk). Options for future pregnancies: prenatal diagnosis (CVS) or preimplantation genetic testing; and a PLANNED delivery for at-risk future babies — proactive protocol from birth (early feeding plan, ammonia surveillance in the first days, scavengers on standby) converts the next case from a catastrophe into a controlled admission. Retrieve and review the brother's records and any stored newborn screening card — retrospective diagnosis of the sibling closes the family's story.",
 d:"'Died of an infection in the first week' in a previous sibling is one of the most important sentences in a paediatric history — always pursue it. Consanguineous families carry a higher burden of recessive disease and deserve non-judgemental, expert counselling. The arc of this case — from 'sepsis not responding' to a named enzyme, a treatment, and a plan for the next child — is the entire argument for thinking metabolically early."}],
-wrap:"Well term baby → symptom-free interval → progressive encephalopathy after feeds, unresponsive to antibiotics, ± family history/consanguinity = inborn error until excluded: send AMMONIA on ice, gas, glucose, lactate, ketones, amino acids, acylcarnitines, urine organic acids — and save pre-treatment samples. Treat before diagnosis: stop feeds, high-dose IV dextrose to kill catabolism, ammonia scavengers + arginine, and dialysis early for ammonia >400–500. Respiratory alkalosis + no ketones = urea cycle defect; acidosis + ketosis = organic acidaemia. Survival needs an emergency sick-day regimen — and the next pregnancy needs a plan from birth."}
+wrap:"Well term baby → symptom-free interval → progressive encephalopathy after feeds, unresponsive to antibiotics, ± family history/consanguinity = inborn error until excluded: send AMMONIA on ice, gas, glucose, lactate, ketones, amino acids, acylcarnitines, urine organic acids — and save pre-treatment samples. Treat before diagnosis: stop feeds, high-dose IV dextrose to kill catabolism, ammonia scavengers + arginine, and dialysis early for ammonia >400–500. Respiratory alkalosis + no ketones = urea cycle defect; acidosis + ketosis = organic acidaemia. Survival needs an emergency sick-day regimen — and the next pregnancy needs a plan from birth."},
+
+"vsd": {
+stem:"A 6-week-old boy is brought to clinic because he 'sweats and goes breathless when feeding' and takes 40 minutes to finish a bottle. His birth weight was 3.2 kg; today he is 3.5 kg. On examination there is a harsh grade 3/6 pansystolic murmur at the lower left sternal edge, a respiratory rate of 62, subcostal recession, and a liver edge 3 cm below the costal margin.",
+steps:[
+{t:"Reading the murmur", q:"What lesion does this murmur suggest, and why did it appear at 6 weeks rather than at birth?",
+a:"A harsh pansystolic murmur at the lower left sternal edge is a ventricular septal defect. It was inaudible at birth because pulmonary vascular resistance (PVR) was still high, so there was little pressure gradient across the defect. As PVR falls over the first 4–8 weeks, left-to-right shunting increases and both the murmur and the symptoms appear.",
+d:"This timing explains why so many VSDs are missed at the newborn check and declare themselves at the 6-week review — a normal newborn examination never excludes a VSD. Counter-intuitively, a LOUDER, harsher murmur usually means a SMALLER defect (high-velocity turbulent flow); a large VSD may have a soft murmur but a very sick baby."},
+{t:"Recognising heart failure in an infant", q:"What features here indicate cardiac failure? Infants do not complain of breathlessness.",
+a:"Feeding is the infant's exercise test: sweating, breathlessness, and prolonged feed times are effort intolerance. Add faltering growth (only 300 g gained in 6 weeks), tachypnoea with recession, and hepatomegaly — the paediatric equivalent of raised JVP and peripheral oedema. Look also for a gallop rhythm and a displaced apex.",
+d:"Infant heart failure is diagnosed on feeding, growing, and breathing — not on 'shortness of breath'. Hepatomegaly is the single most reliable sign of systemic venous congestion in a baby; peripheral oedema and raised JVP are unreliable or unassessable. Sweating reflects sympathetic drive."},
+{t:"Investigations", q:"What do you order and what would you expect?",
+a:"Echocardiography is definitive — it locates the defect (perimembranous is commonest, then muscular), sizes it, estimates the gradient and pulmonary pressures, and excludes associated lesions. Supporting: CXR (cardiomegaly with increased pulmonary vascular markings), ECG (biventricular hypertrophy in a large defect), oxygen saturations (normal — this is an acyanotic lesion), and growth plotting.",
+d:"A LOW gradient across the VSD on echo is the ominous finding: it means right and left ventricular pressures have nearly equalised — a large, unrestrictive defect with pulmonary hypertension. A high gradient means the defect is restrictive and the right ventricle is protected."},
+{t:"Medical management", q:"How do you treat him while awaiting definitive assessment?",
+a:"Anti-failure therapy plus aggressive nutrition. Diuretics — furosemide 1–2 mg/kg/day, often with spironolactone; consider an ACE inhibitor (captopril/enalapril) to reduce systemic afterload and hence the left-to-right shunt. Nutrition is treatment: high-calorie fortified feeds (150–170 kcal/kg/day), sometimes nasogastric top-ups, because these babies burn calories breathing and tire before they finish a feed.",
+d:"Digoxin is now used selectively rather than routinely. Note the physiology: because the shunt volume depends on the ratio of pulmonary to systemic vascular resistance, lowering systemic resistance with an ACE inhibitor reduces shunting — whereas giving high-flow oxygen lowers PVR and can INCREASE it."},
+{t:"Deciding on surgery", q:"What determines whether he needs surgical closure, and what is the danger of waiting too long?",
+a:"Indications for closure: failure to thrive despite maximal medical therapy, persistent heart failure, pulmonary hypertension, or a large defect that will not close spontaneously. Small muscular VSDs close spontaneously in a large proportion during the first 1–2 years and simply need observation with endocarditis-prevention advice. The danger of delay is irreversible pulmonary vascular disease progressing to Eisenmenger syndrome — at which point the shunt reverses, the child becomes cyanotic, and the defect becomes inoperable.",
+d:"Timing is everything: surgical closure (usually within the first 6–12 months for a large defect) prevents Eisenmenger, which is a one-way door. Down syndrome infants with AVSD/VSD develop pulmonary vascular disease earlier, so their repair is scheduled sooner. After repair, prognosis is excellent."}],
+wrap:"A VSD murmur appears at 4–8 weeks as PVR falls — a normal newborn exam excludes nothing. Louder murmur usually = smaller defect. Diagnose infant heart failure by feeding, growth, tachypnoea, and hepatomegaly. Echo defines it; a low gradient means a big unrestrictive defect. Diuretics, ACE inhibitor, and high-calorie feeds; close surgically before pulmonary vascular disease becomes irreversible."},
+
+"pda": {
+stem:"A 27-week preterm infant is on day 5 of life. He had been improving on CPAP but now needs escalating oxygen and has been re-intubated. On examination he has bounding peripheral pulses, a wide pulse pressure (BP 52/22), an active precordium, and a continuous murmur beneath the left clavicle. Urine output has fallen.",
+steps:[
+{t:"Recognising the PDA", q:"What is happening, and why does prematurity predispose to it?",
+a:"A haemodynamically significant patent ductus arteriosus. The ductus normally constricts within 24–72 hours in response to rising oxygen tension and falling prostaglandins. In preterm infants the ductal muscle is immature, oxygen-sensitivity is reduced, and circulating prostaglandin E2 is higher — so it stays open. The physical signs are those of a run-off lesion: bounding pulses, wide pulse pressure, hyperdynamic precordium, and a continuous 'machinery' murmur.",
+d:"Incidence rises steeply with decreasing gestation — a majority of infants below 28 weeks have a PDA. Two circulations suffer: pulmonary OVER-circulation (worsening lung disease, oedema, ventilator dependence) and systemic UNDER-perfusion from diastolic steal (falling urine output, and risk to gut and brain)."},
+{t:"Consequences", q:"Beyond the lungs, what complications is diastolic steal causing?",
+a:"Blood shunts from aorta into the pulmonary artery during diastole, so organs perfused in diastole are robbed: the gut (necrotising enterocolitis), kidneys (oliguria, rising creatinine), and brain (intraventricular haemorrhage, and reduced cerebral perfusion). Meanwhile the lungs are flooded — pulmonary oedema, worsening compliance, and prolonged ventilation leading to bronchopulmonary dysplasia.",
+d:"This is why 'reverse' or absent end-diastolic flow in the anterior cerebral or superior mesenteric artery on Doppler is a marker of significance. The feeding decision (whether to continue enteral feeds during treatment) is debated precisely because of the NEC risk."},
+{t:"Confirming significance", q:"How do you decide whether this PDA needs treating, rather than simply exists?",
+a:"Echocardiography assesses HAEMODYNAMIC significance, not merely patency: ductal diameter (>1.5–2 mm), unrestrictive left-to-right flow, left atrium-to-aortic root ratio >1.4–1.5, and reversed diastolic flow in the descending aorta or cerebral/mesenteric vessels. Combine with the clinical picture — this baby's escalating ventilation, oliguria, and pulse findings make it significant.",
+d:"Many PDAs close spontaneously and treating every patent duct exposes infants to drug toxicity for no benefit — several trials of routine early treatment showed no long-term gain. The modern approach is targeted treatment of the symptomatic, haemodynamically significant duct."},
+{t:"Treatment", q:"What are the treatment options and their trade-offs?",
+a:"1) Conservative: fluid restriction, optimising ventilation (adequate PEEP), maintaining haematocrit; many ducts close. 2) Pharmacological cyclo-oxygenase inhibition — ibuprofen (favoured: less renal impairment than indomethacin) or paracetamol (increasingly used, comparable closure with a better side-effect profile). Indomethacin has the additional effect of reducing severe IVH but more renal and GI toxicity. 3) Surgical ligation or transcatheter device closure, reserved for failure of medical therapy in an infant who cannot be weaned from support.",
+d:"COX inhibitors work by blocking prostaglandin synthesis — the exact opposite of the prostaglandin infusion used to KEEP a duct open in duct-dependent congenital heart disease. Contraindications matter: active bleeding, thrombocytopenia, NEC, and significant renal impairment. Surgical ligation carries risks of vocal cord palsy, chylothorax, and post-ligation cardiac syndrome."},
+{t:"The critical distinction", q:"A different baby: term, day 3, cyanosed and collapsing. An echo shows a closing duct. Why must you never treat that duct the same way?",
+a:"Because in duct-dependent circulations (severe coarctation, hypoplastic left heart, pulmonary atresia, transposition), the ductus is the only route keeping the baby alive — closing it is fatal. That baby needs a prostaglandin E1 INFUSION to reopen and maintain the duct while awaiting surgery. The same anatomical structure is a pathology in one baby and a lifeline in another.",
+d:"This is one of the great conceptual pairs in neonatology: preterm with lung disease and bounding pulses → close the duct; term with cyanosis or shock and differential pulses/saturations → open the duct. Always establish whether a duct is a leak or a lifeline before acting."}],
+wrap:"Preterm PDA: bounding pulses, wide pulse pressure, continuous murmur, failure to wean from ventilation, falling urine output. Diastolic steal threatens gut, kidney, and brain while the lungs flood. Echo assesses significance (size, LA:Ao, reversed diastolic flow), not just patency. Treat significant ducts with ibuprofen or paracetamol; ligation if medical therapy fails. Never close a duct in duct-dependent congenital heart disease — that baby needs prostaglandin."},
+
+"ttn": {
+stem:"A term infant born at 39 weeks by elective caesarean section without labour develops tachypnoea within 30 minutes of birth. Respiratory rate is 80/min with mild grunting and nasal flaring, but he is pink in 25% oxygen, well perfused, and feeding attempts are only limited by his breathing rate. Chest X-ray shows prominent perihilar streaking and fluid in the horizontal fissure.",
+steps:[
+{t:"The mechanism", q:"What is the diagnosis, and why did the mode of delivery matter?",
+a:"Transient tachypnoea of the newborn (TTN) — delayed clearance of fetal lung fluid. During labour, catecholamine and steroid surges switch the pulmonary epithelium from fluid SECRETION to sodium-driven fluid ABSORPTION, and vaginal passage adds mechanical squeeze. Elective caesarean WITHOUT labour bypasses this preparation, so the lungs remain wet.",
+d:"Other risk factors: late preterm birth, maternal diabetes, maternal asthma, and male sex. This is the commonest cause of neonatal respiratory distress and, importantly, it is a diagnosis whose natural history is improvement — typically resolving within 24–72 hours."},
+{t:"The differential you must not miss", q:"What else causes tachypnoea in the first hours, and how do you avoid anchoring on TTN?",
+a:"Early-onset sepsis/GBS pneumonia (indistinguishable initially — the reason many such babies receive antibiotics until cultures are clear at 36–48 hours), respiratory distress syndrome (preterm, worsening course, ground-glass CXR), meconium aspiration, pneumothorax (sudden onset, asymmetric air entry, transilluminates), congenital heart disease, and non-respiratory causes — metabolic acidosis, hypoglycaemia, and anaemia all present as tachypnoea.",
+d:"The safety principle: TTN is a diagnosis of exclusion confirmed retrospectively by improvement. A baby labelled TTN who is not clearly improving by 4–6 hours, needs rising oxygen, or develops any systemic sign should be reassessed — the label must never outlive the evidence for it."},
+{t:"Investigation and monitoring", q:"What investigations are appropriate?",
+a:"Pulse oximetry (pre- and post-ductal to screen for congenital heart disease), blood glucose, chest X-ray (classic: wet lungs — perihilar streaking, fluid in the fissures, sometimes small pleural effusions, with normal or slightly increased lung volumes), and — given the overlap with sepsis — FBC, CRP and blood culture with empirical antibiotics if there are any risk factors or the course is atypical. Blood gas if distress is significant.",
+d:"Note the CXR contrast: TTN shows fluid and normal-to-increased volumes; RDS shows ground-glass with LOW volumes and air bronchograms. Persistent oxygen requirement beyond mild, or a widening pre/post-ductal saturation difference, points toward persistent pulmonary hypertension of the newborn (PPHN), which can complicate TTN."},
+{t:"Management", q:"How do you manage him practically?",
+a:"Supportive: minimal handling in a thermoneutral environment, supplemental oxygen to keep saturations in target range, and CPAP if there is significant work of breathing (which also helps drive fluid clearance). Feeding decision by respiratory rate — a baby breathing above roughly 60–80/min is at risk of aspiration, so use IV fluids or nasogastric feeds and progress to oral feeding as the rate settles. Monitor glucose and temperature.",
+d:"There is no role for diuretics — trials show no benefit. The main clinical judgement is feeding safety, and the main risk is unnecessary separation of mother and baby: keep them together where the baby's condition allows, and support expressing/breastfeeding through the episode."},
+{t:"Counselling and follow-up", q:"The parents ask whether this will affect him long term, and whether it will happen again.",
+a:"TTN resolves completely, usually within 24–72 hours, with no lasting respiratory consequence for the great majority. There is some epidemiological association with later wheezing but the individual prognosis is excellent. For future pregnancies: elective caesarean is best deferred until at least 39 weeks (as here), and where earlier delivery is planned, antenatal corticosteroids reduce respiratory morbidity.",
+d:"This case is also a systems teaching point: the incidence of TTN is directly modifiable by obstetric practice (timing of elective caesarean), making it one of the clearest examples of maternity and neonatal care being a single continuum rather than two services."}],
+wrap:"TTN = retained fetal lung fluid, classically after elective caesarean without labour: early tachypnoea, minimal oxygen need, wet-looking CXR with fluid in the fissures, resolving in 24–72 hours. It is a retrospective diagnosis — cover for sepsis and reassess anything that does not improve. Supportive care, CPAP if needed, feed by respiratory rate, no diuretics. Prevent by timing elective caesareans at 39 weeks or later."},
+
+"mas": {
+stem:"A post-term infant is delivered at 41+5 weeks through thick meconium-stained liquor after a prolonged second stage with fetal heart rate decelerations. He is depressed at birth with poor tone and respiratory effort. By 20 minutes he is grunting with marked recession, barrel-shaped chest, and needs 60% oxygen. Pre-ductal saturation is 88%, post-ductal 78%.",
+steps:[
+{t:"Delivery room management", q:"He is born through thick meconium and is not vigorous. What is the current resuscitation approach?",
+a:"Follow the standard newborn resuscitation algorithm: warm, dry, stimulate, assess, and if he is apnoeic or has inadequate respiration, begin positive-pressure ventilation within the first minute. Routine intrapartum suctioning of the oropharynx on the perineum is NO LONGER recommended, and routine immediate intubation for tracheal suction of the non-vigorous infant has also been removed from guidelines — establishing effective ventilation takes priority.",
+d:"This is a genuine reversal of long-standing teaching: trials showed no benefit from routine tracheal suctioning and potential harm from delaying ventilation. Suctioning is now reserved for a baby in whom airway obstruction by meconium is suspected and ventilation is ineffective."},
+{t:"The pathophysiology", q:"Why does aspirated meconium cause such severe disease?",
+a:"Four mechanisms combine: mechanical obstruction of airways causing a ball-valve effect with air trapping and hyperinflation (hence the barrel chest and pneumothorax risk); chemical pneumonitis from bile acids and enzymes; surfactant inactivation; and pulmonary vasoconstriction. Together these produce severe ventilation-perfusion mismatch, hypoxia, and acidosis.",
+d:"Meconium passage in utero reflects fetal maturity plus distress — hence the association with post-term delivery and fetal compromise. Note that the baby's condition often reflects the ASPHYXIA that made him pass and gasp in meconium as much as the meconium itself: always assess for hypoxic-ischaemic encephalopathy in parallel."},
+{t:"The saturation gap", q:"His pre-ductal saturation is 88% and post-ductal 78%. What does that 10-point difference tell you?",
+a:"A pre/post-ductal gradient of ≥5–10% indicates right-to-left shunting across the ductus arteriosus — persistent pulmonary hypertension of the newborn (PPHN). Raised pulmonary vascular resistance exceeds systemic resistance, so deoxygenated blood bypasses the lungs through the duct (and foramen ovale). Confirm with echocardiography, which also excludes structural congenital heart disease.",
+d:"MAS is the classic cause of PPHN. Labile saturations that swing dramatically with handling are characteristic. Echo is essential — the management of PPHN and of cyanotic congenital heart disease diverge completely, and you cannot distinguish them reliably at the bedside."},
+{t:"Managing MAS with PPHN", q:"How do you manage him in the neonatal unit?",
+a:"Minimal handling and sedation (agitation worsens shunting). Gentle ventilation targeting adequate oxygenation while avoiding barotrauma — high-frequency oscillatory ventilation is often used given the air trapping. Maintain normal systemic blood pressure with volume and inotropes so that systemic pressure exceeds pulmonary pressure. Correct acidosis, glucose, and calcium. Surfactant is given for inactivation. Inhaled nitric oxide is the specific pulmonary vasodilator; ECMO is the rescue for refractory cases. Antibiotics until sepsis is excluded.",
+d:"Keep a high index of suspicion for PNEUMOTHORAX — air trapping makes it common, and it presents as sudden deterioration with asymmetric air entry; transilluminate and needle it. The principle throughout is to raise systemic and lower pulmonary pressure: everything else follows from that."},
+{t:"Outcome and prevention", q:"What are the outcomes and how is this prevented?",
+a:"With modern intensive care most survivors recover fully, though severe MAS with PPHN carries significant mortality and morbidity, including chronic lung disease and — where there was co-existing asphyxia — neurodevelopmental sequelae. Follow-up should include hearing assessment (both asphyxia and treatments carry risk) and developmental review. Prevention lies in obstetric care: avoiding post-term pregnancy through appropriate induction, and good intrapartum fetal monitoring.",
+d:"Where there is co-existing hypoxic-ischaemic encephalopathy, therapeutic hypothermia may be indicated — but cooling raises pulmonary vascular resistance, so managing a baby with both HIE and PPHN requires careful specialist balancing of the two therapeutic goals."}],
+wrap:"MAS: post-term, meconium-stained liquor, fetal distress, barrel chest with severe hypoxia. Do NOT routinely suction — establish ventilation. Air trapping (pneumothorax), chemical pneumonitis, surfactant inactivation, and pulmonary vasoconstriction all combine. A pre/post-ductal saturation gap means PPHN: minimal handling, gentle/oscillatory ventilation, keep systemic pressure above pulmonary, surfactant, inhaled nitric oxide, ECMO as rescue. Assess for co-existing HIE."},
+
+"torch-congenital": {
+stem:"A term infant is small for gestational age (birth weight 2.1 kg, below the 3rd centile) with a head circumference below the 0.4th centile. He has a petechial rash described as 'blueberry muffin', hepatosplenomegaly, and conjugated jaundice. A cranial ultrasound shows periventricular calcification. He failed his newborn hearing screen.",
+steps:[
+{t:"Pattern recognition", q:"What group of diagnoses does this picture represent, and which is most likely?",
+a:"Congenital infection. The combination of symmetrical growth restriction, microcephaly, blueberry muffin rash (extramedullary haematopoiesis), hepatosplenomegaly, conjugated hyperbilirubinaemia, and intracranial calcification is classic. The PERIVENTRICULAR distribution of calcification plus failed hearing screening points to congenital cytomegalovirus (CMV) — the commonest congenital infection and the leading non-genetic cause of childhood sensorineural hearing loss.",
+d:"The old TORCH acronym (Toxoplasmosis, Other — syphilis, varicella, parvovirus B19, Rubella, CMV, Herpes) is a useful memory aid but a poor diagnostic strategy: modern practice tests specifically for the infections suggested by the clinical picture and maternal history, rather than sending an undifferentiated 'TORCH screen'."},
+{t:"Distinguishing the causes", q:"Which features would point instead to toxoplasmosis, rubella, or syphilis?",
+a:"Toxoplasmosis: DIFFUSE scattered intracranial calcification (not periventricular), hydrocephalus, and chorioretinitis — the classic triad. Rubella: cataracts, sensorineural deafness, and congenital heart disease (patent ductus arteriosus, peripheral pulmonary stenosis), plus 'salt and pepper' retinopathy. Syphilis: snuffles (mucopurulent rhinitis), a desquamating rash involving palms and soles, and long-bone metaphyseal changes/periostitis on X-ray. Herpes: usually acquired at delivery, presenting later in the first weeks with skin vesicles, encephalitis, or disseminated disease.",
+d:"Calcification pattern is the most useful single radiological discriminator: periventricular suggests CMV, diffuse/scattered suggests toxoplasmosis. Congenital syphilis is re-emerging in many countries and is entirely preventable by antenatal screening and maternal treatment — never omit syphilis serology."},
+{t:"Confirming the diagnosis", q:"How is congenital CMV confirmed, and what is the diagnostic deadline?",
+a:"Detect CMV by PCR in urine or saliva (or blood) within the FIRST 21 DAYS of life. After 3 weeks, a positive result cannot distinguish congenital infection from postnatally acquired infection (via breast milk or contact), which carries a very different prognosis. If the window is missed, retrospective testing of the stored newborn dried blood spot can sometimes establish the diagnosis.",
+d:"This 21-day rule is the single most practical fact about congenital CMV — a delayed test forfeits the diagnosis and with it eligibility for antiviral therapy. Saliva PCR should be taken at least an hour after a breastfeed to avoid contamination from maternal milk."},
+{t:"Treatment", q:"He is confirmed CMV-positive with symptomatic disease. What treatment is offered and why?",
+a:"Oral valganciclovir (or IV ganciclovir) for 6 months, started ideally within the first month of life, for symptomatic congenital CMV — particularly with CNS involvement. Benefit: improved hearing outcomes and modestly better neurodevelopmental outcomes. It is not curative. Monitor closely for neutropenia (the main toxicity), and check liver and renal function.",
+d:"Treatment decisions balance real but moderate benefit against 6 months of a toxic drug — asymptomatic infants with isolated hearing loss are an area of ongoing study and specialist decision-making. Every case needs virology/infectious diseases input rather than an automatic prescription."},
+{t:"Long-term surveillance", q:"What follow-up does he need, and what is the counselling for the family?",
+a:"Multidisciplinary long-term surveillance: SERIAL audiology (hearing loss is progressive and late-onset in a substantial proportion — a normal early test does not discharge him), ophthalmology for chorioretinitis, neurodevelopmental assessment and early intervention, and growth monitoring. Counsel that symptomatic congenital CMV carries meaningful risk of hearing loss, developmental delay, and cerebral palsy, but that outcomes vary widely and surveillance allows early intervention.",
+d:"Prevention deserves discussion for future pregnancies: CMV is acquired mainly from young children's saliva and urine, so hygiene measures (handwashing after nappy changes, not sharing utensils or kissing toddlers on the mouth) genuinely reduce maternal seroconversion — advice that is under-given in antenatal care worldwide."}],
+wrap:"Congenital infection: SGA + microcephaly + blueberry muffin rash + hepatosplenomegaly + intracranial calcification. Periventricular calcification and hearing loss = CMV; diffuse calcification with hydrocephalus and chorioretinitis = toxoplasmosis; cataracts + deafness + PDA = rubella; snuffles + palm/sole rash + periostitis = syphilis. Confirm CMV by urine/saliva PCR within 21 DAYS. Valganciclovir 6 months for symptomatic disease, watching for neutropenia. Serial audiology for life — hearing loss is progressive."},
+
+"neonatal-seizures": {
+stem:"A term infant, 18 hours old, is noted by the midwife to have repetitive lip-smacking and cycling movements of the legs, with brief episodes of apnoea and eye deviation to the right. Between episodes he is lethargic. He was born by forceps delivery after a prolonged labour; cord pH was 7.05.",
+steps:[
+{t:"Recognising neonatal seizures", q:"Why are neonatal seizures so easily missed, and what makes these episodes suspicious?",
+a:"The immature neonatal brain cannot sustain organised generalised tonic-clonic activity, so seizures are SUBTLE: lip-smacking, chewing, cycling or boxing movements, tonic eye deviation, and apnoea. Suspicious features here are stereotypy (identical each time), the associated eye deviation and apnoea, and the abnormal interictal state (lethargy). Crucially, these movements do NOT stop when the limb is held and are not provoked by stimulation.",
+d:"The key differential is jitteriness/tremor, which IS stimulus-sensitive, DOES stop with gentle restraint, has no eye deviation or autonomic change, and occurs in an alert baby — commonly with hypoglycaemia, hypocalcaemia, or drug withdrawal. Benign sleep myoclonus occurs only in sleep and ceases on waking. Getting this distinction right prevents both missed seizures and unnecessary anticonvulsants."},
+{t:"Finding the cause", q:"What are the causes, and which is most likely here?",
+a:"By far the commonest cause is hypoxic-ischaemic encephalopathy (~50%), which fits this history of prolonged labour, instrumental delivery, and cord pH 7.05. Others: intracranial haemorrhage or perinatal stroke, infection (meningitis, encephalitis — including HSV), metabolic derangement (hypoglycaemia, hypocalcaemia, hyponatraemia), inborn errors of metabolism, cerebral malformations, neonatal epilepsy syndromes, and pyridoxine-dependent epilepsy.",
+d:"Timing helps: seizures within the first 24 hours suggest HIE, stroke, or pyridoxine dependency; day 2–3 suggests infection, haemorrhage, or metabolic disease; later onset raises inborn errors and hypocalcaemia. HIE seizures typically begin within 12–24 hours of birth, as here."},
+{t:"Immediate work-up", q:"What do you do in the first 30 minutes?",
+a:"Check BLOOD GLUCOSE immediately — it is instantly treatable and a common cause. Then: electrolytes including calcium and magnesium, blood gas, FBC, CRP, blood culture, and lumbar puncture when stable (CSF for cells, protein, glucose, culture, and HSV/enterovirus PCR) with empirical antibiotics and aciclovir if there is any concern. Cranial ultrasound, and MRI when stable. Start continuous amplitude-integrated EEG (aEEG) or conventional EEG.",
+d:"Continuous EEG monitoring is not a luxury: the majority of neonatal seizures are electrographic only, and — importantly — treatment causes ELECTROCLINICAL DISSOCIATION, where the visible movements stop but the electrical seizures continue. Without EEG you will believe you have succeeded when you have not."},
+{t:"Treatment", q:"How do you treat the seizures?",
+a:"Correct any metabolic cause first: hypoglycaemia with 2 mL/kg of 10% dextrose then an infusion; hypocalcaemia with IV calcium gluconate. First-line anticonvulsant remains PHENOBARBITAL 20 mg/kg IV loading (further 10–20 mg/kg if needed). Second-line options: levetiracetam, phenytoin/fosphenytoin, or midazolam infusion — with the caveat that phenobarbital retains the best evidence base in neonates despite its sedative burden. If seizures are refractory and unexplained, give a trial of PYRIDOXINE (vitamin B6) with EEG running.",
+d:"The pyridoxine trial is the classic exam point: pyridoxine-dependent epilepsy is rare, causes refractory neonatal seizures, and responds dramatically and specifically to B6 — a treatable diagnosis you will only make if you think of it. Where HIE is the cause and criteria are met, therapeutic hypothermia is itself part of treatment."},
+{t:"Prognosis", q:"The parents ask what this means for his future.",
+a:"Prognosis depends overwhelmingly on the underlying CAUSE, not on the seizures themselves: hypoglycaemia or hypocalcaemia corrected promptly carries an excellent outlook, whereas severe HIE or major malformation carries high risk of epilepsy, cerebral palsy, and developmental impairment. The MRI findings and the EEG background (a normal or rapidly recovering background is reassuring; burst-suppression is not) are the most useful prognostic tools. All need structured neurodevelopmental follow-up.",
+d:"Most anticonvulsants are weaned before discharge or shortly after if seizures have stopped and the examination and EEG are reassuring — prolonged phenobarbital has its own neurodevelopmental cost. Honest, staged counselling with a follow-up plan serves families better than an early prediction in either direction."}],
+wrap:"Neonatal seizures are subtle — lip-smacking, cycling, eye deviation, apnoea — and are distinguished from jitteriness by being stereotyped, unprovoked, not stopping on restraint, with eye/autonomic change. HIE is the commonest cause; check glucose in seconds and cover for meningitis/HSV. Continuous EEG is essential because treatment causes electroclinical dissociation. Phenobarbital first-line; trial pyridoxine in refractory unexplained cases. Prognosis follows the cause, guided by MRI and EEG background."},
+
+"ida": {
+stem:"An 18-month-old girl is brought to clinic because she is pale and tired. Her mother reports she drinks about 1.2 litres of cow's milk a day and eats very little solid food. She is described as irritable and has recently started eating soil from the garden. Haemoglobin is 7.4 g/dL with MCV 62 fL.",
+steps:[
+{t:"Making the diagnosis", q:"What is the diagnosis, and which historical details clinch it?",
+a:"Iron deficiency anaemia — microcytic (MCV 62) with significant anaemia. The history is diagnostic: excessive cow's milk intake (over a litre daily), poor solid intake, and pica (soil eating). Cow's milk is the classic culprit — it is low in iron, its iron is poorly absorbed, and it causes occult gastrointestinal blood loss in young children while displacing iron-rich foods from the diet.",
+d:"Milk intake should be limited to about 500 mL/day after the first birthday. Other risk factors: prematurity and low birth weight (reduced iron stores), exclusive breastfeeding beyond 6 months without iron-rich complementary foods, and delayed cord clamping being omitted. Pica and pagophagia (ice craving) are underasked-about but highly suggestive symptoms."},
+{t:"Confirming and excluding", q:"What investigations confirm iron deficiency and what else must you consider in a microcytic child?",
+a:"Ferritin (LOW — the most specific test, but it is an acute-phase reactant so a normal value with raised CRP does not exclude deficiency), low serum iron, raised total iron-binding capacity, low transferrin saturation, and raised red cell distribution width. Blood film: microcytic hypochromic cells with pencil cells and anisopoikilocytosis. Reticulocytes are low. Consider also THALASSAEMIA trait and haemoglobin E — essential in a Thai population — plus lead poisoning, chronic disease, and coeliac disease.",
+d:"The practical discriminator: in thalassaemia trait, the MCV is disproportionately low for a mild anaemia, red cell COUNT is normal or high, RDW is normal, and ferritin is normal — whereas iron deficiency shows a low red cell count and a high RDW. Do NOT send haemoglobin electrophoresis while iron-deficient — it can mask a raised HbA2 and hide beta-thalassaemia trait; treat the iron first, then test."},
+{t:"Why it matters", q:"Beyond the haemoglobin number, why treat this aggressively?",
+a:"Because iron deficiency in the first two years affects NEURODEVELOPMENT — impaired cognitive, motor, and behavioural outcomes that may be only partially reversible even after the anaemia is corrected. Iron is essential for myelination and neurotransmitter synthesis during a period of rapid brain growth. The irritability her mother describes is itself a symptom.",
+d:"This reframes iron deficiency from 'a low number' to a developmental emergency of early childhood — and it is why screening at-risk toddlers and treating iron deficiency WITHOUT anaemia (low ferritin, normal haemoglobin) is also justified."},
+{t:"Treatment", q:"Write her treatment and explain how you will judge response.",
+a:"Oral elemental iron 3–6 mg/kg/day, ideally as a single daily dose (alternate-day dosing improves absorption by avoiding hepcidin induction) given on an empty stomach with vitamin C-rich juice, and NOT with milk or tea. Dietary correction is essential and equally important: reduce milk to ≤500 mL/day, offer iron-rich foods (meat, fish, egg, legumes, fortified cereals). Check response with a reticulocyte count at 5–7 days and haemoglobin at 4 weeks, then continue iron for 3 months AFTER normalisation to replete stores.",
+d:"Counsel on side effects — black stools (expected), constipation, and staining of teeth (use a straw) — because poor adherence is the commonest reason for 'treatment failure'. Transfusion is almost never needed even at this haemoglobin, provided the child is haemodynamically stable and the anaemia developed slowly; transfusing a chronically anaemic child risks fluid overload."},
+{t:"Non-response", q:"Twelve weeks later her haemoglobin is 8.1 g/dL. What are you thinking?",
+a:"Work through the causes of failure in order: (1) non-adherence or incorrect dosing — by far the commonest; (2) continuing excessive milk intake or ongoing dietary shortfall; (3) ongoing blood loss — occult GI bleeding, Meckel diverticulum, cow's milk protein-induced colitis, or heavy menstruation in an older girl; (4) malabsorption — coeliac disease is the classic, so check anti-tTG IgA with total IgA; (5) the wrong diagnosis — thalassaemia trait or another haemoglobinopathy, now testable since iron has been replaced.",
+d:"'Refractory iron deficiency' should always prompt a return to the history before escalating investigations — but coeliac disease and occult GI blood loss are the two organic causes that genuinely must not be missed, and a child eating soil also warrants consideration of lead exposure."}],
+wrap:"Toddler + pallor + excessive cow's milk + pica = iron deficiency anaemia. Low ferritin confirms (but it rises with inflammation); high RDW and low red cell count separate it from thalassaemia trait — and never send electrophoresis while iron-deficient. Treat because of NEURODEVELOPMENT, not just the number: oral iron 3–6 mg/kg/day with vitamin C, milk capped at 500 mL/day, continue 3 months after normalisation. Non-response = adherence, ongoing loss, coeliac disease, or wrong diagnosis."},
+
+"ricketsvitd": {
+stem:"A 14-month-old boy, exclusively breastfed until 12 months without vitamin supplementation and kept mostly indoors, presents with delayed walking and 'bow legs'. He has a prominent forehead, a palpable row of beading along the costochondral junctions, widened wrists, and a large anterior fontanelle that is still open. He had a seizure last month attributed to fever.",
+steps:[
+{t:"Clinical recognition", q:"What is the diagnosis and what are the signs you have found?",
+a:"Nutritional rickets from vitamin D deficiency. The signs are those of unmineralised osteoid at growing bone: frontal bossing and delayed fontanelle closure (skull), rachitic rosary at the costochondral junctions (ribs), widened wrists and ankles from metaphyseal flaring, genu varum (bow legs), delayed motor milestones from hypotonia and bone pain, and delayed dentition. Harrison sulcus may be visible where the diaphragm pulls on softened ribs.",
+d:"The risk factors here are textbook: exclusive breastfeeding without supplementation (breast milk is low in vitamin D), limited sun exposure, and darker skin pigmentation increase risk. This is why routine vitamin D supplementation of breastfed infants (typically 400 IU/day) is recommended in most countries — and why its omission remains a common preventable cause of rickets globally."},
+{t:"The seizure", q:"Why is the seizure last month potentially significant?",
+a:"It may have been HYPOCALCAEMIC, not febrile. Vitamin D deficiency causes hypocalcaemia, which presents in infants as seizures, tetany, carpopedal spasm, stridor from laryngospasm, or apnoea — and in severe cases as dilated cardiomyopathy with heart failure. Any infant with an unexplained seizure should have calcium, magnesium, and glucose checked.",
+d:"Two vulnerable windows exist for hypocalcaemic presentations: early infancy (maternal vitamin D deficiency) and adolescence (growth spurt demand). Hypocalcaemic cardiomyopathy is rare, reversible with treatment, and lethal if missed — check an ECG for a prolonged QTc."},
+{t:"Biochemistry and imaging", q:"What investigations confirm the diagnosis and what pattern do you expect?",
+a:"Biochemistry: LOW 25-hydroxyvitamin D (the correct test — not 1,25-dihydroxy), low or normal calcium, LOW phosphate, and markedly RAISED alkaline phosphatase (the most sensitive screening marker), with raised parathyroid hormone (secondary hyperparathyroidism). X-ray of the wrist/knee: cupping, splaying, and FRAYING of the metaphyses, widened growth plate, and osteopenia. Renal function and urine calcium help exclude renal causes.",
+d:"A normal alkaline phosphatase makes nutritional rickets very unlikely — it is the screening test to remember. Beware the trap: 1,25-dihydroxyvitamin D can be normal or even HIGH in deficiency (driven up by PTH), so requesting it instead of 25-OH vitamin D produces falsely reassuring results."},
+{t:"Treatment", q:"How do you treat him, and what must accompany the vitamin D?",
+a:"Vitamin D replacement — either high-dose daily therapy (e.g. 2000–6000 IU/day for 8–12 weeks depending on age and protocol) or a single high-dose 'stoss' regimen where adherence is uncertain — FOLLOWED by lifelong maintenance (400–600 IU/day). Critically, ensure adequate CALCIUM intake alongside: without it, treating with vitamin D alone can precipitate 'hungry bone' hypocalcaemia as mineralisation restarts. Check calcium, phosphate, ALP, PTH and 25-OH vitamin D at intervals, and repeat wrist X-ray to confirm healing.",
+d:"Healing appears on X-ray within weeks as a dense line of mineralisation at the metaphysis. Alkaline phosphatase may transiently RISE with healing before falling. Bow legs usually remodel spontaneously over 1–2 years once the biochemistry is corrected — surgery is rarely required and should never be considered until the metabolic disease is treated."},
+{t:"When it is not nutritional", q:"His rickets fails to heal despite good adherence to vitamin D. What now?",
+a:"Reconsider the diagnosis: X-linked hypophosphataemic rickets (the commonest inherited form — low phosphate with inappropriate renal phosphate wasting, normal calcium and vitamin D; treated with phosphate and active vitamin D analogues, or burosumab), vitamin D-dependent rickets types 1 and 2 (enzyme or receptor defects), renal osteodystrophy from chronic kidney disease, and malabsorption (coeliac disease, cystic fibrosis, cholestatic liver disease).",
+d:"The clue in familial hypophosphataemia is a positive family history with persistent hypophosphataemia and normal PTH/vitamin D. Also screen the family and mother in nutritional cases: a vitamin D-deficient mother often means deficient siblings and a deficient next pregnancy, so treating one child should trigger household assessment and prevention."}],
+wrap:"Nutritional rickets: breastfed, unsupplemented, indoor infant with bossing, rachitic rosary, wrist widening, bow legs, and delayed motor milestones — and possible hypocalcaemic seizures. Check 25-OH vitamin D (not 1,25), calcium, phosphate, PTH, and especially ALKALINE PHOSPHATASE; X-ray shows metaphyseal cupping and fraying. Treat with vitamin D PLUS adequate calcium, then lifelong maintenance. Failure to heal = think X-linked hypophosphataemia, renal disease, or malabsorption. Screen the family."},
+
+"constipation": {
+stem:"A 4-year-old girl is referred with 8 months of 'diarrhoea'. Her mother reports she soils her underwear several times a day with loose, foul-smelling stool, but also passes a very large hard stool that blocks the toilet roughly once a week. She holds on, crosses her legs, and hides behind the sofa when she needs to go. Abdominal examination reveals a palpable, non-tender mass in the left iliac fossa.",
+steps:[
+{t:"Reinterpreting the presentation", q:"The referral says diarrhoea. What is actually happening?",
+a:"This is OVERFLOW SOILING from functional constipation with faecal impaction, not diarrhoea. A large rectal faecal mass stretches the rectum, blunting the sensation to defaecate, and liquid stool leaks around the impaction involuntarily. The weekly toilet-blocking stool, the withholding behaviours (leg crossing, hiding), and the palpable faecal mass confirm it.",
+d:"This misinterpretation is extremely common and consequential — children are given anti-diarrhoeals or restrictive diets that worsen the impaction. Withholding posture is often misread by families as 'straining to go' when the child is in fact straining NOT to go, usually after one painful or frightening stool started the cycle."},
+{t:"Excluding organic disease", q:"What red flags would make you doubt functional constipation?",
+a:"Red flags: onset in the first few weeks of life, delayed passage of meconium beyond 48 hours (Hirschsprung disease), ribbon stools, failure to thrive, bilious vomiting or abdominal distension, abnormal lower-limb neurology or reflexes, sacral dimple/tuft/naevus or gluteal cleft deviation (spinal dysraphism), abnormal anal position or tone, and perianal fistulae or severe fissures (Crohn disease). Also consider hypothyroidism, coeliac disease, hypercalcaemia, and cow's milk protein allergy.",
+d:"In the ABSENCE of red flags, functional constipation is a clinical diagnosis needing NO investigations — no abdominal X-ray (poor reliability and unnecessary radiation), no routine bloods. Digital rectal examination is not required routinely in children and should be performed only by an experienced clinician when organic disease is suspected."},
+{t:"Disimpaction", q:"What is the first step of treatment, and what happens if you skip it?",
+a:"DISIMPACTION must come before maintenance. Use an escalating oral macrogol (polyethylene glycol) regimen — increasing daily doses over about 1–2 weeks until the impaction clears. If macrogol alone fails, add a stimulant laxative (senna or sodium picosulfate). Skipping disimpaction and starting a maintenance dose leaves the impaction in place, so the overflow soiling continues, the family concludes 'the laxatives made it worse', and treatment is abandoned.",
+d:"Warn the family explicitly that soiling often INCREASES during disimpaction before it stops — without that warning, adherence collapses in the first week. Rectal treatments (enemas) are rarely needed in children and should not be first-line; they can be distressing and reinforce the toileting phobia."},
+{t:"Maintenance and behaviour", q:"The impaction clears. How do you prevent it recurring?",
+a:"Maintenance macrogol at a dose titrated to produce soft, easy stools — continued for MONTHS after regular habit is established, then weaned slowly. Add behavioural management: unhurried toilet sitting for 5 minutes after meals (using the gastrocolic reflex), a footstool so hips are flexed and feet supported, a reward system for SITTING (not for producing a stool), and a stool diary. Increase fluid and fibre as adjuncts — diet alone will not treat established constipation.",
+d:"Under-treating in duration is the classic cause of relapse: stopping laxatives as soon as things improve allows the stretched rectum, which takes months to regain normal tone and sensation, to re-impact. Never make the reward contingent on defaecating — that recreates the performance anxiety at the heart of withholding."},
+{t:"Persistent difficulty", q:"Despite good adherence for 6 months she remains dependent on high-dose laxatives and still soils. What next?",
+a:"Reassess for missed organic disease (thyroid function, coeliac serology, calcium) and for spinal or anorectal pathology. Consider Hirschsprung disease if there are suggestive features — anorectal manometry and rectal suction biopsy showing absent ganglion cells is definitive. Refer to specialist paediatric gastroenterology, and involve psychology: chronic soiling causes real shame, bullying, and family conflict, which then perpetuate withholding.",
+d:"The psychological dimension is not an afterthought. Explaining to the child and school that soiling is involuntary — and removing blame — is therapeutic in itself. Long-standing untreated constipation is also a common cause of secondary daytime urinary incontinence and recurrent UTI through bladder compression, so ask about urinary symptoms in every case."}],
+wrap:"'Diarrhoea' plus a weekly enormous stool and withholding behaviour = overflow soiling from impaction. Diagnose clinically; investigate only for red flags (delayed meconium, ribbon stools, failure to thrive, abnormal neurology or sacral findings). DISIMPACT first with escalating macrogol — and warn that soiling worsens before it improves — then maintain for months with behavioural toileting. Never blame the child. Untreated constipation causes urinary symptoms too."},
+
+"gord": {
+stem:"A 3-month-old, formula-fed, ex-34-week infant is brought in because he vomits after almost every feed. He arches his back and cries during feeds, and has recently begun refusing the bottle. His weight has drifted from the 25th centile at birth to below the 2nd. He has had two episodes of noisy breathing and a recent hospital attendance for 'wheeze'.",
+steps:[
+{t:"Reflux or reflux disease?", q:"Almost all infants posset. What separates physiological reflux from GORD here?",
+a:"Physiological reflux is EFFORTLESS regurgitation in a thriving, comfortable baby — the 'happy spitter' — occurring in around half of infants and resolving by 12 months as the lower oesophageal sphincter matures and the diet becomes solid and upright posture is adopted. This infant has GORD: faltering growth, feed refusal, distress and back-arching (Sandifer posturing), and possible respiratory complications. Prematurity is a recognised risk factor.",
+d:"The distinction determines everything: physiological reflux needs explanation and reassurance only, while GORD needs treatment. Overtreating happy spitters with acid suppression is common, exposes infants to increased risk of gastroenteritis and lower respiratory infection, and treats parental anxiety rather than disease."},
+{t:"The differential", q:"What else must you exclude before settling on GORD?",
+a:"Cow's milk protein allergy — which mimics GORD closely and often coexists; pyloric stenosis (projectile vomiting, hungry after vomiting, ages 2–8 weeks); intestinal obstruction or malrotation (BILIOUS vomiting — a surgical emergency until proven otherwise); raised intracranial pressure; urinary tract infection; metabolic disease; and overfeeding (calculate the actual volume per kg per day — a surprising number of 'reflux' babies are simply being given too much).",
+d:"Bilious (green) vomiting in an infant is never GORD — it demands urgent surgical assessment for malrotation with volvulus. Blood in the vomit or stool, a bulging fontanelle, or onset of vomiting after 6 months of age are similar red flags that redirect the work-up entirely."},
+{t:"First-line management", q:"How would you manage him initially, without prescribing acid suppression?",
+a:"Stepwise conservative measures: review feeding volume and technique (smaller, more frequent feeds; correct teat flow; effective winding), keep him upright after feeds, and — because CMPA is a strong mimic — a 2–4 week TRIAL OF AN EXTENSIVELY HYDROLYSED FORMULA (or maternal dairy exclusion if breastfed). Thickened feeds or alginate (Gaviscon) may reduce visible regurgitation. Position prone or on the side only while awake and observed — infants must always be placed SUPINE to sleep, regardless of reflux.",
+d:"The safe-sleep point is non-negotiable and worth stating explicitly to every family: no degree of reflux justifies prone sleeping, because SIDS risk outweighs it. The CMPA trial before acid suppression is the step most often skipped, and it is the one that most often resolves the problem."},
+{t:"Escalating treatment", q:"Conservative measures and a hydrolysed formula trial fail, and he continues to lose centiles. What now?",
+a:"A trial of acid suppression — a proton pump inhibitor (omeprazole) or H2-receptor antagonist — for 4–8 weeks, with a clear plan to review and STOP if there is no benefit. Refer to paediatric gastroenterology given the faltering growth. Investigations are reserved for the atypical or refractory: pH/multichannel intraluminal impedance study to quantify reflux and correlate with symptoms, upper GI contrast study if anatomical abnormality (malrotation, hiatus hernia) is suspected, and endoscopy for suspected oesophagitis.",
+d:"Contrast studies diagnose ANATOMY, not reflux — a barium study showing reflux does not establish GORD, and a normal one does not exclude it. Acid suppression does not stop the reflux itself; it changes what refluxes, so it helps oesophagitis and pain but not regurgitation volume."},
+{t:"Complications and the long view", q:"What complications does GORD cause, and when is surgery considered?",
+a:"Complications: oesophagitis with feeding aversion and haematemesis/iron deficiency, faltering growth, dental erosion, apnoea or apparent life-threatening events, recurrent aspiration causing wheeze and pneumonia, and Sandifer syndrome (dystonic posturing misdiagnosed as seizures). Surgery — Nissen fundoplication — is a last resort for severe, refractory, complicated GORD, most often in children with neurodisability, and carries significant morbidity (dysphagia, gas-bloat, retching).",
+d:"Two groups have a genuinely different natural history and warrant a lower threshold for investigation and specialist care: children with neurodisability (cerebral palsy) and those with repaired oesophageal atresia. For the otherwise healthy infant, the honest message is that even true GORD is usually outgrown during the second year."}],
+wrap:"Happy spitter = physiological reflux: reassure, do not medicate. GORD = the same regurgitation PLUS faltering growth, feed refusal, distress, or respiratory complications. Exclude bilious vomiting (surgical), pyloric stenosis, UTI, and raised ICP — and always trial hydrolysed formula for CMPA first. Conservative measures, then time-limited acid suppression with a stop date. Supine sleeping regardless of reflux. Fundoplication only as a last resort."},
+
+"ibd-child": {
+stem:"A 13-year-old boy presents with 5 months of intermittent abdominal pain, loose stools sometimes containing blood, and fatigue. He has lost 6 kg and his height velocity has flattened — he has fallen from the 50th to the 25th height centile. He has mouth ulcers and a tender, red nodular rash on both shins. He is pubertal stage 2, delayed for his age.",
+steps:[
+{t:"Recognising IBD", q:"What does this constellation suggest, and which features point away from a functional disorder?",
+a:"Inflammatory bowel disease. The alarm features are systemic and objective: weight loss, GROWTH FAILURE with flattening height velocity, delayed puberty, blood in stool, nocturnal symptoms, and extraintestinal manifestations — oral ulceration and erythema nodosum (the shin rash). Functional abdominal pain does not cause growth failure, blood loss, or systemic inflammation.",
+d:"Growth failure and pubertal delay may PRECEDE gastrointestinal symptoms by years in paediatric Crohn disease and are frequently the only clue — always plot height and weight on a chart and calculate height velocity in any adolescent with vague chronic GI symptoms. Extraintestinal features (arthritis, uveitis, erythema nodosum, pyoderma gangrenosum, primary sclerosing cholangitis) should always trigger consideration of IBD."},
+{t:"Crohn or colitis?", q:"How do Crohn disease and ulcerative colitis differ, and which fits better here?",
+a:"Crohn disease: any part of mouth-to-anus, SKIP lesions, transmural inflammation (so strictures, fistulae, abscesses), granulomas on histology, perianal disease, and prominent growth failure and weight loss. Ulcerative colitis: continuous inflammation from the rectum proximally, mucosal only, bloody diarrhoea with urgency and tenesmus predominant, no perianal disease, and risk of toxic megacolon. This boy's mouth ulcers, marked weight loss, and growth failure favour Crohn disease.",
+d:"Paediatric IBD tends to be more extensive and aggressive than adult-onset — most children with UC have pancolitis rather than proctitis, and Crohn is more often ileocolonic with upper GI involvement. Very early-onset IBD (under 6 years) should prompt evaluation for monogenic causes and primary immunodeficiency."},
+{t:"Investigations", q:"What is your work-up, and which non-invasive test is most useful?",
+a:"FAECAL CALPROTECTIN is the key non-invasive screen — markedly raised in mucosal inflammation and normal in functional disorders, effectively triaging who needs endoscopy. Bloods: FBC (anaemia, thrombocytosis), ESR/CRP, albumin (low), iron studies, and coeliac serology. Stool culture and C. difficile to exclude infection. Definitive diagnosis requires ILEOCOLONOSCOPY WITH UPPER GI ENDOSCOPY and multiple biopsies (the paediatric standard — 'Porto criteria'), plus small bowel imaging with MR enterography.",
+d:"Both upper and lower endoscopy are performed in children even when symptoms seem lower-GI, because upper tract involvement is common in paediatric Crohn and changes classification. Normal inflammatory markers do NOT exclude IBD — a meaningful minority of children with Crohn have a normal CRP."},
+{t:"Inducing remission", q:"He is diagnosed with ileocolonic Crohn disease. How do you induce remission, and what is distinctive about the paediatric approach?",
+a:"EXCLUSIVE ENTERAL NUTRITION (EEN) — a complete liquid formula diet, nothing else by mouth, for 6–8 weeks — is FIRST-LINE for inducing remission in paediatric Crohn disease. It is as effective as corticosteroids for remission, achieves superior MUCOSAL HEALING, and, crucially, improves nutrition and growth rather than suppressing them. Corticosteroids are the alternative where EEN is not feasible.",
+d:"This is the great paediatric-specific point: steroids in a growing child with delayed puberty compound the very problem you are treating — bone density, growth, and pubertal progression all suffer. EEN's difficulty is adherence and palatability, which is why intensive dietitian support determines success. Steroids have no role in maintenance."},
+{t:"Maintaining remission and monitoring growth", q:"What is the maintenance strategy and long-term surveillance?",
+a:"Maintenance immunomodulation: thiopurines (azathioprine/mercaptopurine — check TPMT/NUDT15 activity first) or methotrexate; anti-TNF biologics (infliximab, adalimumab) early in high-risk disease (deep ulceration, growth failure, perianal disease, extensive involvement). Aminosalicylates have a role in UC, not really in Crohn. Monitor: growth and puberty at EVERY visit, faecal calprotectin, bone density, iron and vitamin D, immunisation status before immunosuppression, and colonoscopic surveillance for dysplasia in long-standing colitis. Psychological support and transition planning to adult services are integral.",
+d:"'Treat to target' now means aiming for mucosal healing and normal growth, not just absence of symptoms — a child who feels well but has ongoing inflammation continues to lose growth potential, which becomes unrecoverable once the epiphyses fuse. Surgery (resection in Crohn, colectomy in refractory UC) is not a failure but a legitimate part of the treatment ladder."}],
+wrap:"Adolescent + chronic GI symptoms + WEIGHT LOSS + GROWTH FAILURE + delayed puberty + extraintestinal signs = IBD until excluded; growth failure can precede gut symptoms by years. Faecal calprotectin triages; diagnosis needs upper AND lower endoscopy plus small bowel imaging. In paediatric Crohn, EXCLUSIVE ENTERAL NUTRITION is first-line induction — as effective as steroids, better mucosal healing, and it feeds the child. Maintain with thiopurines or biologics; target mucosal healing and normal growth, monitored at every visit."},
+
+"short-stature": {
+stem:"A 9-year-old boy is brought to clinic because he is the shortest in his class. His height is on the 0.4th centile; his weight is on the 25th. Reviewing his old records, he was on the 25th height centile at age 5 — he has crossed two centile lines downward. Mid-parental height predicts the 50th centile. He is otherwise well with no specific complaints.",
+steps:[
+{t:"The critical measurement", q:"What is the single most important piece of information in assessing short stature, and what does it show here?",
+a:"HEIGHT VELOCITY — the rate of growth over time — matters far more than a single height measurement. A child who is short but growing along a centile is usually normal; a child CROSSING CENTILES DOWNWARD is pathological until proven otherwise. This boy has fallen from the 25th to the 0.4th centile over 4 years, so his height velocity is abnormally low. His preserved weight (25th centile) with poor height is also telling.",
+d:"The weight-to-height relationship is a powerful discriminator. ENDOCRINE causes (growth hormone deficiency, hypothyroidism, Cushing) produce a child who is SHORT AND RELATIVELY OVERWEIGHT — growth stops but weight continues. NUTRITIONAL and chronic-disease causes (coeliac, IBD, renal failure) produce a child who is THIN FOR HEIGHT — weight falls first. This pattern points toward an endocrine cause."},
+{t:"Normal variants", q:"What are the two common normal variants, and how would you recognise them?",
+a:"Familial (genetic) short stature: the child is short but growing at a NORMAL velocity along a low centile, bone age equals chronological age, puberty is timely, and the mid-parental height is low — the child matches the family. Constitutional delay of growth and puberty: growth velocity slows around expected puberty, bone age is DELAYED, puberty is late, there is often a family history of 'late developers', and final adult height is normal because growth continues for longer. Neither crosses centiles progressively in mid-childhood as this boy has.",
+d:"Calculating mid-parental height contextualises everything: for a boy, (mother's height + father's height + 13 cm) ÷ 2. Here the predicted 50th centile against an actual 0.4th centile is a major discrepancy — the child is far shorter than his genetic potential, which is itself a red flag."},
+{t:"Investigation", q:"What investigations do you request?",
+a:"BONE AGE X-ray (left hand and wrist) to compare skeletal with chronological age and predict adult height. Screening bloods to exclude systemic disease: FBC, U&E, creatinine, bicarbonate (renal tubular acidosis), LFTs, calcium/phosphate, ESR/CRP, COELIAC serology with total IgA, thyroid function, and IGF-1. Karyotype in any short GIRL to exclude TURNER SYNDROME. If screening is normal and velocity remains poor, growth hormone stimulation testing and pituitary MRI.",
+d:"Two traps: (1) coeliac disease and inflammatory bowel disease can present with short stature and NO gastrointestinal symptoms at all — always screen; (2) Turner syndrome frequently presents as isolated short stature in a girl with no dysmorphism, so karyotype every short girl. In boys, also examine specifically for signs of a pituitary lesion — visual fields, headaches, and other pituitary axes."},
+{t:"Interpreting the results", q:"His bone age is 6 years (chronological 9), IGF-1 is low, screening bloods and coeliac serology are normal. What is the likely diagnosis?",
+a:"Growth hormone deficiency — supported by decelerating height velocity, delayed bone age, and low IGF-1 with no systemic cause. Confirm with GH stimulation testing (two provocative tests are conventionally required) and image the hypothalamic-pituitary region with MRI to exclude a craniopharyngioma or other structural lesion, and to check the other pituitary axes (thyroid, cortisol, gonadotrophins).",
+d:"The MRI is essential, not optional: craniopharyngioma classically presents with growth failure long before headache or visual symptoms, and missing it has severe consequences. The reassuring feature of the delayed bone age is that remaining growth potential is preserved — treatment can still achieve a good adult height."},
+{t:"Treatment", q:"How is growth hormone deficiency treated and monitored?",
+a:"Daily subcutaneous recombinant human growth hormone, continued until final height is achieved (growth velocity <2 cm/year and/or epiphyseal fusion), with the earliest start giving the best final height. Monitor: height velocity every 3–6 months (the measure of efficacy), IGF-1 levels, thyroid function (GH treatment can unmask hypothyroidism), glucose tolerance, and for side effects — benign intracranial hypertension, slipped capital femoral epiphysis (any limp or hip/knee pain needs urgent assessment), and scoliosis progression.",
+d:"GH is also licensed for several non-deficient indications, including Turner syndrome, Prader-Willi syndrome, chronic kidney disease, SGA children with failure to catch up, and SHOX deficiency — an important point, since GH is not only for GH deficiency. Adherence to daily injections over years is the practical challenge and needs sustained nursing and psychological support."}],
+wrap:"In short stature, HEIGHT VELOCITY and centile-crossing matter more than a single height. Short and relatively heavy = endocrine (GH deficiency, hypothyroidism, Cushing); short and thin = nutritional or chronic disease (coeliac, IBD, renal). Compare against mid-parental height, get a BONE AGE, screen for coeliac disease and thyroid disease — and karyotype every short girl for Turner syndrome. Low IGF-1 with delayed bone age → GH testing plus pituitary MRI to exclude craniopharyngioma. Treat early; watch for SCFE and raised ICP on GH."},
+
+"hyperthyroidism-child": {
+stem:"A 12-year-old girl presents with 4 months of weight loss despite an increased appetite, poor concentration and declining school performance, irritability, and heat intolerance. Her mother says she 'never sits still'. On examination she has a smooth, diffusely enlarged goitre with a bruit, a fine tremor, a resting pulse of 124 with a wide pulse pressure, and lid lag with mild proptosis.",
+steps:[
+{t:"Diagnosis", q:"What is the diagnosis, and which findings are specific to it rather than to thyrotoxicosis generally?",
+a:"Graves disease — autoimmune hyperthyroidism from stimulating TSH-receptor antibodies, the cause of over 95% of childhood hyperthyroidism. Features specific to GRAVES rather than thyrotoxicosis in general are the EYE SIGNS from orbital autoimmune involvement (proptosis, periorbital oedema; lid lag alone is a sympathetic sign seen in any thyrotoxicosis), the diffuse goitre with a BRUIT (from increased vascularity), and rarely pretibial myxoedema.",
+d:"Behavioural and academic change is the presentation that most often delays diagnosis in children — irritability, hyperactivity, poor concentration, and falling grades are frequently attributed to ADHD, anxiety, or adolescence for months before the thyroid is examined. It is commoner in girls and often clusters with other autoimmune disease (type 1 diabetes, coeliac) personally or in the family."},
+{t:"Confirming", q:"What investigations confirm the diagnosis and its cause?",
+a:"Thyroid function: suppressed (usually undetectable) TSH with raised free T4 and free T3 — check T3 too, since isolated T3 toxicosis occurs. Then establish the CAUSE: TSH-receptor antibodies (TRAb) are positive in Graves and are the confirmatory test; anti-TPO antibodies are often positive too. Thyroid ultrasound shows a diffusely enlarged, hypervascular gland. Radionuclide uptake scan (diffuse increased uptake in Graves; a hot nodule in a toxic adenoma; LOW uptake in thyroiditis) is reserved for uncertain cases.",
+d:"The key differential is the thyrotoxic phase of HASHIMOTO THYROIDITIS ('hashitoxicosis'), which is transient, TRAb-negative, shows low radionuclide uptake, and must not be treated with long-term antithyroid drugs. A toxic nodule is rare in children and any thyroid NODULE in a child carries a higher malignancy risk than in adults and requires ultrasound and specialist assessment."},
+{t:"Initial treatment", q:"How do you treat her, and what must you warn the family about?",
+a:"Antithyroid drug therapy with CARBIMAZOLE (or methimazole) as first-line, typically for a prolonged course of 2 years or more, using either dose titration or 'block and replace'. Add a beta-blocker (propranolol or atenolol) initially for symptomatic relief of tremor, tachycardia, and anxiety while the antithyroid drug takes 4–8 weeks to work. The essential warning: AGRANULOCYTOSIS — any fever, sore throat, or mouth ulcers means STOP the drug immediately and have an urgent full blood count.",
+d:"PROPYLTHIOURACIL should be AVOIDED in children because of the risk of fatal hepatotoxicity, except in specific circumstances such as thyroid storm or first-trimester pregnancy. Give the agranulocytosis warning in writing at every prescription — it is rare but rapidly lethal if the family attributes the sore throat to a virus and continues the drug."},
+{t:"Definitive treatment", q:"After two years of carbimazole she relapses when treatment is withdrawn. What are the options?",
+a:"Definitive therapy: RADIOIODINE (I-131) or total/near-total THYROIDECTOMY. Radioiodine is effective, avoids surgery, and is increasingly used in older children and adolescents; it deliberately produces permanent hypothyroidism requiring lifelong levothyroxine, and it can worsen active thyroid eye disease. Surgery is preferred for very large goitres, severe eye disease, suspicion of malignancy, or where radioiodine is declined — done by a high-volume surgeon, with risks of recurrent laryngeal nerve injury and hypoparathyroidism.",
+d:"Remission rates with antithyroid drugs alone are lower in children than adults — a substantial proportion ultimately need definitive treatment, so the family should hear at the outset that drugs may be a stage rather than a cure. Whichever route, lifelong follow-up of thyroid status is required."},
+{t:"The emergency", q:"A different scenario: a child with untreated Graves develops fever 40°C, heart rate 190, agitation progressing to confusion, and vomiting after an intercurrent infection. What is happening?",
+a:"THYROID STORM — a life-threatening decompensation, usually precipitated by infection, surgery, trauma, or abrupt cessation of antithyroid medication. Emergency treatment, in this order: beta-blocker (propranolol) for adrenergic control; an antithyroid drug (propylthiouracil is preferred HERE because it also blocks peripheral T4-to-T3 conversion); then — at least an hour AFTER the antithyroid drug — iodine (Lugol solution) to block hormone release; plus corticosteroids, aggressive cooling, fluids, and treatment of the precipitant, in intensive care.",
+d:"The sequencing is the exam point and a genuine pharmacological trap: giving iodine BEFORE the antithyroid drug provides substrate for further hormone synthesis and worsens the storm. Mortality remains significant, which is why adherence counselling — never stop carbimazole abruptly — is part of routine care."}],
+wrap:"Childhood hyperthyroidism is Graves disease in >95%: weight loss with increased appetite, behavioural/school decline, heat intolerance, diffuse goitre with bruit, and eye signs. Suppressed TSH with raised free T4/T3, confirmed by TRAb. Carbimazole (NOT propylthiouracil — hepatotoxicity) plus a beta-blocker; warn in writing about AGRANULOCYTOSIS with sore throat or fever. Relapse after prolonged treatment is common — radioiodine or thyroidectomy is often needed. In thyroid storm: beta-blocker, then antithyroid drug, then iodine at least an hour later."},
+
+"aki-child": {
+stem:"A 5-year-old boy is admitted with a 3-day history of vomiting and diarrhoea and has now passed no urine for 14 hours. He is lethargic with sunken eyes, capillary refill 4 seconds, and cool peripheries. Creatinine is 180 micromol/L (baseline 30), potassium 6.9 mmol/L, bicarbonate 12, and urea 22. The ECG shows tall peaked T waves.",
+steps:[
+{t:"Classifying the injury", q:"How do you classify acute kidney injury, and what type is this?",
+a:"By site: PRE-RENAL (hypoperfusion — dehydration, sepsis, haemorrhage, cardiac failure), INTRINSIC RENAL (acute tubular necrosis, glomerulonephritis, HUS, interstitial nephritis, nephrotoxins), and POST-RENAL (obstruction — posterior urethral valves, stones, tumour). This is pre-renal AKI from hypovolaemia due to gastroenteritis, though prolonged hypoperfusion progresses to intrinsic acute tubular necrosis. Severity is staged by creatinine rise and urine output (KDIGO/pRIFLE).",
+d:"Pre-renal injury is FUNCTIONAL and reversible with restored perfusion; that is why the first act in most paediatric AKI is fluid, not fluid restriction. In pre-renal states the kidney conserves avidly — concentrated urine, low urinary sodium, high urine osmolality — whereas established tubular necrosis loses that ability."},
+{t:"The immediate threat", q:"Which single result requires action within minutes, and what do you do?",
+a:"HYPERKALAEMIA of 6.9 mmol/L WITH ECG CHANGES — this is a pre-arrest state. Immediately: (1) IV calcium gluconate 0.5 mL/kg of 10% to stabilise the myocardium — it does not lower potassium but protects the heart; (2) shift potassium into cells with nebulised salbutamol and IV insulin with dextrose; (3) then remove potassium — with dialysis if refractory. Stop all potassium-containing fluids and nephrotoxic drugs, and monitor continuously on a cardiac monitor.",
+d:"The sequence — protect, shift, remove — is the framework to hold. ECG progression runs peaked T waves → flattened P waves and prolonged PR → widened QRS → sine wave → arrest, so peaked T waves are an early warning, not a reassurance. Calcium works within minutes but lasts only 30–60 minutes; the shifting agents buy hours, not a cure."},
+{t:"Restoring perfusion", q:"How do you manage his fluids?",
+a:"He is shocked and pre-renal: give a 10–20 mL/kg bolus of isotonic crystalloid (0.9% saline or balanced solution) and REASSESS — repeat if perfusion remains poor. Once euvolaemic, if he remains oliguric, switch to careful restriction: replace insensible losses (roughly 300–400 mL/m²/day) plus measured ongoing losses, with strict input/output charting and DAILY WEIGHTS. Correct acidosis and treat the underlying cause.",
+d:"The commonest error in paediatric AKI is to keep giving maintenance-rate fluids to an oliguric child, producing dangerous fluid overload — or, conversely, to restrict fluid in a child who is still hypovolaemic and thereby worsen the injury. The transition point is clinical assessment of volume status, reassessed repeatedly. Daily weight is the most reliable fluid-balance measure in children."},
+{t:"Finding the cause", q:"What investigations establish the cause, and which diagnosis must you actively exclude here?",
+a:"Urinalysis (blood and protein suggest glomerular disease; casts; leucocytes/nitrites for infection), urine sodium and osmolality, FBC with BLOOD FILM, LDH, and renal ultrasound (kidney size, obstruction, corticomedullary differentiation). Given diarrhoea preceding the renal failure, you must exclude HAEMOLYTIC URAEMIC SYNDROME — look for anaemia, thrombocytopenia, and SCHISTOCYTES on the film, and send stool for Shiga toxin-producing E. coli. Also review every drug for nephrotoxicity (NSAIDs, aminoglycosides, ACE inhibitors, contrast).",
+d:"Bloody diarrhoea followed by AKI in a young child is HUS until disproven — and it changes management fundamentally, since antibiotics are avoided in suspected STEC infection. Renal ultrasound is essential and quick: it excludes obstruction, which is surgically correctable, and small echogenic kidneys would suggest pre-existing chronic disease rather than an acute event."},
+{t:"Deciding on dialysis", q:"What would make you call for renal replacement therapy, and what is the outlook?",
+a:"Indications (the AEIOU framework): Acidosis refractory to medical treatment; Electrolyte disturbance — especially hyperkalaemia unresponsive to therapy; Intoxication with a dialysable poison; Overload — pulmonary oedema or hypertension unresponsive to diuretics; Uraemia — encephalopathy, pericarditis, or severe symptomatic uraemia. Modalities in children: peritoneal dialysis (common in infants), haemodialysis, or continuous renal replacement therapy for the haemodynamically unstable.",
+d:"Most children with pre-renal AKI recover completely, but AKI is no longer regarded as a wholly benign, reversible event — survivors carry an increased long-term risk of hypertension, proteinuria, and chronic kidney disease, so they need blood pressure and urinalysis follow-up rather than simple discharge. Preventing AKI (avoiding nephrotoxins, treating dehydration early) remains far more effective than treating it."}],
+wrap:"Classify AKI as pre-renal, intrinsic, or post-renal — dehydration is the commonest paediatric cause and is reversible with perfusion. Hyperkalaemia with ECG change is the immediate threat: calcium to protect, salbutamol/insulin-dextrose to shift, dialysis to remove. Resuscitate to euvolaemia, THEN restrict; daily weights. Always exclude HUS after bloody diarrhoea, review nephrotoxic drugs, and ultrasound to exclude obstruction. Dialysis by AEIOU. Survivors need long-term BP and urine follow-up."},
+
+"htn-child": {
+stem:"An 8-year-old girl attends for a routine review before starting a sports programme. Her blood pressure is 132/88 mmHg, well above the 95th centile for her age, sex and height, and is confirmed on two further occasions with an appropriately sized cuff. She is asymptomatic. She is on the 50th centile for height and weight. Femoral pulses are palpable and equal.",
+steps:[
+{t:"Measuring and defining", q:"How is hypertension defined in children, and what technical errors produce false readings?",
+a:"Unlike adults, paediatric blood pressure is defined by CENTILES for age, sex and height, not absolute numbers: hypertension is systolic or diastolic BP ≥95th centile on three separate occasions (with 'elevated BP' between the 90th and 95th). Technical errors dominate practice: a cuff that is too SMALL falsely raises the reading (the bladder should cover about 40% of arm circumference and 80–100% of its length), as do a crying or anxious child, a recently active child, and automated oscillometric devices — which should always be confirmed manually.",
+d:"Before diagnosing, exclude white-coat hypertension with ambulatory blood pressure monitoring, which is the gold standard in children and also detects masked hypertension. The commonest cause of 'hypertension' in a paediatric clinic is a measurement artefact — verify the technique before starting a work-up."},
+{t:"Primary or secondary?", q:"Why does the age matter so much here, and what does it imply for this child?",
+a:"Because the younger the child and the more severe the hypertension, the more likely it is SECONDARY. Primary (essential) hypertension is typically seen in adolescents who are overweight, with a family history and mild elevation. This 8-year-old is prepubertal, of normal weight, and significantly hypertensive — she requires a thorough search for an underlying cause. In young children, RENAL disease accounts for the large majority of secondary hypertension.",
+d:"Causes by system: renal parenchymal disease (reflux nephropathy, glomerulonephritis, polycystic kidneys) — the commonest; renovascular (renal artery stenosis, including fibromuscular dysplasia); cardiac (COARCTATION of the aorta); endocrine (phaeochromocytoma, congenital adrenal hyperplasia, Cushing, hyperthyroidism, hyperaldosteronism); and drugs (steroids, decongestants, oral contraceptives, stimulants, and illicit substances in adolescents)."},
+{t:"The examination and first-line tests", q:"What must your examination cover, and what investigations do you order?",
+a:"Examination: four-limb blood pressure and femoral pulses (coarctation — normal here, but always checked), abdominal BRUIT (renal artery stenosis), abdominal masses (Wilms tumour, polycystic kidneys), café-au-lait spots (neurofibromatosis with renal artery stenosis), Cushingoid features, thyroid, growth parameters, and FUNDOSCOPY for hypertensive retinopathy. Investigations: urinalysis and urine protein:creatinine ratio, U&E and creatinine, FBC, renal ULTRASOUND with Doppler, lipids and glucose, plus ECHOCARDIOGRAPHY to assess left ventricular hypertrophy — the key marker of end-organ damage.",
+d:"Left ventricular hypertrophy on echo transforms the management conversation: it is objective evidence that the hypertension is real, sustained, and already causing harm, and it is an indication to treat pharmacologically. Second-line tests, guided by findings, include plasma renin and aldosterone, urinary catecholamines/metanephrines, cortisol studies, and MR/CT angiography."},
+{t:"Treatment", q:"How do you manage her?",
+a:"Treat the CAUSE where one is found (for example angioplasty or surgery for renal artery stenosis, repair of coarctation, removal of a phaeochromocytoma). Alongside: lifestyle measures for all — weight optimisation, salt reduction, regular aerobic exercise, and limiting screen time. Pharmacological treatment is indicated for symptomatic hypertension, stage 2 hypertension, evidence of end-organ damage (LVH), diabetes, chronic kidney disease, or failure of lifestyle measures. First-line agents: ACE inhibitors or ARBs (particularly with proteinuria or diabetes), calcium channel blockers, or thiazide diuretics.",
+d:"ACE inhibitors and ARBs are CONTRAINDICATED in pregnancy — a mandatory conversation with adolescent girls, including contraception counselling — and must be used cautiously with monitoring of creatinine and potassium, and avoided in bilateral renal artery stenosis. Beta-blockers are no longer favoured as first-line and are relatively contraindicated in asthma."},
+{t:"The emergency", q:"A different child arrives with BP 180/120, headache, vomiting, visual disturbance, and a seizure. How does management differ?",
+a:"This is a HYPERTENSIVE EMERGENCY with encephalopathy — end-organ dysfunction requiring intensive care. The principle is CONTROLLED, GRADUAL reduction: lower blood pressure by no more than about 25% in the first 8 hours, then normalise over 24–48 hours, using titratable intravenous agents (labetalol or nicardipine infusion, or sodium nitroprusside) — never sublingual nifedipine or rapid boluses.",
+d:"Rapid correction is dangerous because chronic hypertension shifts cerebral autoregulation upward; dropping the pressure abruptly causes cerebral (and retinal and renal) hypoperfusion, ischaemia, and blindness. In children the underlying cause is nearly always identifiable and often correctable — investigate fully once stabilised. Note also that hypertensive encephalopathy can present exactly like this in APSGN or HUS."}],
+wrap:"Paediatric hypertension is defined by CENTILES for age, sex, and height, confirmed on three occasions with the right cuff — most 'hypertension' is a measurement artefact; ABPM excludes white-coat. The younger and more severe, the more likely it is SECONDARY, and renal disease dominates. Always check four-limb BP, femoral pulses, abdominal bruit, and fundoscopy; echo for LVH is the end-organ marker that justifies drug treatment. ACE inhibitors/ARBs first-line but contraindicated in pregnancy. In hypertensive emergency, lower BP SLOWLY — no more than 25% in 8 hours."},
+
+"enuresis": {
+stem:"A 7-year-old boy is brought to clinic because he still wets the bed most nights. He has never been consistently dry at night. He is dry during the day, has no daytime urgency or frequency, and is otherwise well. His father wet the bed until age 10. The family has tried lifting him at night and restricting all evening drinks without success, and his mother admits they have started making him wash his own sheets.",
+steps:[
+{t:"Classifying the problem", q:"How would you classify his enuresis, and why does the classification matter?",
+a:"PRIMARY (he has never achieved 6 months of consecutive dryness) MONOSYMPTOMATIC (nocturnal wetting only, with NO daytime urinary symptoms) nocturnal enuresis. This classification matters because monosymptomatic primary enuresis in a well child requires minimal investigation and responds well to standard treatment, whereas daytime symptoms (urgency, frequency, holding manoeuvres, daytime wetting) indicate bladder dysfunction and a different pathway.",
+d:"Secondary enuresis — relapse after ≥6 months of dryness — carries a different differential and demands more attention: urinary tract infection, diabetes mellitus or insipidus, constipation, and psychosocial stressors including abuse, bereavement, or family upheaval. Bedwetting at 7 is common, affecting a substantial minority of children, and has a strong genetic component, as his father's history illustrates."},
+{t:"Mechanism", q:"What are the three underlying mechanisms, and what must you always ask about?",
+a:"Three factors, often combined: (1) nocturnal POLYURIA from a reduced overnight surge of antidiuretic hormone; (2) reduced functional BLADDER CAPACITY or overactivity; (3) failure of AROUSAL from sleep in response to a full bladder. The essential question in every case is about BOWELS — constipation is extremely common and a loaded rectum compresses the bladder, reducing capacity and provoking overactivity.",
+d:"Treating unrecognised constipation resolves a meaningful proportion of enuresis on its own, and no enuresis treatment works reliably while the child is impacted — yet parents rarely volunteer bowel history because they see the problem as urinary. Also screen for symptoms of obstructive sleep apnoea (snoring, apnoeic pauses), which is an under-recognised and treatable contributor."},
+{t:"Initial assessment and advice", q:"What do you assess, and what do you tell the family about their current strategies?",
+a:"Assess: a bladder and bowel diary, fluid intake pattern, urinalysis (to exclude infection and glycosuria), examination including abdomen, spine and lower-limb neurology, and growth/blood pressure. Then correct the family's approach: the punitive element must stop immediately — the child is NOT wetting deliberately and cannot control it, and making him wash sheets adds shame without changing physiology. Lifting is not effective as a treatment. Fluids should be distributed EVENLY across the day (about 6–7 drinks) rather than restricted, with the last drink about an hour before bed, avoiding caffeine.",
+d:"Removing blame is a therapeutic intervention in its own right. Enuresis is associated with measurable loss of self-esteem, and the distress usually comes as much from the family's response as from the wetting. Establish a reward system for the child's BEHAVIOUR — drinking well, toileting before bed, helping change the sheets without reproach — never for dry nights, which he cannot control."},
+{t:"First-line treatment", q:"What is the first-line active treatment and how does it work?",
+a:"An ENURESIS ALARM (body-worn or bed-mat), used consistently for at least several weeks with a plan to review at 4 weeks and continue to a minimum of 2 weeks of consecutive dry nights, is first-line for a motivated child and family. It works by conditioning: the alarm sounds on the first drops of urine, and over time the child learns to wake to, or inhibit, bladder contraction. It has the best LONG-TERM cure rate with the lowest relapse.",
+d:"Alarms fail primarily because of poor family commitment: they wake the whole household and take weeks, so they need honest expectation-setting and support. Alarms are unsuitable where the family cannot cope with the disruption, where there is significant parental hostility toward the child, or when a rapid short-term result is needed."},
+{t:"Alternatives and specialist referral", q:"The family cannot manage an alarm and he has school camp in a month. What are the options, and when would you refer?",
+a:"DESMOPRESSIN (a vasopressin analogue) provides rapid, effective, short-term control — ideal for camps, sleepovers, and holidays, and usable longer term with periodic withdrawal to check for spontaneous resolution. Crucially, FLUIDS MUST BE RESTRICTED from an hour before until 8 hours after the dose, because of the risk of water intoxication and HYPONATRAEMIC SEIZURES. Relapse on stopping is common. Refer to specialist services for: daytime symptoms suggesting bladder dysfunction, secondary enuresis with a suspected organic cause, failure of both alarm and desmopressin, abnormal neurological or spinal findings, or significant psychological distress.",
+d:"Anticholinergics such as oxybutynin (added for overactive bladder) and, rarely and with caution, imipramine (cardiotoxic in overdose — a genuine hazard in a household with children) belong to specialist practice. The reassuring message for the family is that spontaneous resolution occurs in roughly 15% of affected children per year, so the trajectory is strongly toward dryness with or without treatment — but treatment shortens the years of distress."}],
+wrap:"Classify: primary vs secondary, monosymptomatic vs with daytime symptoms — daytime symptoms or secondary onset change the work-up (UTI, diabetes, constipation, psychosocial stress). Always ask about BOWELS and snoring. Stop punishment and lifting; spread fluids through the day. Enuresis ALARM is first-line with the best long-term cure; DESMOPRESSIN gives rapid short-term cover for camps — with strict fluid restriction to avoid hyponatraemic seizures. Refer for daytime symptoms, neurological signs, or treatment failure."},
+
+"otitis-media": {
+stem:"A 2-year-old girl has had a runny nose for three days and now has a fever of 38.8°C, has been pulling at her right ear, and cried through the night. On otoscopy the right tympanic membrane is bulging, red, and opaque with loss of the light reflex. She is otherwise well, drinking, and playful between bouts of pain.",
+steps:[
+{t:"Diagnosis", q:"What confirms acute otitis media, and what does redness alone prove?",
+a:"Acute otitis media requires evidence of middle-ear EFFUSION with acute inflammation: a BULGING tympanic membrane is the single most useful sign, with opacity, loss of the light reflex, and impaired mobility on pneumatic otoscopy. Redness ALONE proves nothing — the drum reddens from crying, fever, or an upper respiratory infection, and over-reliance on colour is the commonest cause of over-diagnosis and unnecessary antibiotics.",
+d:"Young children are anatomically predisposed: the Eustachian tube is shorter, wider, and more horizontal, so nasopharyngeal organisms reach the middle ear easily. Usual pathogens are Streptococcus pneumoniae, non-typeable Haemophilus influenzae, and Moraxella catarrhalis, often following a viral URTI. Risk factors: nursery attendance, passive smoking, bottle-feeding lying flat, and dummy use."},
+{t:"To treat or not", q:"Does she need antibiotics?",
+a:"Most acute otitis media resolves spontaneously, so analgesia is the priority and a DELAYED or 'watchful waiting' antibiotic strategy is appropriate for many children over 2 who are systemically well. However, IMMEDIATE antibiotics are indicated for: children under 6 months; under 2 years with BILATERAL disease; any child with OTORRHOEA (perforation); and any child who is systemically unwell, immunocompromised, or has craniofacial abnormalities or a cochlear implant. At 2 years with unilateral disease and no systemic upset, a delayed prescription with clear safety-netting is reasonable.",
+d:"Pain relief is the treatment parents actually came for: regular paracetamol and ibuprofen, dosed adequately and by weight. Decongestants and antihistamines are ineffective. When antibiotics are indicated, amoxicillin is first-line (co-amoxiclav for treatment failure or recent antibiotics), typically 5–7 days."},
+{t:"Complications", q:"What complications must you warn about and look for?",
+a:"Tympanic membrane perforation with otorrhoea (usually heals, and pain typically improves as the drum bursts). More serious: MASTOIDITIS — post-auricular swelling, redness, tenderness, and a protruding pinna pushed down and forward — requiring admission, IV antibiotics, imaging, and possible surgical drainage. Rarer: facial nerve palsy, labyrinthitis, intracranial extension (meningitis, sinus thrombosis, brain abscess).",
+d:"The examination point people forget is to look BEHIND the ear and from above and behind the child to compare pinna position — mastoiditis is missed when the examiner looks only in the canal. A child who is unwell, with persistent fever despite antibiotics, or with any post-auricular sign needs urgent ENT assessment."},
+{t:"The other otitis media", q:"Six months later she is brought back: her hearing seems poor, her speech is behind, and the drum looks dull and retracted with a fluid level, but she has no pain or fever. What is this?",
+a:"Otitis media with EFFUSION ('glue ear') — persistent middle-ear fluid WITHOUT acute infection. It causes conductive hearing loss, and hence speech and language delay, inattention, and behavioural or school difficulties. Confirm with tympanometry (a flat, type B trace) and formal age-appropriate audiometry.",
+d:"Glue ear is extremely common after acute otitis media and usually resolves spontaneously — hence the standard of ACTIVE OBSERVATION for about 3 months with repeat hearing assessment before intervening. Antibiotics, steroids, decongestants, and antihistamines do not help. Autoinflation (balloon blowing) has modest evidence."},
+{t:"Managing glue ear", q:"Her effusion and hearing loss persist beyond 3 months. What are the options, and who needs earlier referral?",
+a:"Persistent bilateral effusion with significant hearing loss and consequent developmental impact warrants ENT referral for GROMMETS (ventilation tubes), sometimes with adenoidectomy, or hearing aids as an alternative where surgery is unsuitable. Refer EARLIER and with a lower threshold in children with Down syndrome and cleft palate — both have a high prevalence of persistent effusion, greater consequences, and a different surgical calculus.",
+d:"Grommets give an immediate hearing gain that lasts while the tube remains in place (typically 6–12 months) but the long-term difference narrows as most effusions eventually resolve on their own; the decision therefore hinges on the developmental cost of waiting. Also remember that any child with suspected hearing loss needs proper audiology, not a parental report or a whispered-voice test — and unilateral persistent effusion in an older child or adult should raise the question of a nasopharyngeal mass."}],
+wrap:"Acute otitis media needs a BULGING drum, not just a red one. Analgesia first; delayed antibiotics for most, but immediate for under-6-months, under-2 with bilateral disease, otorrhoea, or systemic illness. Look behind the ear for MASTOIDITIS. Glue ear is painless effusion causing conductive hearing loss and speech delay — observe 3 months with tympanometry and audiometry, then consider grommets. Refer Down syndrome and cleft palate children early."},
+
+"tonsillitis-sore-throat": {
+stem:"A 6-year-old boy presents with 2 days of sore throat, fever of 39°C, and difficulty swallowing. He has no cough or runny nose. On examination his tonsils are enlarged and covered with white exudate, and there are tender, enlarged anterior cervical lymph nodes. A rapid antigen test for group A streptococcus is positive.",
+steps:[
+{t:"Bacterial or viral?", q:"What clinical scoring helps, and what does this boy score?",
+a:"The Centor criteria (or paediatric-modified McIsaac score) award a point each for: tonsillar exudate, tender anterior cervical lymphadenopathy, fever >38°C, and ABSENCE of cough — with an extra point for age 3–14. He has all four features plus his age, giving a high score and a high probability of group A streptococcal infection, confirmed here by the rapid antigen test.",
+d:"The absence of cough and coryza is what shifts probability toward strep — viral pharyngitis usually travels with other upper respiratory symptoms, hoarseness, and conjunctivitis. Even so, scores only stratify probability; a meaningful proportion of children are streptococcal CARRIERS with an intercurrent viral illness, which is why testing and treating every sore throat causes over-prescription."},
+{t:"Why treat", q:"Most sore throats are self-limiting. Why does confirmed group A strep warrant antibiotics?",
+a:"To prevent suppurative complications (peritonsillar abscess, otitis media, sinusitis, cervical adenitis), to reduce transmission and shorten symptoms modestly (by about a day), and — most importantly in global paediatrics — to prevent NON-suppurative sequelae: ACUTE RHEUMATIC FEVER and post-streptococcal glomerulonephritis. Treatment with penicillin V for 10 days (or amoxicillin) is the standard; a macrolide for genuine penicillin allergy.",
+d:"The rheumatic fever rationale carries far more weight in Thailand and other settings with meaningful ARF incidence than in low-incidence countries, where the argument for antibiotics is chiefly symptomatic. The full 10-DAY course matters for eradication — shortening it is a common cause of failure. Note the classic trap: AVOID AMOXICILLIN if infectious mononucleosis is possible, as it produces a florid maculopapular rash."},
+{t:"The mimic", q:"An adolescent with the same picture has marked fatigue, splenomegaly, and posterior cervical nodes. What are you thinking?",
+a:"INFECTIOUS MONONUCLEOSIS (Epstein-Barr virus): membranous tonsillar exudate, POSTERIOR (as well as anterior) cervical lymphadenopathy, marked fatigue, hepatosplenomegaly, and often palatal petechiae. Confirm with FBC (atypical lymphocytes), monospot/heterophile antibody (less reliable in young children) or EBV serology, and LFTs. Management is supportive — and crucially, advise AVOIDING CONTACT SPORTS for at least 4 weeks because of the risk of splenic rupture.",
+d:"Steroids are reserved for airway compromise from massive tonsillar hypertrophy, not for routine symptom control. The fatigue can persist for weeks to months — realistic counselling about a gradual return to school and sport prevents both over-investigation and under-recognition of the impact."},
+{t:"The emergency", q:"Three days later a different child returns with worsening unilateral throat pain, drooling, a muffled 'hot potato' voice, and trismus. What has happened?",
+a:"PERITONSILLAR ABSCESS (quinsy): unilateral swelling with the tonsil pushed medially, uvular deviation to the opposite side, trismus, drooling, and a muffled voice. It requires urgent ENT assessment for needle aspiration or incision and drainage, IV antibiotics, fluids, and analgesia. Consider retropharyngeal abscess in younger children — neck stiffness, refusal to move the neck, and a toxic appearance.",
+d:"Unilateral symptoms, trismus, and voice change are the triad that separates quinsy from tonsillitis; a child who cannot open their mouth or is drooling has an airway problem until proven otherwise. In an unimmunised child, EPIGLOTTITIS enters the differential and mandates the do-not-examine-the-throat approach."},
+{t:"Tonsillectomy", q:"His parents ask about having his tonsils removed. What are the criteria?",
+a:"Recurrent tonsillitis criteria (SIGN/Paradise-type): sore throats due to tonsillitis that are DISABLING and prevent normal functioning, with a documented frequency of about 7 or more episodes in the preceding year, 5 per year for 2 years, or 3 per year for 3 years — documented, not merely recalled. The other, increasingly common, indication is OBSTRUCTIVE SLEEP APNOEA from adenotonsillar hypertrophy — snoring with witnessed apnoeas, restless sleep, and daytime behavioural or growth consequences. Also: a single quinsy in some circumstances, or suspicion of malignancy (asymmetric enlargement).",
+d:"Ask families to keep a documented episode diary — most children referred for 'constant tonsillitis' do not meet criteria and improve with time. For OSA the calculus differs entirely: adenotonsillectomy is curative in most children and addresses growth, behaviour, and cardiovascular consequences, so the threshold is much lower. Post-tonsillectomy haemorrhage (primary within 24 hours, secondary at 5–10 days with infection) is the complication to counsel about."}],
+wrap:"Centor/McIsaac (exudate, tender anterior nodes, fever, NO cough, age 3–14) stratifies strep probability. Treat confirmed group A strep with 10 days of penicillin — chiefly to prevent rheumatic fever where incidence is meaningful. Avoid amoxicillin if EBV possible (rash); in EBV avoid contact sports 4 weeks (splenic rupture). Unilateral pain + trismus + muffled voice = quinsy, an ENT emergency. Tonsillectomy for DOCUMENTED recurrent disease — or, with a much lower threshold, for obstructive sleep apnoea."},
+
+"red-reflex-leukocoria": {
+stem:"A 15-month-old girl is brought by her mother, who noticed that in several recent flash photographs the child's right eye appears white while the left glows red. The child is otherwise well with normal development. Her mother mentions a squint has also appeared in the same eye over the last month.",
+steps:[
+{t:"The finding", q:"What is being described, and why is it urgent?",
+a:"LEUKOCORIA — a white pupillary reflex replacing the normal red reflex. In a young child this is RETINOBLASTOMA until proven otherwise: the commonest intraocular malignancy of childhood, which is life-threatening as well as sight-threatening. This requires same-week (not routine) referral to a specialist paediatric ophthalmology service. The new squint in the same eye is the second commonest presenting sign and reinforces the concern.",
+d:"Leukocoria and strabismus together are the classic presenting pair. The other causes of leukocoria — congenital cataract, Coats disease, persistent fetal vasculature, toxocariasis, retinopathy of prematurity — are all themselves sight-threatening and need urgent assessment, so the referral pathway is the same regardless of which proves correct. Family photographs are a legitimate and increasingly common route to diagnosis."},
+{t:"The screening test", q:"How is the red reflex examined properly, and when should it be done?",
+a:"With a direct ophthalmoscope set to zero, in a DARKENED room, held about 30–50 cm away, viewing BOTH eyes simultaneously and comparing them: the reflexes should be equal in colour, intensity, and clarity. Any asymmetry, white reflex, dark spot, or dulled reflex is abnormal and warrants referral. The red reflex must be checked at the NEWBORN examination, at the 6–8 week check, and whenever there is parental concern.",
+d:"Two practical points: in children with more pigmented fundi the reflex may be duller or more orange-grey — it is the SYMMETRY between eyes that matters, not the absolute colour. And a normal reflex at 6 weeks does not exclude later disease, since retinoblastoma commonly presents between 1 and 3 years, so parental concern at any age overrides a previously normal check."},
+{t:"Retinoblastoma", q:"What should you know about the genetics and the two forms?",
+a:"Retinoblastoma results from biallelic loss of the RB1 tumour suppressor gene. HEREDITARY (~40%): a germline mutation, typically presenting EARLIER, often BILATERAL or multifocal, autosomal dominant with high penetrance — these children carry a lifetime risk of second malignancies (osteosarcoma, soft tissue sarcoma, melanoma), especially if irradiated. NON-HEREDITARY (~60%): sporadic somatic mutations, unilateral, later onset. All children need genetic testing and counselling, with surveillance of siblings and future offspring.",
+d:"This is Knudson's 'two-hit' hypothesis in its original clinical form. The genetic result changes far more than the child's own treatment — it determines screening of relatives, examination under anaesthesia schedules for at-risk newborns in the family, and lifelong second-cancer surveillance."},
+{t:"Diagnosis and treatment", q:"How is the diagnosis made and what are the treatment options?",
+a:"Diagnosis is made by EXAMINATION UNDER ANAESTHESIA with indirect ophthalmoscopy and imaging (ultrasound showing calcification; MRI for optic nerve and intracranial extension). BIOPSY IS CONTRAINDICATED — it risks seeding tumour outside the globe. Treatment, by specialist centres, is staged and sight-preserving where possible: systemic or intra-arterial chemotherapy, focal therapy (laser photocoagulation, cryotherapy, plaque brachytherapy), and ENUCLEATION for advanced disease. External beam radiotherapy is now largely avoided in hereditary disease because it increases second malignancy risk.",
+d:"Survival in high-income settings exceeds 95% when caught early — but in settings with delayed presentation, children still present with proptosis and extraocular spread and die of the disease. The entire prognosis therefore turns on the primary care act of checking and acting on a red reflex."},
+{t:"The other reason to check", q:"A different child, 4 years old, has a constant convergent squint in the left eye noticed since age 2 but never assessed. Why does that also need urgent referral?",
+a:"Because of AMBLYOPIA — the developing visual cortex suppresses the image from the deviating or defocused eye, and if this persists beyond the critical period (roughly to age 7–8) the visual loss becomes PERMANENT and untreatable. Treatment is time-critical: correct any refractive error with glasses, treat the cause, and force use of the weaker eye with patching or atropine penalisation of the good eye, before surgery for the squint alignment if needed.",
+d:"Never accept 'they will grow out of it' for a squint beyond about 3 months of age — a constant squint at any age, or any squint after 3 months, needs referral. Also remember that a squint can be the presenting sign of retinoblastoma (as in this case) or of a cranial nerve palsy from raised intracranial pressure, so a new squint deserves a full assessment, not just a vision test."}],
+wrap:"Leukocoria = white reflex = RETINOBLASTOMA until proven otherwise: same-week specialist referral, and never biopsy. Check the red reflex in a dark room comparing BOTH eyes at the newborn and 6–8 week checks and whenever parents are concerned — symmetry matters more than colour. 40% are hereditary (RB1), often bilateral and earlier, with lifetime second-cancer risk needing genetic counselling and family screening. Any constant squint, or any squint after 3 months, needs urgent referral — amblyopia becomes permanent after the critical period."},
+
+"autism-adhd": {
+stem:"A 6-year-old boy is referred by his school. He does not sit still, interrupts constantly, cannot wait his turn, and loses his belongings daily; his reading is behind. Separately, his mother reports he has never had close friends, becomes extremely distressed by changes in routine, lines up his toy cars for hours, and covers his ears in the school hall. He had no single-word speech until 26 months.",
+steps:[
+{t:"Two conditions, not one", q:"What is going on here diagnostically?",
+a:"He has features of BOTH attention deficit hyperactivity disorder (inattention, hyperactivity, impulsivity) and autism spectrum disorder (social communication difficulty, restricted and repetitive behaviours and interests, sensory sensitivity, insistence on sameness, and a history of language delay). Modern diagnostic criteria explicitly permit co-diagnosis, and the two co-occur very commonly — historically a major source of missed diagnoses, as one label often stopped further assessment.",
+d:"For both conditions, the requirements are that symptoms are DEVELOPMENTALLY INAPPROPRIATE, PERSISTENT, present in MORE THAN ONE SETTING (home and school), and causing functional impairment. Information from school is therefore not optional — it is diagnostic evidence. Girls are systematically under-diagnosed in both conditions because they more often present with inattentive ADHD and with camouflaged, internalised autistic traits."},
+{t:"Assessment", q:"How is the assessment actually conducted, and what must be excluded?",
+a:"Multidisciplinary and multi-informant: developmental and birth history, structured questionnaires from parents AND teachers (e.g. Conners, SDQ), direct observation, cognitive and educational assessment, speech and language assessment, and structured autism-specific tools (ADOS-2, ADI-R) by trained clinicians. Exclude or identify contributors: HEARING loss (mandatory audiology in any child with language delay), vision, sleep disorder — including obstructive sleep apnoea, which mimics ADHD precisely — iron deficiency, absence epilepsy (staring spells misread as inattention), thyroid disease, and psychosocial adversity, trauma, or attachment difficulty.",
+d:"Two exclusions are repeatedly missed and both are treatable: obstructive sleep apnoea (ask about snoring and witnessed apnoeas — treating it can resolve the 'ADHD') and absence seizures (hyperventilate the child in clinic; get an EEG if in doubt). Routine genetic testing (chromosomal microarray, fragile X) is indicated in autism especially with intellectual disability or dysmorphism."},
+{t:"Managing ADHD", q:"What is the treatment approach for his ADHD?",
+a:"For a child of 6, start with NON-pharmacological measures: parent training programmes (the first-line intervention in school-age children), classroom accommodations (front seating, chunked instructions, movement breaks, extra time), behavioural strategies, and treatment of coexisting conditions. Medication — methylphenidate first-line, then lisdexamfetamine, with atomoxetine or guanfacine as non-stimulant alternatives — is added when impairment persists despite these, and requires BASELINE and ongoing monitoring of HEIGHT, WEIGHT, blood pressure, and heart rate, plus review of appetite and sleep.",
+d:"Growth suppression and appetite loss are the practical stimulant issues — plot height and weight at every review and consider drug holidays if growth falters. Ask about cardiac symptoms and family history of sudden death before starting stimulants. Medication treats the symptoms while it is active; it does not remove the need for educational and behavioural support."},
+{t:"Managing autism", q:"And for the autism — what actually helps?",
+a:"There is no medication for the core features of autism. Evidence-based support is developmental and educational: speech and language therapy, occupational therapy including sensory strategies, structured teaching and visual supports, social communication interventions, parent-mediated programmes, and an appropriate educational placement with a formal support plan. Medication is used only for specific COEXISTING problems — melatonin for sleep, treatment for ADHD, anxiety, or epilepsy — never for autism itself.",
+d:"Be prepared for families to encounter unevidenced and sometimes harmful 'cures' (restrictive diets, chelation, hyperbaric oxygen). Address these directly and without judgement. Co-occurring conditions are the rule and drive much of the distress: anxiety, ADHD, epilepsy, sleep disorder, gastrointestinal problems, and feeding difficulties all deserve active treatment."},
+{t:"The long view", q:"What do the parents need to hear, and what happens as he grows?",
+a:"That these are neurodevelopmental differences, lifelong but with trajectories that support genuinely changes; that the goal is function, communication, and wellbeing rather than normalisation; and that a formal diagnosis is chiefly a key to services and understanding. Practically: an educational support plan, planned transition to adult services, mental health vigilance (anxiety and depression rates are high in adolescence, and autistic young people have substantially elevated suicide risk), and support for siblings and carers.",
+d:"Two things measurably improve outcomes: early access to support, and the family and school understanding the child's profile so that expectations and environments adapt. The diagnostic assessment is only worth doing if it connects to that support — a label with no service attached helps nobody."}],
+wrap:"ADHD and autism co-occur commonly and can be diagnosed together. Both require developmentally inappropriate, persistent symptoms in MORE THAN ONE setting with functional impairment — school information is diagnostic evidence. Always exclude hearing loss, obstructive sleep apnoea, and absence seizures, which mimic ADHD. ADHD: parent training and school measures first, then stimulants with height/weight/BP/HR monitoring. Autism: no drug treats the core condition — educational, communication, and sensory support, treating coexisting anxiety, sleep, and epilepsy. Girls are under-diagnosed in both."},
+
+"adolescent-depression": {
+stem:"A 15-year-old girl is brought by her mother because she has stopped going out with friends, her grades have collapsed, and she sleeps until midday at weekends. She is monosyllabic in the consultation while her mother speaks. Her mother mentions she has been wearing long sleeves even in hot weather and has lost 5 kg over three months.",
+steps:[
+{t:"Structuring the consultation", q:"What is the single most important thing to do before assessing her mood?",
+a:"See her ALONE, without her mother, having first explained confidentiality and its limits to both: what she says is confidential UNLESS there is risk of serious harm to herself or others, or a safeguarding concern — in which case you will tell her before sharing information. Adolescents rarely disclose self-harm, substance use, sexual activity, or abuse in front of a parent, and the long sleeves in hot weather make this essential here.",
+d:"A useful framework for the solo part is HEEADSSS: Home, Education/employment, Eating, Activities, Drugs, Sexuality, Suicide/self-harm/mood, Safety. Ask the easier domains first to build rapport before the sensitive ones. Framing confidentiality explicitly and early is what makes honest disclosure possible."},
+{t:"Assessing risk", q:"How do you ask about self-harm and suicide, and does asking cause harm?",
+a:"Ask DIRECTLY, calmly, and specifically — asking about suicide does NOT plant the idea; this is a well-established myth, and direct questioning reduces distress. Assess: thoughts of self-harm and of ending life, any plan, means and access to them (medication in the house, weapons), previous attempts and their intent and lethality, protective factors, and what would help her stay safe. Examine the arms with her consent. Assess ongoing intent, not only past acts.",
+d:"Risk assessment is a clinical conversation, not a scoring instrument — risk scales perform poorly for predicting individual outcomes. Previous self-harm is the strongest single predictor of future suicide, so it must never be dismissed as attention-seeking. Involve the family in means restriction (locking away medications) as one of the most evidence-based concrete safety measures."},
+{t:"Differential", q:"Beyond depression, what else must be considered?",
+a:"Physical mimics and contributors: hypothyroidism, anaemia (including iron deficiency), coeliac disease, chronic fatigue after infection (EBV), vitamin D deficiency, and medication effects (isotretinoin, corticosteroids, hormonal contraception). Psychiatric: an EATING DISORDER — highly relevant with 5 kg weight loss, so ask about eating, body image, and compensatory behaviours and measure weight, height, blood pressure and heart rate; also anxiety, bipolar disorder (ask about periods of elevated mood), substance misuse, and psychosis. Psychosocial: bullying (including online), abuse, bereavement, academic pressure, and questions of identity or sexuality.",
+d:"The weight loss must be actively explained rather than attributed to low mood by default. Check basic bloods (FBC, ferritin, thyroid function, coeliac serology, vitamin D) — not because depression is usually organic, but because missing a treatable physical cause in an adolescent is a serious and avoidable error."},
+{t:"Treatment", q:"How is adolescent depression treated?",
+a:"Mild depression: watchful waiting with active support, sleep and exercise measures, and non-directive support or guided self-help for a few weeks. Moderate to severe: PSYCHOLOGICAL THERAPY IS FIRST-LINE — cognitive behavioural therapy or interpersonal therapy — with family involvement. Medication is added, never given alone, when therapy is insufficient or the depression is severe: FLUOXETINE is the first-line antidepressant in this age group (the only one with a favourable evidence base), started at a low dose and reviewed FREQUENTLY, particularly in the first weeks.",
+d:"The early-weeks review matters because of the recognised (if small) increase in suicidal thoughts after starting antidepressants in young people — energy and agitation can improve before mood does. Combination of fluoxetine with CBT outperforms either alone in moderate-severe depression. Refer to CAMHS for moderate-severe illness, significant risk, psychosis, or diagnostic uncertainty."},
+{t:"Safety and continuity", q:"She discloses regular cutting and passive thoughts that she 'would rather not wake up', but no plan. What do you do now?",
+a:"Take it seriously and act, without over-reacting: explain that this crosses the confidentiality threshold and that you need to involve her mother, ideally supporting HER to tell her. Make a safety plan with her — warning signs, coping strategies, people to contact, crisis numbers — arrange means restriction at home, make an urgent CAMHS referral, and arrange a specific, short-interval follow-up with a named clinician rather than an open-ended 'come back if worse'. Document the assessment and the plan clearly.",
+d:"Two errors to avoid: breaching confidentiality abruptly without preparing her, which destroys trust and future disclosure; and under-reacting because there is no immediate plan. The continuity of a named clinician and a booked appointment is itself protective — adolescents disengage easily from services, and the transition from paediatric to adult mental health care is a well-documented point of loss."}],
+wrap:"See the adolescent ALONE with explicit confidentiality and its limits; use HEEADSSS. Ask about suicide DIRECTLY — it does not plant the idea, and past self-harm is the strongest predictor. Exclude physical mimics (thyroid, anaemia, coeliac) and an eating disorder, especially with weight loss. Psychological therapy is first-line for moderate-severe depression; FLUOXETINE is the antidepressant of choice, added to therapy, with frequent early review. On disclosure of risk: support her to tell her parent, make a safety plan, restrict means, refer urgently, and book a named follow-up."},
+
+"fractures-child": {
+stem:"A 6-year-old boy falls from monkey bars onto an outstretched hand. He presents with a swollen, deformed elbow held immobile, and severe pain. He will not move his fingers. On examination the radial pulse is weak, the hand is cool and pale compared with the other side, and he cannot make an 'OK' sign with thumb and index finger.",
+steps:[
+{t:"The injury", q:"What fracture is this, and what makes it dangerous?",
+a:"A SUPRACONDYLAR fracture of the humerus — the commonest elbow fracture in children, typically from a fall on an outstretched hand, with the distal fragment usually displaced posteriorly (extension type). It is dangerous because of what lies in front of the fracture: the brachial artery and the median nerve (particularly its ANTERIOR INTEROSSEOUS branch, which supplies flexor pollicis longus and the index flexor digitorum profundus — hence the inability to make the 'OK' sign), and the radial and ulnar nerves nearby.",
+d:"Neurovascular compromise makes this a time-critical ORTHOPAEDIC EMERGENCY, not a routine fracture. Document distal pulses, capillary refill, colour, temperature, and each nerve individually BEFORE and AFTER any manipulation or splinting — and record the time. The classic Gartland classification (I undisplaced, II displaced with intact posterior cortex, III completely displaced) guides management."},
+{t:"Immediate management", q:"What do you do now?",
+a:"Treat as an emergency: adequate analgesia (intranasal or IV opioid), keep him nil by mouth, splint the elbow in a position of comfort at about 30–40 degrees WITHOUT forcing full flexion (which further compromises the artery), elevate, and call orthopaedics urgently. Obtain AP and lateral X-rays. A pale, pulseless hand requires urgent reduction in theatre — restoring alignment usually restores perfusion. Vascular surgery involvement if perfusion does not return after reduction.",
+d:"The subtle radiological signs matter for the undisplaced injury: a posterior fat pad sign is ALWAYS abnormal and indicates a haemarthrosis from an occult fracture, and the anterior humeral line should pass through the middle third of the capitellum. A child with elbow pain, a fat pad sign, and normal alignment is treated as an occult fracture."},
+{t:"Compartment syndrome", q:"What are you watching for post-operatively, and how does it present in a child?",
+a:"COMPARTMENT SYNDROME of the forearm. In children the classic '5 Ps' are unreliable — pulses are often present until very late. The reliable early signs are the '3 As': increasing ANALGESIA requirement (escalating opioid demand out of proportion), ANXIETY, and AGITATION, together with pain on PASSIVE EXTENSION of the fingers and a tense swollen compartment. Treatment is emergency fasciotomy; the untreated end-point is Volkmann ischaemic contracture, a permanent deformity.",
+d:"The teaching point is that a child who needs escalating morphine after a supracondylar fracture has compartment syndrome until proven otherwise — the temptation is to interpret it as an anxious child in pain. Never simply increase the analgesia and move on; assess the compartment and escalate."},
+{t:"Paediatric bone", q:"How do children's fractures differ from adults', and what are the specific patterns?",
+a:"Children's bone is more porous and elastic with thick periosteum, so it BENDS and buckles rather than shattering: plastic deformation, TORUS/buckle fractures (stable, treated with a removable splint), and GREENSTICK fractures (one cortex broken). The growth plate (physis) is the weakest point, so injuries occur there — classified by SALTER-HARRIS (I through the physis, II with a metaphyseal fragment — commonest, III into the epiphysis and joint, IV across both, V crush injury with the worst prognosis for growth arrest). Children also REMODEL well, permitting acceptance of angulation that would be unacceptable in an adult, especially near the physis and in the plane of joint movement.",
+d:"Salter-Harris III, IV, and V involve the joint surface or crush the physis and carry real risk of growth arrest, limb-length discrepancy, and angular deformity — they need accurate reduction and follow-up over months to years. A 'toddler's fracture' — an undisplaced spiral tibial fracture in a newly walking child — often has a normal initial X-ray and is a common cause of an unexplained limp."},
+{t:"The other question", q:"What must you always consider alongside the mechanics of a paediatric fracture?",
+a:"SAFEGUARDING. Ask whether the injury is consistent with the stated mechanism and with the child's developmental stage. Suspicious features: a fracture in a NON-MOBILE infant (any fracture in a baby who cannot yet cruise is highly suspicious), an inconsistent or changing history, delayed presentation, multiple fractures of different ages, and specific patterns — posterior rib fractures, metaphyseal corner/'bucket handle' fractures, and long-bone fractures in infants. Also consider medical causes of bone fragility, notably osteogenesis imperfecta (blue sclerae, family history, Wormian bones) and rickets.",
+d:"Where concern exists, follow the child protection pathway: senior review, skeletal survey, careful objective documentation, and referral to social care — while remaining professional and non-accusatory with the family, and excluding medical mimics properly. A supracondylar fracture in a 6-year-old from monkey bars is entirely consistent; the same fracture in a 4-month-old would not be."}],
+wrap:"Supracondylar fracture: check and DOCUMENT pulses, perfusion, and each nerve (the 'OK sign' tests anterior interosseous) before and after any manipulation — a pale pulseless hand needs urgent theatre. Post-op, compartment syndrome presents in children as escalating Analgesia need, Anxiety, Agitation and pain on passive finger extension, NOT as absent pulses. Paediatric bone bends (buckle, greenstick) and fails at the physis — Salter-Harris III–V risk growth arrest; remodelling permits more angulation. A posterior fat pad sign always means fracture. Always ask whether the injury fits the history and the child's mobility."},
+
+"sjs-ten": {
+stem:"A 9-year-old boy who started carbamazepine for newly diagnosed epilepsy 18 days ago is admitted with 3 days of fever and malaise, followed by a painful red rash. He now has extensive haemorrhagic crusting of the lips, painful oral erosions preventing eating, red painful eyes with discharge, and dusky red macules over his trunk that blister and shear when gently rubbed.",
+steps:[
+{t:"Recognising it", q:"What is the diagnosis, and what is the key bedside sign described?",
+a:"Stevens-Johnson syndrome — a severe mucocutaneous drug reaction. The key sign is a positive NIKOLSKY SIGN: gentle lateral pressure causes the epidermis to shear off, indicating full-thickness epidermal necrosis and detachment. The picture is completed by a prodrome of fever and malaise, painful involvement of at least two mucosal surfaces (mouth and eyes here), and dusky atypical target lesions.",
+d:"SJS and toxic epidermal necrolysis (TEN) are a spectrum defined by the percentage of body surface area with epidermal DETACHMENT: SJS <10%, overlap 10–30%, TEN >30%. Painful skin and mucosal involvement distinguish them from other drug rashes; a simple morbilliform drug eruption is itchy, not painful, and spares mucosae."},
+{t:"The cause", q:"What triggered this, and what is the single most important immediate action?",
+a:"The carbamazepine, started 18 days ago — the classic 1–3 week latency for SJS/TEN. The single most important action is to STOP THE CULPRIT DRUG IMMEDIATELY; earlier withdrawal is associated with better outcomes. Other high-risk drugs: other aromatic anticonvulsants (lamotrigine, phenytoin, phenobarbital), sulfonamides including co-trimoxazole, allopurinol, and NSAIDs. In children, MYCOPLASMA PNEUMONIAE is an important non-drug trigger.",
+d:"Mycoplasma-induced rash and mucositis (MIRM) is increasingly recognised as a distinct entity in children — prominent mucositis with sparse or absent skin involvement, following a respiratory illness; test for Mycoplasma and treat with a macrolide. Note also the pharmacogenetics: HLA-B*1502 strongly predicts carbamazepine-induced SJS/TEN and is prevalent in Han Chinese and several Southeast Asian populations, including Thai — which is why HLA-B*1502 screening BEFORE starting carbamazepine is recommended in these populations."},
+{t:"Immediate management", q:"How do you manage him in the first 24 hours?",
+a:"Treat him as a BURN. Transfer to a burns unit or paediatric intensive care with expertise in skin failure. Priorities: stop the drug; fluid resuscitation and electrolyte correction (massive transepidermal losses); meticulous temperature control; scrupulous non-adherent wound care with minimal debridement; strong ANALGESIA (this is extremely painful); nutritional support, usually nasogastric, because oral intake is impossible; and infection surveillance with cultures — but NOT prophylactic antibiotics, since sepsis is the leading cause of death and prophylaxis selects resistant organisms.",
+d:"Assess severity with SCORTEN. The single most consequential specialist referral is URGENT OPHTHALMOLOGY — ocular involvement occurs in most cases and untreated adhesions, symblepharon, corneal scarring, and dry eye cause permanent visual loss. Daily ophthalmic review with lubrication and adhesion prevention is essential from day one. Involve urology/gynaecology for genital involvement to prevent stricture and adhesions."},
+{t:"Immunomodulation", q:"What about steroids, IVIG, and other immunomodulatory treatments?",
+a:"The evidence is genuinely uncertain and practice varies. Systemic corticosteroids, intravenous immunoglobulin, ciclosporin, and anti-TNF agents (etanercept) have all been used; ciclosporin and etanercept have the most encouraging recent data, while IVIG's benefit has not been consistently demonstrated and steroids carry infection risk. What is NOT controversial is that supportive care — early drug withdrawal, fluid and wound management, and specialist multidisciplinary input — determines outcome.",
+d:"This is a reasonable case to teach that not everything in medicine has a clean answer: the honest position is that these are specialist decisions made case by case in expert centres, and that the junior clinician's decisive contributions are recognising the diagnosis, stopping the drug, and escalating early."},
+{t:"Afterwards", q:"He survives. What must happen before and after discharge?",
+a:"DOCUMENT THE DRUG ALLERGY prominently in every record, give the family written information and an alert card or bracelet, and explicitly counsel lifelong avoidance of carbamazepine AND cross-reactive aromatic anticonvulsants (phenytoin, phenobarbital, lamotrigine, oxcarbazepine) — his epilepsy will need a structurally different agent (for example levetiracetam or valproate, with the usual caveats). Long-term follow-up for sequelae: chronic dry eye and visual impairment, skin dyspigmentation and scarring, nail dystrophy, oesophageal or genital strictures, and psychological consequences. Screen first-degree relatives' risk where a relevant HLA association exists.",
+d:"Failure to record the allergy clearly is a recognised cause of fatal re-exposure. The counselling must be specific about the CLASS, not just the single drug, because cross-reactivity among aromatic anticonvulsants is high — a family told only 'avoid carbamazepine' may accept phenytoin from another clinician years later."}],
+wrap:"SJS/TEN: fever and malaise, then PAINFUL dusky skin with a positive Nikolsky sign plus involvement of two or more mucosae, 1–3 weeks after a culprit drug (aromatic anticonvulsants, sulfonamides, allopurinol) or Mycoplasma in children. SJS <10% detachment, TEN >30%. STOP THE DRUG IMMEDIATELY and manage as a burn: fluids, warmth, wound care, analgesia, nutrition, cultures but no prophylactic antibiotics. URGENT ophthalmology prevents blindness. Immunomodulation is uncertain — supportive care determines outcome. Screen HLA-B*1502 before carbamazepine in Southeast Asian populations, and document the drug allergy for the whole drug class."},
+
+"primary-immunodeficiency": {
+stem:"A 10-month-old boy presents with his third episode of pneumonia this year, having also had two courses of IV antibiotics for otitis media and a persistent oral thrush that has never fully cleared. He is below the 0.4th centile for weight, having crossed centiles downward since 4 months. His mother's brother died in infancy of 'a chest infection'. There is no palpable lymphoid tissue and no tonsils are visible.",
+steps:[
+{t:"When to suspect", q:"What features here should trigger investigation for immunodeficiency?",
+a:"The warning-sign pattern: recurrent SERIOUS infections (three pneumonias in a year), infections requiring INTRAVENOUS antibiotics to clear, persistent candidiasis beyond infancy, FAILURE TO THRIVE, and a suggestive FAMILY HISTORY — a maternal uncle dying in infancy suggests X-LINKED inheritance. The absence of tonsils and palpable lymph nodes is a striking and specific physical finding indicating absent lymphoid tissue.",
+d:"A useful discriminator is that normal children get frequent MILD infections; immunodeficient children get infections that are unusually SEVERE, PERSISTENT, UNUSUAL (opportunistic organisms), or RECURRENT — the SPUR mnemonic — plus failure to thrive. Also always ask about consanguinity, and about any adverse reaction to LIVE vaccines, which can be catastrophic in T-cell deficiency."},
+{t:"Localising the defect", q:"How does the infection pattern point to which arm of the immune system is affected?",
+a:"ANTIBODY (B-cell) deficiency: recurrent sinopulmonary infection with ENCAPSULATED bacteria (pneumococcus, Haemophilus), starting after about 6 months as maternal IgG wanes — as here. T-CELL/combined deficiency: opportunistic and viral infections, persistent candidiasis, Pneumocystis jirovecii pneumonia, chronic diarrhoea, and failure to thrive, presenting EARLY in infancy. PHAGOCYTE defects (chronic granulomatous disease): recurrent abscesses, lymphadenitis, and catalase-positive organisms including Staphylococcus, Serratia, and Aspergillus. COMPLEMENT deficiency: recurrent NEISSERIAL infection — recurrent meningococcal disease.",
+d:"This boy's picture straddles antibody and T-cell involvement (thrush plus recurrent pneumonia plus failure to thrive), which raises the possibility of a combined immunodeficiency rather than pure agammaglobulinaemia — and combined defects are the more urgent. Timing is a strong clue: presentation before 6 months implies a T-cell or combined defect, since maternal IgG protects against pure antibody deficiency until then."},
+{t:"First-line tests", q:"What investigations do you order first?",
+a:"FULL BLOOD COUNT WITH DIFFERENTIAL — and specifically the ABSOLUTE LYMPHOCYTE COUNT, the cheapest and most important screening test: lymphopenia in an infant is severe combined immunodeficiency (SCID) until proven otherwise. Then: serum immunoglobulins IgG, IgA, IgM, and IgE (interpreted against AGE-SPECIFIC ranges); lymphocyte subsets by flow cytometry (T, B, NK cells); vaccine-specific antibody responses (tetanus, pneumococcal); HIV testing; and neutrophil oxidative burst testing (DHR) if chronic granulomatous disease is suspected. Chest imaging — and note that an ABSENT THYMIC SHADOW on infant chest X-ray supports a T-cell defect.",
+d:"Two practical points: immunoglobulin levels must be read against age-specific normal ranges, because physiological hypogammaglobulinaemia of infancy at 3–6 months is normal and is a common source of false alarm; and vaccine response testing is invalid if the child has recently received immunoglobulin. Genetic testing then defines the specific disorder and guides transplant and counselling."},
+{t:"SCID", q:"His absolute lymphocyte count is 0.6 × 10⁹/L. What does this mean and what must happen immediately?",
+a:"This is SEVERE COMBINED IMMUNODEFICIENCY — a PAEDIATRIC EMERGENCY. Immediate protective measures: strict isolation, STOP ALL LIVE VACCINES (BCG, rotavirus, MMR, varicella, oral polio — live vaccine-derived disease is a major cause of death), use only IRRADIATED, CMV-NEGATIVE blood products (to prevent transfusion-associated graft-versus-host disease), start co-trimoxazole prophylaxis against Pneumocystis and antifungal prophylaxis, give immunoglobulin replacement, and refer the SAME DAY to a specialist immunology and transplant centre.",
+d:"The irradiated-blood rule and the live-vaccine rule are the two interventions most often missed by non-specialists and both are lethal errors. BCG given at birth in countries with universal BCG — including Thailand — can cause disseminated BCG disease in a SCID infant, which is one of the arguments for newborn SCID screening (TREC assay), now implemented in a growing number of countries."},
+{t:"Definitive treatment and family", q:"What is the definitive treatment, and what does the family need?",
+a:"HAEMATOPOIETIC STEM CELL TRANSPLANTATION is curative for SCID and survival is strongly dependent on transplanting EARLY — ideally before 3.5 months of age and before infection is established, with survival exceeding 90% in that window and falling substantially thereafter. Gene therapy is available for specific genotypes (for example ADA-SCID). For antibody deficiencies such as X-linked agammaglobulinaemia, lifelong immunoglobulin replacement (IV or subcutaneous) plus prompt antibiotic treatment is the mainstay. The family needs genetic counselling, carrier testing, and — for future pregnancies — prenatal or immediate postnatal diagnosis so the next affected baby is protected from birth.",
+d:"The maternal uncle's death now has an explanation and a purpose: identifying the mutation allows testing of female relatives and planning for future pregnancies, converting an unexplained family tragedy into a preventable, treatable diagnosis. This is also why the phrase 'a baby who died of infection in the family' should always be pursued in a paediatric history."}],
+wrap:"Suspect immunodeficiency with infections that are Severe, Persistent, Unusual, or Recurrent, plus failure to thrive, family history, or absent lymphoid tissue. Infection pattern localises the defect: encapsulated sinopulmonary = antibody; opportunistic/candida/PJP with early onset = T-cell or combined; abscesses = phagocyte; recurrent Neisseria = complement. Check the ABSOLUTE LYMPHOCYTE COUNT — lymphopenia in an infant is SCID until proven otherwise. SCID is an emergency: isolate, NO live vaccines, irradiated CMV-negative blood, prophylaxis, immunoglobulin, same-day referral. Transplant before 3.5 months gives >90% survival."}
 };
 
 const SENT_ABBR = /(?:\b[A-Z]|e\.g|i\.e|vs|approx|cf|etc|Fig|St|Dr|Prof|no|spp)\.$/;
@@ -11046,6 +11567,8 @@ document.addEventListener("keydown", e=>{
   if(e.key==="a"||e.key==="A"){ e.preventDefault(); toggleRead(); }
   if(e.key==="c"||e.key==="C"){ e.preventDefault(); caseButton(); }
   if(e.key==="g"||e.key==="G"){ e.preventDefault(); showSkinGallery(); }
+  if(e.key==="i"||e.key==="I"){ e.preventDefault(); showImagingGallery(); }
+  if(e.key==="q"||e.key==="Q"){ e.preventDefault(); quizHome(); }
   if(e.key==="ArrowRight") step(1);
   if(e.key==="ArrowLeft") step(-1);
 });
@@ -11202,20 +11725,188 @@ const SKIN_GALLERY = [
  credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons"}
 ];
 
+/* ============ IMAGING, ECG & LAB GALLERY ============ */
+const IMAGING_GALLERY = [
+/* — Chest & airway — */
+{file:"rad_rds.png", name:"Respiratory distress syndrome", cat:"Chest & airway",
+ find:"Diffuse fine granular 'ground-glass' opacification of both lungs with air bronchograms and LOW lung volumes, in a preterm infant with an umbilical line in situ.",
+ teach:"Surfactant deficiency below ~32–34 weeks. Contrast with TTN, which shows fluid in the fissures and NORMAL-to-increased volumes. Low volumes + ground glass + air bronchograms = RDS. Treat with CPAP and surfactant when FiO2 exceeds ~30%.",
+ credit:"Mikael Häggström MD, CC0, via Wikimedia Commons"},
+{file:"rad_bronchiolitis.jpg", name:"Bronchiolitis", cat:"Chest & airway",
+ find:"HYPERINFLATED lungs with flattened diaphragms, increased retrosternal air, and perihilar peribronchial thickening — no focal consolidation.",
+ teach:"Bronchiolitis is a CLINICAL diagnosis and most infants need no film at all — imaging mainly risks driving unnecessary antibiotics for the atelectasis that is routinely misread as consolidation. Reserve CXR for atypical, severe, or deteriorating cases.",
+ credit:"Di Nardo et al., CC BY 2.0, via Wikimedia Commons"},
+{file:"pneumonia_x_ray_of_lobar_pneumonia_jpg.jpg", name:"Lobar pneumonia", cat:"Chest & airway",
+ find:"Dense homogeneous consolidation confined to one lobe with air bronchograms and a well-defined border at the fissure.",
+ teach:"Lobar consolidation favours a bacterial cause — Streptococcus pneumoniae above all. Look at the costophrenic angles for a parapneumonic effusion; blunting means ultrasound to decide whether it needs drainage.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"tb_miliary_cxr.jpg", name:"Miliary tuberculosis", cat:"Chest & airway",
+ find:"Innumerable uniform 1–3 mm nodules distributed evenly throughout both lung fields — the 'millet seed' pattern.",
+ teach:"Haematogenous dissemination, a disease of infants and the immunosuppressed. Miliary TB carries a high risk of concurrent TB MENINGITIS — a child with this film needs a lumbar puncture and CNS imaging considered, and treatment extended accordingly.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"pneumothorax_child_apical_pneumothorax_shown_on_ct_and_che.png", name:"Pneumothorax", cat:"Chest & airway",
+ find:"A visible visceral pleural line with absent lung markings peripheral to it.",
+ teach:"TENSION pneumothorax is a CLINICAL diagnosis — do not wait for a film. Decompress immediately in a deteriorating child with tracheal deviation and absent breath sounds. In neonates, transillumination of the chest is a fast bedside test.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"rad_croup_steeple.jpg", name:"Croup — steeple sign", cat:"Chest & airway",
+ find:"AP neck film showing symmetrical tapering of the subglottic airway — the 'steeple' or 'pencil point' sign (arrow).",
+ teach:"Croup is a CLINICAL diagnosis and this film is NOT required. The sign is present in only about half of cases, and its absence excludes nothing. Treat with dexamethasone; add nebulised adrenaline for stridor at rest.",
+ credit:"Frank Gaillard, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"rad_epiglottitis_thumb.jpg", name:"Epiglottitis — thumb sign", cat:"Chest & airway",
+ find:"Lateral neck film showing a grossly swollen, rounded epiglottis (arrow) resembling an adult thumb, with loss of the normal slender curved outline.",
+ teach:"KNOW this sign, but do NOT go looking for it: sending a child with suspected epiglottitis to the X-ray department distresses them and can precipitate complete airway obstruction. The airway is secured in theatre by a senior anaesthetist first.",
+ credit:"Med Chaos, CC0, via Wikimedia Commons"},
+{file:"rad_foreign_body.jpg", name:"Ingested coin — oesophagus", cat:"Chest & airway",
+ find:"A round radio-opaque foreign body at the thoracic inlet, seen FACE-ON (as a full circle) on the AP film.",
+ teach:"Orientation localises it: a coin seen EN FACE on AP lies in the OESOPHAGUS (which is flattened front-to-back); a coin seen edge-on lies in the TRACHEA. Oesophageal coins at the cricopharyngeus need prompt endoscopic removal — and a BUTTON BATTERY in this position is an emergency, causing caustic burns within hours.",
+ credit:"Samir, CC BY 3.0, via Wikimedia Commons"},
+/* — Abdomen & GI — */
+{file:"rad_double_bubble.jpg", name:"Double bubble sign", cat:"Abdomen & GI",
+ find:"Two gas-filled dilated structures in the upper abdomen — the stomach and the proximal duodenum — separated by the pylorus.",
+ teach:"The critical question is what lies BEYOND: double bubble with NO distal bowel gas = duodenal ATRESIA (associated with Down syndrome in about a third). Double bubble WITH distal gas = incomplete obstruction — duodenal web/stenosis or MALROTATION WITH VOLVULUS, which is a surgical emergency needing an urgent upper GI contrast study.",
+ credit:"JasonRobertYoungMD, CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"rad_pneumatosis.jpg", name:"Necrotising enterocolitis — pneumatosis", cat:"Abdomen & GI",
+ find:"Neonatal abdominal film with dilated bowel loops and curvilinear/bubbly lucencies within the BOWEL WALL itself — pneumatosis intestinalis.",
+ teach:"Pneumatosis intestinalis is pathognomonic of NEC (Bell stage II). Portal venous gas indicates more advanced disease. Serial 6-hourly films track progression; a fixed, persistently dilated loop suggests necrotic bowel. Stop feeds, decompress, broad-spectrum antibiotics, urgent surgical review.",
+ credit:"Adityagupta95, CC0, via Wikimedia Commons"},
+{file:"rad_pneumoperitoneum.jpg", name:"Pneumoperitoneum — free air", cat:"Abdomen & GI",
+ find:"Erect film showing a crescent of free gas beneath the diaphragm, outlining the diaphragm from below (adult film shown — the sign is identical in children).",
+ teach:"Free intraperitoneal air means PERFORATION and, in a neonate with NEC, it is an absolute indication for surgery. In supine neonatal films look instead for the 'football sign' (a large central lucency outlining the falciform ligament) and Rigler sign (both sides of the bowel wall visible).",
+ credit:"Hellerhoff, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"rad_intussusception_us.jpg", name:"Intussusception — target sign", cat:"Abdomen & GI",
+ find:"Transverse ultrasound showing concentric alternating hyper- and hypoechoic rings — the 'target', 'doughnut' or 'pseudokidney' appearance of bowel telescoped within bowel.",
+ teach:"Ultrasound is the investigation of choice — sensitive, specific, and radiation-free. Classic age 3 months–3 years with colicky pain, drawing up the legs, and a sausage-shaped mass; redcurrant jelly stool is a LATE sign. Treat with air/contrast enema reduction unless there is peritonitis or perforation.",
+ credit:"Frank Gaillard, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"intussusception_intussusception_hy_png.png", name:"Intussusception — anatomy", cat:"Abdomen & GI",
+ find:"Diagram of one segment of bowel telescoping into the adjacent distal segment, dragging its mesentery and vessels with it.",
+ teach:"The dragged mesentery is why the bowel becomes ischaemic and why delay causes necrosis and perforation. Most are ileocolic and idiopathic (hypertrophied Peyer patches after a viral illness); a PATHOLOGICAL LEAD POINT (Meckel diverticulum, polyp, lymphoma, HSP) is more likely outside the typical age range.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"pyloricstenosis_pyloric_stenosis_jpg.jpg", name:"Hypertrophic pyloric stenosis", cat:"Abdomen & GI",
+ find:"Thickened, elongated pyloric muscle with a narrowed channel.",
+ teach:"Ultrasound criteria: muscle wall thickness ≥3–4 mm and channel length ≥15–17 mm. The metabolic picture — hypochloraemic, hypokalaemic metabolic alkalosis with paradoxical aciduria — MUST be corrected before surgery; pyloromyotomy is urgent but never an emergency.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+/* — Bones & joints — */
+{file:"rad_anterior_humeral_line.jpg", name:"Anterior humeral line", cat:"Bones & joints",
+ find:"Lateral elbow with a line drawn down the anterior cortex of the humerus — normally it should intersect the MIDDLE THIRD of the capitellum.",
+ teach:"If the line passes anterior to the capitellum, or through its anterior third, suspect a displaced supracondylar fracture. Combine with the fat pad sign: a POSTERIOR fat pad is always abnormal and indicates a haemarthrosis from an occult fracture even when alignment looks normal.",
+ credit:"Kilborn et al., CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"rad_supracondylar.jpg", name:"Supracondylar fracture — fixed", cat:"Bones & joints",
+ find:"Elbow following operative reduction, held with crossed Kirschner wires across the distal humerus.",
+ teach:"The commonest paediatric elbow fracture and a neurovascular emergency: document radial pulse, perfusion, and each nerve — the anterior interosseous nerve is tested by the 'OK sign' — BEFORE and AFTER any manipulation. Post-operatively, escalating analgesia need, anxiety, agitation, and pain on passive finger extension mean COMPARTMENT SYNDROME.",
+ credit:"Lindsaydavidson, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"rad_perthes.jpg", name:"Perthes disease", cat:"Bones & joints",
+ find:"AP pelvis showing a smaller, flattened, sclerotic and fragmented capital femoral epiphysis on the affected side compared with the normal opposite hip.",
+ teach:"Idiopathic avascular necrosis of the femoral head, classically in boys aged 4–8 with an insidious PAINLESS limp. Always X-ray both hips with AP and frog-leg lateral views. Early films can be normal — if suspicion persists, MRI or repeat imaging is needed.",
+ credit:"J. Lengerke, Public domain, via Wikimedia Commons"},
+{file:"rad_scfe.jpg", name:"Slipped capital femoral epiphysis", cat:"Bones & joints",
+ find:"Frog-leg lateral hip with annotation: the femoral epiphysis has slipped posteroinferiorly relative to the metaphysis — 'ice cream slipping off the cone'.",
+ teach:"Obese adolescents around puberty. Klein's line — drawn along the superior femoral neck — should intersect the epiphysis; if it does not, that is a slip. The classic trap is REFERRED KNEE PAIN: always examine and image the hip in an adolescent with knee pain. Needs urgent surgical pinning and non-weight-bearing meanwhile.",
+ credit:"Dr. Jochen Lengerke, CC0, via Wikimedia Commons"},
+{file:"osteomyelitis_ct.jpg", name:"Osteomyelitis", cat:"Bones & joints",
+ find:"Cross-sectional imaging showing bone destruction with surrounding soft tissue inflammatory change.",
+ teach:"PLAIN FILMS ARE NORMAL for the first 10–14 days — a normal X-ray never excludes osteomyelitis. MRI is the modality of choice. Blood cultures before antibiotics; Staphylococcus aureus dominates, with Kingella in under-4s and Salmonella in sickle cell disease. A stalling CRP means undrained pus.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+/* — Neuro & head — */
+{file:"rad_epidural_haematoma.jpg", name:"Extradural haematoma", cat:"Neuro & head",
+ find:"Biconvex ('lens-shaped') hyperdense extra-axial collection that does NOT cross suture lines, with mass effect on the underlying brain.",
+ teach:"Arterial bleeding, classically from the middle meningeal artery with a temporal bone fracture, and the classic LUCID INTERVAL before rapid deterioration. Contrast with SUBDURAL haematoma: crescent-shaped, DOES cross sutures, from bridging vein tears — and in an infant, bilateral subdurals raise abusive head trauma. Needs urgent neurosurgical evacuation.",
+ credit:"James Heilman MD, CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"epilepsy_eeg_absence_seizure_png.png", name:"Absence seizure — EEG", cat:"Neuro & head",
+ find:"Generalised, bilaterally synchronous 3 Hz spike-and-wave discharges with an abrupt start and end, on a normal background.",
+ teach:"Childhood absence epilepsy, ages 4–10, often provoked by hyperventilation in clinic. Ethosuximide is first-line (valproate if generalised tonic-clonic seizures coexist). CARBAMAZEPINE WORSENS absences — which is why the EEG must precede treatment.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+/* — ECG rhythms — */
+{file:"svt_lead_ii.jpg", name:"Supraventricular tachycardia", cat:"ECG rhythms",
+ find:"Narrow-complex tachycardia, regular, very fast (often >220/min in infants and >180/min in children), with P waves absent or buried and no beat-to-beat variability.",
+ teach:"SVT vs sinus tachycardia: SVT is faster, monotonously regular with no variability, and has no identifiable cause. Stable: vagal manoeuvres, then ADENOSINE by rapid push with a three-way tap. Unstable (poor perfusion, altered consciousness): SYNCHRONISED cardioversion 1 J/kg.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"ventricular_tachycardia.jpg", name:"Ventricular tachycardia", cat:"ECG rhythms",
+ find:"Wide-complex regular tachycardia with no visible P waves.",
+ teach:"With a PULSE and stable: amiodarone 5 mg/kg, seek expert help. With a pulse and UNSTABLE: synchronised cardioversion. PULSELESS VT: treat exactly as VF — unsynchronised shock 4 J/kg, CPR, adrenaline every 3–5 minutes, amiodarone after the third and fifth shocks. Always look for reversible causes (electrolytes, drugs, long QT).",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"ventricular_fibrillation.png", name:"Ventricular fibrillation", cat:"ECG rhythms",
+ find:"Chaotic, irregular waveform of varying amplitude with no identifiable QRS complexes.",
+ teach:"A SHOCKABLE arrest rhythm: immediate defibrillation at 4 J/kg, resume CPR straight away without pulse-checking after the shock, adrenaline 10 mcg/kg after the THIRD shock (not the first, unlike non-shockable rhythms), amiodarone after the third and fifth.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"asystole.svg", name:"Asystole", cat:"ECG rhythms",
+ find:"A flat or near-flat line with no electrical activity.",
+ teach:"NON-shockable — never defibrillate asystole. High-quality CPR at 15:2 with adrenaline 10 mcg/kg IMMEDIATELY and then every 3–5 minutes. Confirm in two leads and check leads and gain before calling it. Hunt the 4 Hs and 4 Ts — in children, HYPOXIA is the commonest cause.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"complete_heart_block.jpg", name:"Complete (third-degree) AV block", cat:"ECG rhythms",
+ find:"P waves and QRS complexes marching independently at different rates — complete AV dissociation.",
+ teach:"In neonates, congenital complete heart block is strongly associated with maternal anti-Ro/anti-La antibodies (neonatal lupus) — ask about maternal connective tissue disease. Symptomatic block needs pacing; atropine and isoprenaline are temporising measures.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"sinus_bradycardia.svg", name:"Sinus bradycardia", cat:"ECG rhythms",
+ find:"Regular rhythm with normal P wave before every QRS, at a rate below the normal range for age.",
+ teach:"In a child, bradycardia is a PRE-ARREST sign and is HYPOXIC until proven otherwise: the first treatment is OXYGEN AND VENTILATION, not atropine. If the heart rate stays below 60/min with poor perfusion despite effective oxygenation and ventilation, start CPR. Atropine only for vagally mediated or AV block.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"torsades_de_pointes.png", name:"Torsades de pointes", cat:"ECG rhythms",
+ find:"Polymorphic ventricular tachycardia in which the QRS axis appears to twist around the baseline, varying in amplitude.",
+ teach:"Treat with MAGNESIUM SULPHATE 25–50 mg/kg IV; defibrillate if pulseless. Then find the cause: congenital long QT syndrome, electrolyte disturbance (low K, Mg, Ca), or QT-prolonging drugs (macrolides, antipsychotics, ondansetron).",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"long_qt_syndrome.jpg", name:"Long QT syndrome", cat:"ECG rhythms",
+ find:"Prolonged corrected QT interval with an abnormal T wave morphology.",
+ teach:"A cause of syncope, seizures, and sudden death in children — classically triggered by exercise, swimming, or sudden noise. Any child with EXERTIONAL syncope, syncope without warning, or a family history of sudden or unexplained death needs an ECG with QTc measured. Avoid QT-prolonging drugs; beta-blockers are the mainstay.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+/* — Blood films & lab — */
+{file:"hus_schistocytes_jpg.jpg", name:"Schistocytes — HUS", cat:"Blood films & lab",
+ find:"Fragmented red cells (schistocytes, helmet cells) with reduced platelets on the film.",
+ teach:"Microangiopathic haemolytic anaemia. With thrombocytopenia and acute kidney injury after bloody diarrhoea, this is haemolytic uraemic syndrome. A NEGATIVE direct Coombs test confirms the haemolysis is non-immune. Do NOT give antibiotics for suspected STEC — they increase the risk of HUS.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"malaria_falciparum_film.jpg", name:"Plasmodium falciparum", cat:"Blood films & lab",
+ find:"Delicate ring forms (trophozoites) within red cells, some cells carrying multiple rings — with a high parasite density.",
+ teach:"Thick film to DETECT, thin film to SPECIATE and count parasitaemia. Severe malaria (impaired consciousness, seizures, acidosis, anaemia, hypoglycaemia, parasitaemia >10%) needs IV ARTESUNATE. Hunt hypoglycaemia relentlessly, and avoid large fluid boluses.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"sicklecell_sickle_cell_anaemia_jpg.jpg", name:"Sickle cells", cat:"Blood films & lab",
+ find:"Elongated, crescent-shaped rigid red cells among normal cells, often with target cells and Howell-Jolly bodies.",
+ teach:"Howell-Jolly bodies signal HYPOSPLENISM — children with sickle cell disease are functionally asplenic from early childhood and need lifelong penicillin prophylaxis and full encapsulated-organism vaccination. Acute chest syndrome is the leading cause of death.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"all_leukaemia_acute_lymphoblastic_leukemia_jpg.jpg", name:"Acute lymphoblastic leukaemia", cat:"Blood films & lab",
+ find:"Sheets of monomorphic lymphoblasts with high nuclear-to-cytoplasmic ratio, fine chromatin, and scant cytoplasm, crowding out normal cells.",
+ teach:"The commonest childhood malignancy, peaking at 2–5 years: pallor, bruising, fever, bone pain, organomegaly. Blasts may be ABSENT from the peripheral film despite marrow disease — bone marrow aspirate is definitive. Before treatment, manage tumour lysis syndrome and febrile neutropenia.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"thalassaemia_delta_beta_thalassemia_jpg.jpg", name:"Thalassaemia film", cat:"Blood films & lab",
+ find:"Marked microcytosis and hypochromia with target cells, basophilic stippling, and nucleated red cells.",
+ teach:"Very common across Southeast Asia. Distinguish from iron deficiency: thalassaemia has an MCV disproportionately low for the anaemia, a normal or HIGH red cell count, normal RDW, and normal/raised ferritin. Never send haemoglobin electrophoresis while a child is iron-deficient — it can mask a raised HbA2.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"tb_mantoux.jpg", name:"Mantoux (tuberculin skin) test", cat:"Blood films & lab",
+ find:"Raised indurated wheal at the intradermal injection site, measured across its transverse diameter at 48–72 hours.",
+ teach:"Measure the INDURATION, not the erythema. Cut-offs vary by risk: ≥5 mm in immunosuppressed, HIV-positive, or close TB contacts; ≥10 mm in most other children. A NEGATIVE test never excludes TB — malnutrition, severe or disseminated disease, and immunosuppression all cause false negatives.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"}
+];
+
+const GALLERIES = {
+  "skin": {hash:"skin-gallery", crumb:"Dermatology", eyebrow:"Visual atlas",
+    title:"Skin Disease Gallery",
+    blurb:"paediatric skin conditions — click any image for the findings, the teaching point, and the trap.",
+    items:SKIN_GALLERY},
+  "imaging": {hash:"imaging-gallery", crumb:"Imaging & investigations", eyebrow:"Visual atlas",
+    title:"Imaging, ECG & Lab Gallery",
+    blurb:"radiographs, ultrasound, CT, ECG rhythms and blood films — click any image for the findings, the teaching point, and the trap.",
+    items:IMAGING_GALLERY}
+};
+
 let galCat = "All";
-function showSkinGallery(){
-  current = "skin-gallery";
+let galKey = "skin";
+function showGallery(key){
+  const G = GALLERIES[key];
+  if(!G) return;
+  if(key !== galKey){ galKey = key; galCat = "All"; }
+  const items = G.items;
+  current = G.hash;
   markActive("");
-  stopReading && reading && stopReading();
-  $("#crumb").textContent = "Dermatology";
-  const cats = ["All", ...new Set(SKIN_GALLERY.map(g=>g.cat))];
+  if(typeof reading !== "undefined" && reading) stopReading();
+  $("#crumb").textContent = G.crumb;
+  const cats = ["All", ...new Set(items.map(g=>g.cat))];
   let h = `<div class="content">
-    <div class="eyebrow">Visual atlas</div>
-    <h2 class="title">Skin Disease Gallery</h2>
-    <p class="oneliner">${SKIN_GALLERY.length} paediatric skin conditions — click any image for the findings, the teaching point, and the trap. All images are open-licensed (Wikimedia Commons); see IMAGE_CREDITS.md.</p>
+    <div class="eyebrow">${esc(G.eyebrow)}</div>
+    <h2 class="title">${esc(G.title)}</h2>
+    <p class="oneliner">${items.length} ${esc(G.blurb)} All images are open-licensed (Wikimedia Commons); see IMAGE_CREDITS.md.</p>
+    <div class="caselaunch"><span>🎯 <b>Test yourself</b> — spot-diagnosis quiz drawn from this gallery.</span>
+      <button class="btn" id="quizfromgal">Start quiz</button></div>
     <div class="galchips">${cats.map(c=>`<button class="galchip${c===galCat?" active":""}" data-cat="${esc(c)}">${esc(c)}</button>`).join("")}</div>
     <div class="galgrid">` +
-    SKIN_GALLERY.map((g,i)=> (galCat==="All"||g.cat===galCat) ?
+    items.map((g,i)=> (galCat==="All"||g.cat===galCat) ?
       `<div class="galcard" data-gi="${i}">
         <img class="galimg" src="assets/${g.file}" alt="${esc(g.name)}" loading="lazy"
              onerror="this.style.display='none'">
@@ -11226,18 +11917,23 @@ function showSkinGallery(){
     `</div></div>`;
   $("#view").innerHTML = h;
   document.querySelectorAll(".galchip").forEach(b=>{
-    b.onclick = ()=>{ galCat = b.dataset.cat; showSkinGallery(); };
+    b.onclick = ()=>{ galCat = b.dataset.cat; showGallery(key); };
   });
   document.querySelectorAll(".galcard").forEach(c=>{
-    c.onclick = ()=> galLightbox(parseInt(c.dataset.gi));
+    c.onclick = ()=> galLightbox(parseInt(c.dataset.gi), key);
   });
-  renderRail && renderRail(null);
+  const qb = document.getElementById("quizfromgal");
+  if(qb) qb.onclick = ()=> startQuiz(key);
+  renderRail(null);
   window.scrollTo(0,0);
   $("#sidebar").classList.remove("open");
-  if(location.hash !== "#skin-gallery") location.hash = "skin-gallery";
+  if(location.hash !== "#"+G.hash) location.hash = G.hash;
 }
-function galLightbox(i){
-  const g = SKIN_GALLERY[i];
+function showSkinGallery(){ showGallery("skin"); }
+function showImagingGallery(){ showGallery("imaging"); }
+function galLightbox(i, key){
+  const items = GALLERIES[key||galKey].items;
+  const g = items[i];
   if(!g) return;
   const lb = document.createElement("div");
   lb.className = "gallightbox";
@@ -11252,22 +11948,172 @@ function galLightbox(i){
   const close = ()=>{ lb.remove(); document.removeEventListener("keydown", onkey); };
   const onkey = e=>{
     if(e.key==="Escape") close();
-    if(e.key==="ArrowRight"){ close(); galLightbox((i+1)%SKIN_GALLERY.length); }
-    if(e.key==="ArrowLeft"){ close(); galLightbox((i-1+SKIN_GALLERY.length)%SKIN_GALLERY.length); }
+    if(e.key==="ArrowRight"){ close(); galLightbox((i+1)%items.length, key); }
+    if(e.key==="ArrowLeft"){ close(); galLightbox((i-1+items.length)%items.length, key); }
   };
   lb.onclick = e=>{ if(e.target===lb || e.target.classList.contains("lbclose")) close(); };
   document.addEventListener("keydown", onkey);
   document.body.appendChild(lb);
 }
-$("#skingalbtn").onclick = showSkinGallery;
 
+/* ============ SPOT-DIAGNOSIS QUIZ ============ */
+let quiz = null;
+function shuffle(a){ const r=a.slice(); for(let i=r.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [r[i],r[j]]=[r[j],r[i]]; } return r; }
+
+function buildQuizPool(source){
+  const pool = [];
+  const addGallery = (key)=>{
+    GALLERIES[key].items.forEach(g=>{
+      pool.push({kind:"image", img:"assets/"+g.file, prompt:g.find,
+        answer:g.name, cat:g.cat, teach:g.teach, gallery:key});
+    });
+  };
+  if(source==="skin" || source==="images") addGallery("skin");
+  if(source==="imaging" || source==="images") addGallery("imaging");
+  if(source==="cases"){
+    Object.keys(CASES).forEach(k=>{
+      if(k==="pals") return;
+      const d = DISEASES.find(x=>x.id===k);
+      if(!d || !CASES[k].stem) return;
+      pool.push({kind:"vignette", prompt:CASES[k].stem, answer:d.name,
+        cat:d.system, teach:CASES[k].wrap || "", caseId:k});
+    });
+  }
+  return pool;
+}
+function makeQuestion(item, pool){
+  // distractors: prefer same category, fall back to any
+  let same = pool.filter(p=>p.cat===item.cat && p.answer!==item.answer);
+  let other = pool.filter(p=>p.cat!==item.cat && p.answer!==item.answer);
+  const names = [];
+  shuffle(same).forEach(p=>{ if(names.length<3 && !names.includes(p.answer)) names.push(p.answer); });
+  shuffle(other).forEach(p=>{ if(names.length<3 && !names.includes(p.answer)) names.push(p.answer); });
+  return {...item, options: shuffle([item.answer, ...names])};
+}
+function startQuiz(source){
+  const pool = buildQuizPool(source || "images");
+  if(pool.length < 4){ return; }
+  const n = Math.min(10, pool.length);
+  quiz = {source:source||"images", pool,
+    questions: shuffle(pool).slice(0,n).map(it=>makeQuestion(it,pool)),
+    idx:0, score:0, answered:false};
+  current = "quiz";
+  markActive("");
+  if(typeof reading !== "undefined" && reading) stopReading();
+  $("#crumb").textContent = "Self-test";
+  renderRail(null);
+  renderQuiz();
+  $("#sidebar").classList.remove("open");
+  if(location.hash !== "#quiz") location.hash = "quiz";
+}
+function quizHome(){
+  current = "quiz";
+  markActive("");
+  $("#crumb").textContent = "Self-test";
+  const nCases = Object.keys(CASES).filter(k=>k!=="pals").length;
+  $("#view").innerHTML = `<div class="content">
+    <div class="eyebrow">Self-test</div>
+    <h2 class="title">Spot Diagnosis Quiz</h2>
+    <p class="oneliner">Ten questions per round, drawn from the galleries and case studies. Answer, then see the teaching point. Nothing is recorded — it is a practice tool.</p>
+    <div class="quizpick">
+      <button class="quizsrc" data-src="skin"><b>Skin</b><span>${SKIN_GALLERY.length} dermatology images</span></button>
+      <button class="quizsrc" data-src="imaging"><b>Imaging, ECG &amp; lab</b><span>${IMAGING_GALLERY.length} films, rhythms &amp; films</span></button>
+      <button class="quizsrc" data-src="images"><b>All images</b><span>${SKIN_GALLERY.length+IMAGING_GALLERY.length} mixed — hardest</span></button>
+      <button class="quizsrc" data-src="cases"><b>Case vignettes</b><span>${nCases} clinical stems — name the diagnosis</span></button>
+    </div></div>`;
+  document.querySelectorAll(".quizsrc").forEach(b=>{ b.onclick = ()=> startQuiz(b.dataset.src); });
+  renderRail(null);
+  window.scrollTo(0,0);
+  $("#sidebar").classList.remove("open");
+  if(location.hash !== "#quiz") location.hash = "quiz";
+}
+function renderQuiz(){
+  if(!quiz) return quizHome();
+  const q = quiz.questions[quiz.idx];
+  if(!q) return renderQuizEnd();
+  let h = `<div class="content">
+    <div class="eyebrow">Self-test</div>
+    <h2 class="title">Spot Diagnosis</h2>
+    <div class="quizbar">
+      <span>Question <b>${quiz.idx+1}</b> of ${quiz.questions.length}</span>
+      <span>Score <b>${quiz.score}</b></span>
+      <button class="btn" id="quizquit">End round</button>
+    </div>
+    <div class="quizq">`;
+  if(q.kind==="image"){
+    h += `<img class="quizimg" src="${q.img}" alt="Unlabelled clinical image" onerror="this.style.display='none'">
+      <p class="quizprompt"><b>What is the diagnosis?</b></p>`;
+  } else {
+    h += `<p class="quizstem">${esc(q.prompt)}</p><p class="quizprompt"><b>What is the most likely diagnosis?</b></p>`;
+  }
+  h += `<div class="quizopts">${q.options.map(o=>
+      `<button class="quizopt" data-opt="${esc(o)}">${esc(o)}</button>`).join("")}</div>
+    <div id="quizfb"></div>
+  </div></div>`;
+  $("#view").innerHTML = h;
+  document.getElementById("quizquit").onclick = ()=>{ renderQuizEnd(); };
+  document.querySelectorAll(".quizopt").forEach(b=>{
+    b.onclick = ()=> answerQuiz(b.dataset.opt);
+  });
+  window.scrollTo(0,0);
+}
+function answerQuiz(choice){
+  if(!quiz || quiz.answered) return;
+  quiz.answered = true;
+  const q = quiz.questions[quiz.idx];
+  const right = choice === q.answer;
+  if(right) quiz.score++;
+  document.querySelectorAll(".quizopt").forEach(b=>{
+    if(b.dataset.opt === q.answer) b.classList.add("correct");
+    else if(b.dataset.opt === choice) b.classList.add("wrong");
+    b.disabled = true;
+  });
+  const fb = document.getElementById("quizfb");
+  fb.innerHTML = `<div class="quizfb ${right?"ok":"no"}">
+    <b>${right?"✓ Correct":"✗ Not quite"}</b> — ${esc(q.answer)}.
+    ${q.kind==="image" ? `<p class="quizfind"><b>Findings:</b> ${esc(q.prompt)}</p>` : ""}
+    <p class="quizteach">${esc(q.teach)}</p>
+    ${q.caseId ? `<button class="btn" id="quizgocase">Open the full case</button>` : ""}
+    <button class="btn" id="quiznext">${quiz.idx+1 < quiz.questions.length ? "Next question →" : "See results"}</button>
+  </div>`;
+  document.getElementById("quiznext").onclick = ()=>{ quiz.idx++; quiz.answered=false; renderQuiz(); };
+  const gc = document.getElementById("quizgocase");
+  if(gc) gc.onclick = ()=> show(q.caseId);
+  fb.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+function renderQuizEnd(){
+  const total = quiz ? quiz.idx : 0;
+  const score = quiz ? quiz.score : 0;
+  const src = quiz ? quiz.source : "images";
+  const pct = total ? Math.round(100*score/total) : 0;
+  const msg = pct>=90 ? "Excellent." : pct>=70 ? "Solid — review the misses." :
+              pct>=50 ? "Worth another round." : "Go back through the gallery, then retry.";
+  $("#view").innerHTML = `<div class="content">
+    <div class="eyebrow">Self-test</div>
+    <h2 class="title">Round complete</h2>
+    <div class="quizscore"><b>${score} / ${total}</b><span>${pct}% — ${esc(msg)}</span></div>
+    <div class="caselaunch">
+      <button class="btn" id="quizagain">Another round</button>
+      <button class="btn" id="quizmenu">Change topic</button>
+    </div></div>`;
+  document.getElementById("quizagain").onclick = ()=> startQuiz(src);
+  document.getElementById("quizmenu").onclick = quizHome;
+  quiz = null;
+  window.scrollTo(0,0);
+}
+
+$("#skingalbtn").onclick = showSkinGallery;
+$("#imggalbtn").onclick = showImagingGallery;
+$("#quizbtn").onclick = quizHome;
+
+const ROUTES = {"skin-gallery":showSkinGallery, "imaging-gallery":showImagingGallery, "quiz":quizHome};
 window.addEventListener("hashchange", ()=>{
   const id = location.hash.slice(1);
-  if(id==="skin-gallery"){ if(current!=="skin-gallery") showSkinGallery(); return; }
+  if(ROUTES[id]){ if(current!==id) ROUTES[id](); return; }
   if(id && id!==current) show(id);
 });
 const start = location.hash.slice(1);
-if(start==="skin-gallery") showSkinGallery();
+if(ROUTES[start]) ROUTES[start]();
 else if(start && DISEASES.some(d=>d.id===start)) show(start); else welcome();
 </script>
 </body>
