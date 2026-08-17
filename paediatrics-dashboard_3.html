@@ -205,6 +205,38 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
 .pcout th{background:var(--moss);color:#fff}
 .pcnote{font-size:11px;color:var(--ink-soft);margin-top:8px}
 
+/* ---------- PALS flow diagrams ---------- */
+.pflow{margin:22px 0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.pflow-title{background:var(--moss);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;
+  letter-spacing:.07em;text-transform:uppercase;padding:8px 14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
+.pflow-title::before{content:"▶";font-size:10px;transition:transform .2s}
+.pflow.open .pflow-title::before{content:"▼"}
+.pflow-body{display:none;padding:16px 14px 14px;background:var(--paper-2);overflow-x:auto}
+.pflow.open .pflow-body{display:block}
+.fbox{border-radius:8px;padding:8px 12px;font-size:12.5px;line-height:1.45;text-align:center;position:relative}
+.fbox b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.fstart{background:#1a5276;color:#fff;border:2px solid #154360}
+.faction{background:#d5f5e3;color:#1a5276;border:2px solid #82e0aa}
+.fdecision{background:#fdebd0;color:#7d6608;border:2px solid #f9e79f;clip-path:none;border-radius:4px;font-weight:600}
+.fdrug{background:#e8daef;color:#6c3483;border:2px solid #bb8fce}
+.fshock{background:#fadbd8;color:#922b21;border:2px solid #f1948a;font-weight:600}
+.fwarn{background:#f9e79f;color:#7d6608;border:2px solid #f4d03f}
+.fend{background:#aed6f1;color:#154360;border:2px solid #5dade2}
+.farr{text-align:center;font-size:18px;color:var(--ink-soft);line-height:1;padding:2px 0}
+.farr-h{display:inline;font-size:16px;padding:0 4px}
+.frow{display:flex;gap:10px;align-items:stretch;margin:6px 0}
+.frow>.fcol{flex:1;min-width:0}
+.fcol{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.fcol .fbox{flex:none}
+.fsplit{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0}
+.fsplit-label{font-size:11px;font-weight:700;text-transform:uppercase;text-align:center;
+  padding:4px 8px;border-radius:4px;letter-spacing:.05em}
+.fsplit-yes{background:#82e0aa;color:#1a5276}
+.fsplit-no{background:#f1948a;color:#922b21}
+.floop{border-left:3px solid var(--moss);padding-left:12px;margin:6px 0}
+.floop-label{font-size:10.5px;font-weight:700;text-transform:uppercase;color:var(--moss);margin-bottom:4px}
+.fnote{font-size:11.5px;color:var(--ink-soft);margin-top:8px;padding:6px 10px;background:var(--paper);border-radius:6px;border-left:3px solid var(--amber)}
+
 /* ---------- Case studies ---------- */
 .caselaunch{
   display:flex;align-items:center;gap:12px;flex-wrap:wrap;
@@ -8304,6 +8336,7 @@ function show(id){
   }
   if(d.id === "pals"){
     h += `<div id="palscalchost"></div>`;
+    h += palsFlowHTML();
   }
   (d.sections||[]).forEach(s=>{
     h += `<section class="blk"><h3>${esc(s.h)}</h3><p>${esc(s.body)}</p></section>`;
@@ -8330,6 +8363,9 @@ function show(id){
   });
   const ph = document.getElementById("palscalchost");
   if(ph){ ph.innerHTML = palsCalcShell(); wirePalsCalc(); }
+  document.querySelectorAll(".pflow-title").forEach(t => {
+    t.onclick = () => t.parentElement.classList.toggle("open");
+  });
   renderRail(d);
   window.scrollTo(0,0);
   $("#sidebar").classList.remove("open");
@@ -8448,6 +8484,185 @@ function palsDoses(w, age){
   }
   return rows;
 }
+function palsFlowHTML(){
+  const box = (cls, html) => `<div class="fbox ${cls}">${html}</div>`;
+  const arr = () => `<div class="farr">↓</div>`;
+  const note = (t) => `<div class="fnote">${t}</div>`;
+
+  /* ---- Flow 1: Cardiac arrest ---- */
+  const arrestFlow = `
+  <div class="pflow open"><div class="pflow-title">Cardiac Arrest Algorithm</div><div class="pflow-body">
+  ${box("fstart","<b>Start</b>Unresponsive • No normal breathing • No pulse (check ≤10 s)")}
+  ${arr()}
+  ${box("faction","<b>Immediate</b>Begin high-quality CPR • Give O₂ • Attach monitor/defib • Weigh or Broselow")}
+  ${arr()}
+  ${box("fdecision","Rhythm check — Shockable?")}
+  <div class="fsplit">
+    <div class="fcol">
+      <div class="fsplit-label fsplit-yes">YES — VF / pulseless VT</div>
+      ${box("fshock","<b>Shock 1</b>2 J/kg (accept 2–4)")}
+      ${arr()}
+      ${box("faction","CPR 2 min immediately — no pause")}
+      ${arr()}
+      ${box("fdecision","Rhythm check")}
+      ${arr()}
+      ${box("fshock","<b>Shock 2</b>4 J/kg")}
+      ${arr()}
+      ${box("faction","CPR 2 min")}
+      ${box("fdrug","<b>Adrenaline</b>0.01 mg/kg IV/IO — enters HERE after 2nd shock<br>Repeat q3–5 min")}
+      ${arr()}
+      ${box("fdecision","Rhythm check")}
+      ${arr()}
+      ${box("fshock","<b>Shock 3</b>≥4 J/kg (max 10 J/kg)")}
+      ${arr()}
+      ${box("faction","CPR 2 min")}
+      ${box("fdrug","<b>Amiodarone</b> 5 mg/kg bolus (max 300 mg)<br>OR <b>Lidocaine</b> 1 mg/kg — enters after 3rd shock")}
+      ${arr()}
+      ${box("fwarn","<b>Continue cycle</b>Shock → CPR 2 min → rhythm check<br>Adrenaline q3–5 min • Amiodarone may repeat ×2<br>Escalate energy to max 10 J/kg")}
+    </div>
+    <div class="fcol">
+      <div class="fsplit-label fsplit-no">NO — Asystole / PEA</div>
+      ${box("faction","CPR 2 min")}
+      ${box("fdrug","<b>Adrenaline ASAP</b>0.01 mg/kg IV/IO<br>Do NOT wait — every cycle of delay worsens outcome<br>IO if no IV in 60 s")}
+      ${arr()}
+      ${box("fdecision","Rhythm check q2 min")}
+      ${arr()}
+      ${box("faction","CPR 2 min + Adrenaline q3–5 min")}
+      ${arr()}
+      ${box("fwarn","<b>Continue cycle</b>CPR → Adrenaline → rhythm check<br>Hunt H’s and T’s aggressively")}
+      ${arr()}
+      ${box("fdecision","Organised rhythm? Check pulse")}
+      ${arr()}
+      ${box("fend","<b>If pulse → ROSC</b><br>Post-resuscitation care")}
+    </div>
+  </div>
+  ${note("<b>Throughout both pathways:</b> Compression fraction 90–100% • Rate 100–120/min • Depth ≥1/3 AP • Complete recoil • Rotate compressors q2 min • Waveform capnography • Work through H’s and T’s aloud • If rhythm changes → move to the other column")}
+  ${note("<b>Adrenaline timing is different:</b> Shockable = after 2nd shock. Non-shockable = AS SOON AS POSSIBLE.")}
+  </div></div>`;
+
+  /* ---- Flow 2: Bradycardia ---- */
+  const bradyFlow = `
+  <div class="pflow"><div class="pflow-title">Bradycardia With a Pulse</div><div class="pflow-body">
+  ${box("fstart","<b>Identify</b>HR &lt;60/min with signs of poor perfusion<br>(hypotension, altered consciousness, mottling, poor cap refill)")}
+  ${arr()}
+  ${box("faction","<b>Step 1 — Airway + Breathing</b>Open airway • High-flow 100% O₂ • Assist ventilation if needed<br><em>Most paediatric bradycardia is hypoxia — this step often fixes it</em>")}
+  ${arr()}
+  ${box("fdecision","HR still &lt;60 with poor perfusion<br>DESPITE adequate oxygenation and ventilation?")}
+  <div class="fsplit">
+    <div class="fcol">
+      <div class="fsplit-label fsplit-yes">YES — persistent compromise</div>
+      ${box("fshock","<b>Start CPR</b>Compressions on a beating heart<br>Class 1 recommendation (2025)")}
+      ${arr()}
+      ${box("fdrug","<b>Adrenaline</b> 0.01 mg/kg IV/IO q3–5 min")}
+      ${arr()}
+      ${box("fdecision","Vagal tone or AV block?")}
+      <div class="fsplit">
+        <div class="fcol">
+          <div class="fsplit-label fsplit-yes">Vagal / AV block</div>
+          ${box("fdrug","<b>Atropine</b> 0.02 mg/kg<br>No minimum dose (2025)<br>May repeat once<br>Max 0.5 mg/dose")}
+        </div>
+        <div class="fcol">
+          <div class="fsplit-label fsplit-no">Hypoxic bradycardia</div>
+          ${box("fwarn","Atropine will NOT help<br>Oxygenate + ventilate + CPR")}
+        </div>
+      </div>
+      ${arr()}
+      ${box("fdecision","Response?")}
+      ${arr()}
+      ${box("fend","<b>No response:</b> Transcutaneous pacing<br>for complete heart block / sinus node failure<br>Consider isoprenaline infusion as bridge")}
+    </div>
+    <div class="fcol">
+      <div class="fsplit-label fsplit-no">NO — HR improves</div>
+      ${box("fend","<b>Observe</b><br>Monitor • Find and treat the cause<br>Bradycardia resolved with O₂/ventilation")}
+    </div>
+  </div>
+  ${note("<b>Key rule:</b> Bradycardia in a child = hypoxia until proven otherwise. Oxygen and ventilation FIRST. CPR only if HR &lt;60 persists despite adequate oxygenation.")}
+  </div></div>`;
+
+  /* ---- Flow 3: Tachycardia ---- */
+  const tachyFlow = `
+  <div class="pflow"><div class="pflow-title">Tachycardia With a Pulse</div><div class="pflow-body">
+  ${box("fstart","<b>Identify</b>Tachycardia with a pulse — assess haemodynamic status")}
+  ${arr()}
+  ${box("fdecision","QRS width?")}
+  <div class="fsplit">
+    <div class="fcol">
+      <div class="fsplit-label fsplit-yes">NARROW ≤ 0.09 s</div>
+      ${box("fdecision","Sinus tachycardia or SVT?")}
+      <div class="fsplit">
+        <div class="fcol">
+          <div class="fsplit-label" style="background:#aed6f1;color:#154360">Sinus tachy</div>
+          ${box("fbox","Rate usually &lt;220 infant / &lt;180 child<br>P waves present • Beat-to-beat variability<br>History explains it (fever, pain, hypovolaemia)")}
+          ${arr()}
+          ${box("fend","<b>Treat the cause</b><br>NEVER antiarrhythmics")}
+        </div>
+        <div class="fcol">
+          <div class="fsplit-label" style="background:#f5cba7;color:#7d6608">SVT</div>
+          ${box("fbox","Rate &gt;220 infant / &gt;180 child<br>No P waves • Fixed rate • Abrupt onset")}
+          ${arr()}
+          ${box("fdecision","Haemodynamically stable?")}
+          <div class="fsplit">
+            <div class="fcol">
+              <div class="fsplit-label fsplit-yes">Stable</div>
+              ${box("faction","<b>Vagal</b><br>Ice to face (infant)<br>Blow through straw (child)")}
+              ${arr()}
+              ${box("fdrug","<b>Adenosine</b><br>0.1 mg/kg rapid push + flush<br>(max 6 mg)")}
+              ${arr()}
+              ${box("fdrug","<b>2nd dose</b><br>0.2 mg/kg<br>(max 12 mg)")}
+            </div>
+            <div class="fcol">
+              <div class="fsplit-label fsplit-no">Unstable</div>
+              ${box("fshock","<b>Sync cardioversion</b><br>0.5–1 J/kg<br>Sedate if time allows")}
+              ${arr()}
+              ${box("fshock","<b>If fails</b><br>2 J/kg")}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fcol">
+      <div class="fsplit-label fsplit-no">WIDE &gt; 0.09 s</div>
+      ${box("fdecision","Haemodynamically stable?")}
+      <div class="fsplit">
+        <div class="fcol">
+          <div class="fsplit-label fsplit-yes">Stable</div>
+          ${box("fwarn","<b>Expert consultation<br>BEFORE any drug</b><br>(2025 recommendation)")}
+          ${arr()}
+          ${box("fdrug","With expert input:<br><b>Amiodarone</b> or<br><b>Procainamide</b><br>(never combine)")}
+        </div>
+        <div class="fcol">
+          <div class="fsplit-label fsplit-no">Unstable</div>
+          ${box("fshock","<b>Sync cardioversion</b><br>0.5–1 J/kg → 2 J/kg")}
+          ${arr()}
+          ${box("fwarn","If pulseless →<br>Unsync defib 2 J/kg<br>→ Arrest algorithm")}
+        </div>
+      </div>
+      ${note("<b>⚠ Irregular wide-complex:</b> NO adenosine, NO AV-nodal blockers — think pre-excited AF → can degenerate to VF")}
+    </div>
+  </div>
+  ${note("<b>Post-conversion:</b> 12-lead ECG in sinus • Look for delta wave (WPW) — never digoxin/verapamil if present • Cardiology follow-up")}
+  </div></div>`;
+
+  /* ---- Flow 4: Post-ROSC ---- */
+  const roscFlow = `
+  <div class="pflow"><div class="pflow-title">Post-ROSC Care Bundle</div><div class="pflow-body">
+  ${box("fstart","<b>ROSC confirmed</b>Pulse present • EtCO₂ rises • Arterial waveform")}
+  ${arr()}
+  <div class="frow">
+    ${box("faction","<b>🌡️ Temperature</b><br>Core temp ≤37.5°C<br>PREVENT FEVER<br>TTM 32–34°C if comatose<br>(24 h – 18 y)")}
+    ${box("faction","<b>🩸 Oxygen</b><br>Wean FiO₂<br>Target SpO₂ 94–99%<br>Avoid hyperoxia<br>Target normocapnia")}
+    ${box("faction","<b>❤️ Circulation</b><br>BP ≥ 5th %ile for age<br>Fluids + vasopressors<br>Arterial line if possible")}
+    ${box("faction","<b>🧠 Brain</b><br>Continuous EEG<br>Treat seizures<br>No early prognostication<br>Multimodal assessment")}
+    ${box("faction","<b>🩸 Glucose</b><br>Monitor frequently<br>Keep normoglycaemic<br>Treat hypoglycaemia")}
+  </div>
+  ${note("<b>2025 emphasis:</b> Fever after ROSC burns neurons — active temperature control is the single most impactful post-arrest intervention. Family presence with a dedicated support person is now part of the chain of survival.")}
+  </div></div>`;
+
+  return `<div class="pflows"><h3 style="margin:22px 0 6px;font-family:'Newsreader',serif;font-size:21px;color:var(--ink)">
+    📊 PALS Algorithm Flows <span style="font-size:13px;font-weight:normal;color:var(--ink-soft)">(click to expand)</span></h3>
+    ${arrestFlow}${bradyFlow}${tachyFlow}${roscFlow}</div>`;
+}
+
 function palsCalcShell(){
   return `<div class="palscalc"><div class="pchead">⚖ PALS dose calculator — AHA 2025</div>
     <div class="pcinputs">
