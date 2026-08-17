@@ -8340,7 +8340,7 @@ function show(id){
     h += `<div id="palscalchost"></div>`;
     h += palsFlowHTML();
   }
-  const BULLET_RE = /aetiol|etiol|pathophys|pathogen|cause|mechanism/i;
+  const BULLET_RE = /aetiol|etiol|pathophys|pathogen|cause|mechanism|manage|treat|therap|interven|resuscit|drug|medicat|pharmacol|support|step/i;
   (d.sections||[]).forEach(s=>{
     if(BULLET_RE.test(s.h)){
       const pts = sentences(s.body);
