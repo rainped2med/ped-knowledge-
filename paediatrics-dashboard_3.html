@@ -131,6 +131,8 @@ section.blk h3{
   margin:0 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line);
 }
 section.blk p{margin:0;font-size:15.5px}
+ul.bullets{margin:0;padding:0 0 0 20px;font-size:15px;line-height:1.65}
+ul.bullets li{margin-bottom:6px}
 
 /* ---------- Tables ---------- */
 .tblwrap{margin:26px 0;overflow-x:auto}
@@ -8338,8 +8340,14 @@ function show(id){
     h += `<div id="palscalchost"></div>`;
     h += palsFlowHTML();
   }
+  const BULLET_RE = /aetiol|etiol|pathophys|pathogen|cause|mechanism/i;
   (d.sections||[]).forEach(s=>{
-    h += `<section class="blk"><h3>${esc(s.h)}</h3><p>${esc(s.body)}</p></section>`;
+    if(BULLET_RE.test(s.h)){
+      const pts = sentences(s.body);
+      h += `<section class="blk"><h3>${esc(s.h)}</h3><ul class="bullets">${pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></section>`;
+    } else {
+      h += `<section class="blk"><h3>${esc(s.h)}</h3><p>${esc(s.body)}</p></section>`;
+    }
   });
   (d.tables||[]).forEach(t=>{
     h += `<div class="tblwrap"><div class="cap">${esc(t.title)}</div><table><thead><tr>` +
