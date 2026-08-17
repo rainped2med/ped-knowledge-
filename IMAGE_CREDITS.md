@@ -100,3 +100,36 @@ download time. CC BY and CC BY-SA require this credit to accompany any redistrib
 | PALS Case | `amiodarone_vial.jpg` | Intropin | CC BY 3.0 | [source](https://commons.wikimedia.org/wiki/File:Amiodarone_(1).JPG) |
 | PALS Case | `cardiac_monitor.jpg` | Ernstl | CC BY-SA 2.5 | [source](https://commons.wikimedia.org/wiki/File:Defibrillator_Monitor_Closeup.jpg) |
 | PALS Case | `lifepak_sync.jpg` | StudentDoctorDG | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:LIFEPAK_20e_Defibrillator_and_Monitor_displaying_synchronization_with_QRS_complexes._(arrowheads).jpg) |
+
+## Skin Disease Gallery (added 2026-08-17)
+
+All images below are used in the Skin Disease Gallery section of paediatrics-dashboard_3.html.
+
+- **assets/skin_acne.jpg** — Roshu Bangal, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Acne_vulgaris_on_a_very_oily_skin.jpg)
+- **assets/skin_cafe_au_lait.png** — Jyothi Idiculla, Shine Pakalomattom, Anasuya Desai, Babu Philip, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Caf%C3%A9-au-lait_spot_on_the_abdomen_in_neurofibromatosis_type_1.png)
+- **assets/skin_cradle_cap.jpg** — LepoRello, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Cradle_cap_Infant_2_months_old.jpg)
+- **assets/skin_eczema_flexural.jpg** — James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Atopy2010.JPG)
+- **assets/skin_eczema_hands.jpg** — James Heilman, MD, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dermatitis2015.jpg)
+- **assets/skin_erythema_multiforme.jpg** — James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Erythema_multiforme_minor_of_the_hand.jpg)
+- **assets/skin_erythema_toxicum.jpg** — Mohammad2018, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Erytherma_toxicum_neonatorum.jpg)
+- **assets/skin_haemangioma.jpg** — User:Zeimusu, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Capillary_haemangioma.jpg)
+- **assets/skin_herpetic_whitlow.jpg** — James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Herpetic_whitlow_in_young_child.jpg)
+- **assets/skin_hsp_purpura.jpg** — The original uploader was Okwikikim at English Wikipedia., Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Purpura2.JPG)
+- **assets/skin_impetigo.jpg** — James Heilman, MD, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Impetigo2020.jpg)
+- **assets/skin_kawasaki_feet.jpg** — Kawasaki_symptoms.jpg: Dong Soo Kim derivative work: Natr (talk), CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Kawasaki_symptoms_E.jpg)
+- **assets/skin_kawasaki_tongue.jpg** — Kawasaki_symptoms.jpg: Dong Soo Kim derivative work: Natr (talk), CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Kawasaki_symptoms_B.jpg)
+- **assets/skin_measles_rash.jpg** — CDC/NIP/Barbara Rice, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:RougeoleDP.jpg)
+- **assets/skin_milia.jpg** — Serephine, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Newborn_Milia_(Milk_Spots).jpg)
+- **assets/skin_molluscum.jpg** — Dave Bray, MD, Walter Reed Army Medical Center, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Molluscum_on_child.jpg)
+- **assets/skin_mongolian_spot.jpg** — abby lu, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Mongolianspotphoto.jpg)
+- **assets/skin_nappy_candida.png** — Elaine C. Siegfried1,†* and Adelaide A. Hebert2,†, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:DiaperRashCandida.png)
+- **assets/skin_nappy_irritant.jpg** — Dailyboth, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Irritant_diaper_dermatitis.jpg)
+- **assets/skin_pityriasis_rosea.jpg** — Aceofhearts1968, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Pityriasis_rosea-1.jpg)
+- **assets/skin_psoriasis.jpg** — James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Psoriasis2010.JPG)
+- **assets/skin_scarlet_fever.jpg** — Whispyhistory, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Scarlet_fever_rash.jpg)
+- **assets/skin_sjs.jpg** — James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Mucosal_desquamation_in_a_person_with_Stevens%E2%80%93Johnson_syndrome.jpg)
+- **assets/skin_strawberry_tongue.jpg** — Whispyhistory, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Strep_throat_with_white_strawberry_tongue.jpg)
+- **assets/skin_tinea_capitis.jpg** — Gzzz, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Teigne_tondante_enfant.jpg)
+- **assets/skin_tinea_corporis.jpg** — CDC/ Dr. Lucille K. Georg, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ringworm_on_the_arm,_or_tinea_corporis_due_to_Trichophyton_mentagrophytes_PHIL_2938_lores.jpg)
+- **assets/skin_urticaria.jpg** — James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Hives2010.JPG)
+- **assets/skin_vitiligo.jpg** — James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Vitiligo2.JPG)

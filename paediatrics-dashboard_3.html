@@ -460,6 +460,49 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
   body{background:#fff}
   section.blk{page-break-inside:avoid}
 }
+/* ---------- Skin gallery ---------- */
+.skingalbtn{
+  display:block;width:calc(100% - 32px);margin:0 16px 10px;padding:9px 12px;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--moss-light);
+  color:var(--moss);font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;text-align:left;
+}
+.skingalbtn:hover{background:var(--moss);color:#fff}
+.galchips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 22px}
+.galchip{
+  padding:6px 13px;border:1px solid var(--line);border-radius:999px;background:var(--paper-2);
+  font-family:inherit;font-size:13.5px;color:var(--ink-soft);cursor:pointer;
+}
+.galchip.active{background:var(--moss);border-color:var(--moss);color:#fff}
+.galgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.galcard{
+  border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2);
+  overflow:hidden;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s ease;
+  display:flex;flex-direction:column;
+}
+.galcard:hover{transform:translateY(-2px)}
+.galcard .galimg{width:100%;height:170px;object-fit:cover;display:block;background:var(--moss-light)}
+.galcard .galbody{padding:10px 13px 13px}
+.galcard h4{margin:0 0 4px;font-size:15px;font-family:'Newsreader',serif}
+.galcard .galfind{font-size:13px;color:var(--ink-soft);line-height:1.45}
+.galcard .galcat{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:600;color:var(--moss);
+  background:var(--moss-light);border-radius:999px;padding:2px 9px}
+.gallightbox{
+  position:fixed;inset:0;z-index:200;background:rgba(20,32,28,.88);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;
+}
+.gallightbox img{max-width:min(92vw,900px);max-height:62vh;border-radius:var(--r);background:#fff}
+.gallightbox .lbpanel{
+  max-width:min(92vw,900px);background:var(--paper-2);border-radius:var(--r);
+  padding:14px 18px;margin-top:12px;max-height:26vh;overflow:auto;
+}
+.gallightbox .lbpanel h3{margin:0 0 6px;font-family:'Newsreader',serif;font-size:19px}
+.gallightbox .lbpanel p{margin:0 0 7px;font-size:14px}
+.gallightbox .lbpanel .lbteach{color:var(--moss);font-weight:500}
+.gallightbox .lbpanel .lbcredit{font-size:11.5px;color:var(--ink-soft)}
+.gallightbox .lbclose{
+  position:fixed;top:14px;right:18px;font-size:26px;background:none;border:none;color:#fff;cursor:pointer;
+}
+@media print{.gallightbox{display:none}}
 :focus-visible{outline:2px solid var(--moss);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -475,6 +518,7 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
       <input id="search" type="search" placeholder="Search diseases, signs, drugs…" autocomplete="off">
       <div class="searchmeta" id="searchmeta"></div>
     </div>
+    <button class="skingalbtn" id="skingalbtn" title="Visual atlas of paediatric skin conditions (g)">🔬 Skin Disease Gallery</button>
     <nav class="navscroll" id="nav"></nav>
   </aside>
   <div class="main">
@@ -11001,15 +11045,230 @@ document.addEventListener("keydown", e=>{
   if(e.key==="r"||e.key==="R"){ e.preventDefault(); randomTopic(); }
   if(e.key==="a"||e.key==="A"){ e.preventDefault(); toggleRead(); }
   if(e.key==="c"||e.key==="C"){ e.preventDefault(); caseButton(); }
+  if(e.key==="g"||e.key==="G"){ e.preventDefault(); showSkinGallery(); }
   if(e.key==="ArrowRight") step(1);
   if(e.key==="ArrowLeft") step(-1);
 });
+/* ============ SKIN DISEASE GALLERY ============ */
+const SKIN_GALLERY = [
+/* — Neonatal & birthmarks — */
+{file:"skin_erythema_toxicum.jpg", name:"Erythema toxicum neonatorum", cat:"Neonatal & birthmarks",
+ find:"Scattered yellow-white papules and pustules on an erythematous base in a well newborn, sparing palms and soles.",
+ teach:"Appears day 1–3, waxes and wanes, resolves within 1–2 weeks. Entirely benign — no treatment. A pustule smear (if done) shows eosinophils. An UNWELL baby with pustules needs infection excluded instead.",
+ credit:"Mohammad2018, CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"skin_milia.jpg", name:"Milia", cat:"Neonatal & birthmarks",
+ find:"Pinpoint pearly-white papules clustered on the nose and cheeks of a newborn.",
+ teach:"Retention cysts of keratin in pilosebaceous follicles — present in up to half of newborns, resolve spontaneously in weeks. Reassure; never squeeze or treat.",
+ credit:"Serephine, CC0, via Wikimedia Commons"},
+{file:"skin_cradle_cap.jpg", name:"Seborrhoeic dermatitis (cradle cap)", cat:"Neonatal & birthmarks",
+ find:"Thick, greasy, yellow adherent scale over the scalp of a young infant, with mild underlying erythema extending to the forehead.",
+ teach:"Non-itchy — the baby is untroubled (unlike atopic eczema). Softens with emollient/oil and gentle brushing; ketoconazole shampoo or mild topical steroid for stubborn cases. Extensive seborrhoeic dermatitis with failure to thrive raises rare differentials.",
+ credit:"LepoRello, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"skin_nappy_irritant.jpg", name:"Irritant nappy dermatitis", cat:"Neonatal & birthmarks",
+ find:"Erythema of the convex surfaces in the nappy area — the skin folds are relatively SPARED.",
+ teach:"Contact irritation from urine and faeces on exposed convexities. Treat with frequent changes, air time, and thick barrier preparations (zinc oxide). Fold sparing is the key distinction from candidal dermatitis.",
+ credit:"Dailyboth, CC0, via Wikimedia Commons"},
+{file:"skin_nappy_candida.png", name:"Candidal nappy dermatitis", cat:"Neonatal & birthmarks",
+ find:"Beefy-red confluent erythema INVOLVING the folds, with satellite papules and pustules beyond the border.",
+ teach:"Fold involvement + satellite lesions = Candida. Treat with topical antifungal (nystatin/clotrimazole) plus barrier; check the mouth for thrush. Suspect it whenever a 'nappy rash' fails standard barrier care after 3 days.",
+ credit:"Siegfried & Hebert, CC BY 4.0, via Wikimedia Commons"},
+{file:"skin_mongolian_spot.jpg", name:"Congenital dermal melanocytosis (Mongolian spot)", cat:"Neonatal & birthmarks",
+ find:"Blue-grey macular patches over the buttocks and sacrum of an infant, with indistinct borders.",
+ teach:"Common in Asian infants; fades over years. Critical point: DOCUMENT it at the newborn check — undocumented dermal melanocytosis is repeatedly mistaken for bruising and triggers wrongful safeguarding concern (or masks real bruising).",
+ credit:"abby lu, CC BY 2.0, via Wikimedia Commons"},
+{file:"skin_haemangioma.jpg", name:"Infantile haemangioma (strawberry naevus)", cat:"Neonatal & birthmarks",
+ find:"Bright red, raised, lobulated vascular plaque with sharp borders on an infant's trunk.",
+ teach:"Appears in the first weeks, proliferates for months, then involutes over years — most need no treatment. Treat with oral propranolol when function is threatened: periocular (vision/amblyopia), airway ('beard' distribution), ulcerating, or large facial lesions. Five or more cutaneous haemangiomas → screen the liver.",
+ credit:"Zeimusu, Public domain, via Wikimedia Commons"},
+{file:"neurocutaneous_sturge_weber_syndrome_jpg.jpg", name:"Port-wine stain (capillary malformation)", cat:"Neonatal & birthmarks",
+ find:"Flat, deep-red vascular stain present from birth, here in a trigeminal distribution.",
+ teach:"A malformation, not a tumour — it never involutes and grows with the child. V1/forehead involvement → think Sturge-Weber syndrome: refer for ophthalmology (glaucoma) and consider neuroimaging (leptomeningeal angioma, seizures). Pulsed-dye laser treats the stain.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"skin_cafe_au_lait.png", name:"Café-au-lait macules (NF1)", cat:"Neonatal & birthmarks",
+ find:"Uniform light-brown macule with smooth borders on the abdomen.",
+ teach:"One or two are normal. ≥6 café-au-lait macules (>5 mm pre-pubertal) is a diagnostic criterion for neurofibromatosis type 1 — look for axillary/inguinal freckling, Lisch nodules, and family history; refer for genetics and surveillance.",
+ credit:"Idiculla et al., CC BY 4.0, via Wikimedia Commons"},
+/* — Viral exanthems & infections — */
+{file:"skin_measles_rash.jpg", name:"Measles — morbilliform rash", cat:"Viral exanthems",
+ find:"Confluent erythematous maculopapular rash spreading cephalocaudally in a miserable, febrile child with coryza and conjunctivitis.",
+ teach:"Starts behind the ears/hairline on day 3–4 of fever, spreads face → trunk → limbs, becomes confluent, then desquamates with brownish staining. The three Cs precede it. Notifiable; vitamin A for all children with measles.",
+ credit:"CDC/NIP/Barbara Rice, Public domain, via Wikimedia Commons"},
+{file:"measles_koplik.jpg", name:"Koplik spots", cat:"Viral exanthems",
+ find:"Tiny white 'grains of salt' on an erythematous buccal mucosa opposite the molars.",
+ teach:"Pathognomonic of measles; appear 1–2 days BEFORE the rash and fade as it erupts — examine the mouth of every febrile coryzal child during an outbreak.",
+ credit:"CDC, Public domain, via Wikimedia Commons"},
+{file:"varicella_child.jpg", name:"Varicella (chickenpox)", cat:"Viral exanthems",
+ find:"Vesicles, papules and crusts present SIMULTANEOUSLY — 'dew drops on rose petals' in crops, concentrated on trunk and face.",
+ teach:"Lesions in all stages at once is the diagnostic feature (smallpox lesions were monomorphic). Infectious until all lesions crust. Watch for secondary group A strep infection — new fever after initial improvement, or a rapidly spreading painful red area.",
+ credit:"MarcoRoatan, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"rubella_rash.jpg", name:"Rubella", cat:"Viral exanthems",
+ find:"Fine, discrete pink macules — paler and finer than measles — with suboccipital and postauricular lymphadenopathy.",
+ teach:"Mild illness in children; the catastrophe is fetal (congenital rubella syndrome). The rash spreads face-down like measles but fades within 3 days without desquamation. Notifiable; check pregnant contacts.",
+ credit:"Public domain, via Wikimedia Commons"},
+{file:"fifth_disease.jpg", name:"Erythema infectiosum (slapped cheek)", cat:"Viral exanthems",
+ find:"Bright red confluent erythema of both cheeks sparing the nasal bridge and perioral area, in a well child.",
+ teach:"Parvovirus B19. By the time the cheeks flush, the child is no longer infectious. Lacy reticular rash on limbs follows and recurs with heat/sun for weeks. Dangers are elsewhere: aplastic crisis in chronic haemolysis, and fetal hydrops in pregnancy.",
+ credit:"CDC, Public domain, via Wikimedia Commons"},
+{file:"hfmd_hands.jpg", name:"Hand, foot and mouth disease", cat:"Viral exanthems",
+ find:"Oval, grey-roofed vesicles with red halos on the palms and fingers; similar lesions on soles and buttocks with oral ulcers.",
+ teach:"Coxsackie A16 / Enterovirus 71. Supportive care; the child is infectious via stool for weeks. EV71 (Southeast Asian epidemics) can cause brainstem encephalitis — a febrile HFMD child with myoclonic jerks, ataxia or lethargy needs admission.",
+ credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"skin_molluscum.jpg", name:"Molluscum contagiosum", cat:"Viral exanthems",
+ find:"Discrete pearly dome-shaped papules with central umbilication scattered on a child's trunk.",
+ teach:"Poxvirus; spread by contact and bathing together. Self-limiting over 6–18 months — reassurance beats intervention. Numerous, giant or refractory lesions raise the question of immunodeficiency; surrounding eczema is common and treatable.",
+ credit:"Dave Bray, MD, Walter Reed Army Medical Center, Public domain"},
+{file:"skin_herpetic_whitlow.jpg", name:"Herpetic whitlow", cat:"Viral exanthems",
+ find:"Grouped vesicles on an erythematous, swollen fingertip of a young child, with early crusting.",
+ teach:"HSV inoculated from the child's own gingivostomatitis via thumb-sucking. Do NOT incise (it is not a bacterial paronychia — incision spreads virus and delays healing). Self-limiting; oral aciclovir if early or severe.",
+ credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons"},
+/* — Bacterial, fungal & parasitic — */
+{file:"skin_impetigo.jpg", name:"Impetigo", cat:"Bacterial, fungal & parasitic",
+ find:"Honey-coloured (golden) crusts on erythematous erosions around the chin and mouth.",
+ teach:"S. aureus ± group A strep. Highly contagious — school exclusion until 48 h of treatment or lesions crusted over. Localised: topical antibiotic (fusidic acid/mupirocin); widespread or bullous: oral flucloxacillin/cephalexin. Recurrent impetigo → consider decolonisation and check contacts.",
+ credit:"James Heilman, MD, CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"skin_scarlet_fever.jpg", name:"Scarlet fever — sandpaper rash", cat:"Bacterial, fungal & parasitic",
+ find:"Diffuse, finely papular 'sandpaper' rash over the neck and chest — best appreciated by touch; shown here on darker skin where the texture matters more than the colour.",
+ teach:"Group A strep pyrogenic exotoxin. Circumoral pallor, strawberry tongue, flexural accentuation (Pastia lines), then desquamation of fingertips at 1–2 weeks. Treat 10 days penicillin V — prevents rheumatic fever. On darker skin, feel the rash.",
+ credit:"Whispyhistory, CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"skin_strawberry_tongue.jpg", name:"White strawberry tongue", cat:"Bacterial, fungal & parasitic",
+ find:"White-coated tongue with prominent protruding red papillae in streptococcal pharyngitis.",
+ teach:"The white coat sheds over days to leave the red strawberry tongue. Seen in scarlet fever AND Kawasaki disease — the tongue does not distinguish them; the fever duration, eyes, and extremities do.",
+ credit:"Whispyhistory, CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"skin_tinea_corporis.jpg", name:"Tinea corporis (ringworm)", cat:"Bacterial, fungal & parasitic",
+ find:"Annular lesion with a raised, scaly, advancing edge and central clearing.",
+ teach:"The active edge is where the fungus lives — scrape there if confirming. Topical antifungal (terbinafine/clotrimazole) for limited disease. NEVER topical steroids alone — they produce tinea incognito: the rash fades but spreads.",
+ credit:"CDC/Dr. Lucille K. Georg, Public domain, via Wikimedia Commons"},
+{file:"skin_tinea_capitis.jpg", name:"Tinea capitis", cat:"Bacterial, fungal & parasitic",
+ find:"Patch of scale and hair loss with broken hairs on a child's scalp.",
+ teach:"Requires ORAL antifungals (griseofulvin or terbinafine) — topicals cannot reach the follicle. A boggy, tender, pustular mass (kerion) is an inflammatory response, not an abscess: treat with oral antifungals, not incision. Check household contacts and hair tools.",
+ credit:"Gzzz, CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"scabies_burrow.jpg", name:"Scabies burrow", cat:"Bacterial, fungal & parasitic",
+ find:"Serpiginous, thread-like greyish track in the web space — the burrow of Sarcoptes scabiei.",
+ teach:"Intensely itchy, worse at night; look at finger webs, wrists, axillae, and in infants — palms, soles and face too. Treat the WHOLE household simultaneously with permethrin 5% (two applications, a week apart); itch persists for weeks after cure.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+/* — Eczema & inflammatory — */
+{file:"skin_eczema_flexural.jpg", name:"Atopic eczema — flexural", cat:"Eczema & inflammatory",
+ find:"Erythema, excoriations and early lichenification in the elbow flexure — the classic childhood distribution.",
+ teach:"Infants: face and extensor surfaces. Children: flexures (elbows, knees, wrists, ankles). Emollients liberally always; topical steroid appropriate to site and severity for flares. Weeping, punched-out erosions or sudden worsening → think eczema herpeticum or bacterial superinfection.",
+ credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"skin_eczema_hands.jpg", name:"Eczema — hand dermatitis", cat:"Eczema & inflammatory",
+ find:"Erythematous scaly papules and plaques with excoriation over the dorsal hands.",
+ teach:"Demonstrates the morphology of subacute eczema: ill-defined erythema, scale, excoriation. The itch-scratch cycle drives lichenification — break it with adequate-potency steroid plus emollient rather than undertreating.",
+ credit:"James Heilman, MD, CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"skin_urticaria.jpg", name:"Urticaria (hives)", cat:"Eczema & inflammatory",
+ find:"Raised, oedematous wheals with surrounding flare — individual lesions come and go within hours.",
+ teach:"Each wheal lasts <24 h and moves — draw around one to prove it. Usually viral or idiopathic in children, not 'allergy'. Treat with non-sedating antihistamine. Wheals + wheeze/vomiting/collapse = anaphylaxis, a different disease. Individual lesions fixed >24 h leaving bruising → think urticarial vasculitis.",
+ credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"skin_psoriasis.jpg", name:"Psoriasis — plaque", cat:"Eczema & inflammatory",
+ find:"Well-demarcated erythematous plaque with thick silvery-white scale.",
+ teach:"Sharp borders and silvery scale distinguish it from eczema's ill-defined itchier patches. In children, guttate psoriasis (raindrop plaques after streptococcal throat infection) is the classic presentation. First-line: emollients, vitamin D analogues, mild-moderate topical steroids.",
+ credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"skin_pityriasis_rosea.jpg", name:"Pityriasis rosea — herald patch", cat:"Eczema & inflammatory",
+ find:"Larger oval scaly patch (the herald) with smaller satellite lesions beginning nearby.",
+ teach:"The herald patch is routinely misdiagnosed as tinea for the week before the generalised 'Christmas tree' eruption declares itself along skin cleavage lines. Self-limiting over 6–8 weeks; treatment is reassurance and symptomatic relief.",
+ credit:"Aceofhearts1968, Public domain, via Wikimedia Commons"},
+{file:"skin_acne.jpg", name:"Acne vulgaris", cat:"Eczema & inflammatory",
+ find:"Comedones, inflammatory papules and pustules over the forehead of an adolescent.",
+ teach:"Comedones distinguish acne from folliculitis and rosacea. Escalate by severity: topical retinoid ± benzoyl peroxide → add topical/oral antibiotic (never antibiotic monotherapy) → oral isotretinoin for severe/scarring acne. Treat early — scarring and psychological impact are preventable.",
+ credit:"Roshu Bangal, CC BY-SA 4.0, via Wikimedia Commons"},
+{file:"skin_vitiligo.jpg", name:"Vitiligo", cat:"Eczema & inflammatory",
+ find:"Sharply demarcated depigmented (chalk-white) macules — striking on darker skin.",
+ teach:"Autoimmune melanocyte loss; associated with thyroid disease (check TFTs if symptomatic). Distinguish from pityriasis alba (hazy hypopigmentation with fine scale, atopic children) and post-inflammatory hypopigmentation — vitiligo is DEpigmented, not hypopigmented. Psychological support matters, especially on darker skin.",
+ credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons"},
+/* — Purpura & danger signs — */
+{file:"meningococcal_purpura.jpg", name:"Meningococcal purpura", cat:"Purpura & danger signs",
+ find:"Non-blanching purpuric and petechial lesions, some enlarging and coalescing, in a febrile unwell child.",
+ teach:"THE rash you never wait to reconfirm: fever + non-blanching rash = immediate parenteral antibiotics. The glass test screens; any purpura ≥2 mm in a febrile child is meningococcal until proven otherwise. A spreading rash is DIC in progress.",
+ credit:"See IMAGE_CREDITS.md — via Wikimedia Commons"},
+{file:"skin_hsp_purpura.jpg", name:"IgA vasculitis (HSP) — palpable purpura", cat:"Purpura & danger signs",
+ find:"Palpable purpura symmetrically over the legs, feet and buttocks of a child — gravity-dependent distribution; some lesions necrotic.",
+ teach:"The child is WELL (unlike meningococcaemia) with normal platelets (unlike ITP). Check the blood pressure and dip the urine — and keep dipping weekly then monthly for 6 months: the kidney determines prognosis.",
+ credit:"Okwikikim, Public domain, via Wikimedia Commons"},
+{file:"skin_kawasaki_tongue.jpg", name:"Kawasaki disease — strawberry tongue & lips", cat:"Purpura & danger signs",
+ find:"Red strawberry tongue with erythematous, cracked lips in a child with ≥5 days of fever.",
+ teach:"One of the five criteria (with conjunctival injection, rash, extremity changes, cervical node ≥1.5 cm). Fever ≥5 days + 4 of 5 = Kawasaki: IVIG within 10 days to cut coronary aneurysm risk from ~25% to <5%. Echo at diagnosis, 2 and 6 weeks.",
+ credit:"Dong Soo Kim, CC BY 2.0, via Wikimedia Commons"},
+{file:"skin_kawasaki_feet.jpg", name:"Kawasaki disease — extremity changes", cat:"Purpura & danger signs",
+ find:"Indurated oedema and erythema of the dorsa of the feet in acute Kawasaki disease.",
+ teach:"Acute phase: red palms/soles and firm oedema. Subacute (week 2–3): periungual desquamation — skin peeling from the fingertips. In an irritable child whose fever has now settled, peeling fingertips may be the retrospective clue.",
+ credit:"Dong Soo Kim, CC BY 2.0, via Wikimedia Commons"},
+{file:"skin_erythema_multiforme.jpg", name:"Erythema multiforme", cat:"Purpura & danger signs",
+ find:"Multiple erythematous papules evolving toward targetoid lesions on the dorsal hand — acral distribution.",
+ teach:"Classic targets have three zones: dusky centre, pale ring, red rim — favouring hands, feet, extensor limbs. In children the usual trigger is HSV (not drugs). Self-limiting; distinguish from urticaria (EM lesions are FIXED for days) and from SJS (mucosae largely spared in EM minor).",
+ credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons"},
+{file:"skin_sjs.jpg", name:"Stevens–Johnson syndrome — mucositis", cat:"Purpura & danger signs",
+ find:"Severe haemorrhagic crusting and desquamation of the lips and oral mucosa.",
+ teach:"Painful mucositis (mouth, eyes, genitals) + dusky detaching skin + a drug started 1–3 weeks ago (anticonvulsants, sulfonamides) or Mycoplasma. STOP the culprit drug immediately — the single most important act. Burns-unit-level supportive care and urgent ophthalmology; epidermal detachment >10% BSA = TEN.",
+ credit:"James Heilman, MD, CC BY-SA 3.0, via Wikimedia Commons"}
+];
+
+let galCat = "All";
+function showSkinGallery(){
+  current = "skin-gallery";
+  markActive("");
+  stopReading && reading && stopReading();
+  $("#crumb").textContent = "Dermatology";
+  const cats = ["All", ...new Set(SKIN_GALLERY.map(g=>g.cat))];
+  let h = `<div class="content">
+    <div class="eyebrow">Visual atlas</div>
+    <h2 class="title">Skin Disease Gallery</h2>
+    <p class="oneliner">${SKIN_GALLERY.length} paediatric skin conditions — click any image for the findings, the teaching point, and the trap. All images are open-licensed (Wikimedia Commons); see IMAGE_CREDITS.md.</p>
+    <div class="galchips">${cats.map(c=>`<button class="galchip${c===galCat?" active":""}" data-cat="${esc(c)}">${esc(c)}</button>`).join("")}</div>
+    <div class="galgrid">` +
+    SKIN_GALLERY.map((g,i)=> (galCat==="All"||g.cat===galCat) ?
+      `<div class="galcard" data-gi="${i}">
+        <img class="galimg" src="assets/${g.file}" alt="${esc(g.name)}" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="galbody"><h4>${esc(g.name)}</h4>
+        <div class="galfind">${esc(g.find)}</div>
+        <span class="galcat">${esc(g.cat)}</span></div>
+      </div>` : "").join("") +
+    `</div></div>`;
+  $("#view").innerHTML = h;
+  document.querySelectorAll(".galchip").forEach(b=>{
+    b.onclick = ()=>{ galCat = b.dataset.cat; showSkinGallery(); };
+  });
+  document.querySelectorAll(".galcard").forEach(c=>{
+    c.onclick = ()=> galLightbox(parseInt(c.dataset.gi));
+  });
+  renderRail && renderRail(null);
+  window.scrollTo(0,0);
+  $("#sidebar").classList.remove("open");
+  if(location.hash !== "#skin-gallery") location.hash = "skin-gallery";
+}
+function galLightbox(i){
+  const g = SKIN_GALLERY[i];
+  if(!g) return;
+  const lb = document.createElement("div");
+  lb.className = "gallightbox";
+  lb.innerHTML = `<button class="lbclose" title="Close (Esc)">✕</button>
+    <img src="assets/${g.file}" alt="${esc(g.name)}">
+    <div class="lbpanel">
+      <h3>${esc(g.name)}</h3>
+      <p><b>Findings:</b> ${esc(g.find)}</p>
+      <p class="lbteach"><b>Teaching point:</b> ${esc(g.teach)}</p>
+      <p class="lbcredit">${esc(g.credit)}</p>
+    </div>`;
+  const close = ()=>{ lb.remove(); document.removeEventListener("keydown", onkey); };
+  const onkey = e=>{
+    if(e.key==="Escape") close();
+    if(e.key==="ArrowRight"){ close(); galLightbox((i+1)%SKIN_GALLERY.length); }
+    if(e.key==="ArrowLeft"){ close(); galLightbox((i-1+SKIN_GALLERY.length)%SKIN_GALLERY.length); }
+  };
+  lb.onclick = e=>{ if(e.target===lb || e.target.classList.contains("lbclose")) close(); };
+  document.addEventListener("keydown", onkey);
+  document.body.appendChild(lb);
+}
+$("#skingalbtn").onclick = showSkinGallery;
+
 window.addEventListener("hashchange", ()=>{
   const id = location.hash.slice(1);
+  if(id==="skin-gallery"){ if(current!=="skin-gallery") showSkinGallery(); return; }
   if(id && id!==current) show(id);
 });
 const start = location.hash.slice(1);
-if(start && DISEASES.some(d=>d.id===start)) show(start); else welcome();
+if(start==="skin-gallery") showSkinGallery();
+else if(start && DISEASES.some(d=>d.id===start)) show(start); else welcome();
 </script>
 </body>
 </html>
