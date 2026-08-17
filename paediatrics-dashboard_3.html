@@ -235,6 +235,41 @@ mark{background:#fdf0c8;color:inherit;padding:0 1px}
 .sc-section{margin:10px 0 6px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--amber);padding-top:6px;border-top:1px solid var(--line)}
 .sc-note{font-size:11px;color:var(--ink-soft);margin-top:8px;font-style:italic}
 
+/* ---------- Hyponatraemia calculator ---------- */
+.hn-severity{border-radius:10px;padding:14px 18px;margin-bottom:16px;text-align:center}
+.hn-severe{background:#fce4ec;border:2px solid #ef5350;color:#b71c1c}
+.hn-moderate{background:#fff3e0;border:2px solid #ffa726;color:#e65100}
+.hn-mild{background:#e8f5e9;border:2px solid #66bb6a;color:#2e7d32}
+.hn-sev-label{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:2px}
+.hn-sev-na{font-size:28px;font-weight:700;margin:4px 0}
+.hn-sev-plan{font-size:13px;font-weight:400;line-height:1.45}
+.hn-visual{margin:16px 0 18px;padding:0 4px}
+.hn-bar-wrap{position:relative}
+.hn-bar-track{position:relative;height:32px;border-radius:16px;overflow:visible;display:flex;background:var(--line)}
+.hn-zone{position:absolute;top:0;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff;letter-spacing:.03em}
+.hn-zone-severe{background:#ef5350;border-radius:16px 0 0 16px}
+.hn-zone-mod{background:#ffa726}
+.hn-zone-mild{background:#66bb6a}
+.hn-zone-norm{background:var(--moss);border-radius:0 16px 16px 0}
+.hn-marker{position:absolute;top:-6px;transform:translateX(-50%);z-index:2}
+.hn-marker-dot{width:14px;height:14px;border-radius:50%;background:#b71c1c;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);margin:0 auto}
+.hn-marker-label{font-size:12px;font-weight:700;color:var(--ink);text-align:center;margin-top:2px;white-space:nowrap}
+.hn-target-marker{position:absolute;top:-6px;transform:translateX(-50%);z-index:1}
+.hn-target-dot{width:14px;height:14px;border-radius:50%;background:var(--moss);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2);margin:0 auto}
+.hn-target-label{font-size:11px;font-weight:600;color:var(--moss);text-align:center;margin-top:2px;white-space:nowrap}
+.hn-bar-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--ink-soft);margin-top:24px;padding:0 2px}
+.hn-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px;background:var(--paper)}
+.hn-table th{background:var(--ink);color:#fff;padding:8px 12px;text-align:left;font-size:13px}
+.hn-table td{border:1px solid var(--line);padding:6px 10px;color:var(--ink);vertical-align:top}
+.hn-table tr:nth-child(even){background:var(--paper-2)}
+.hn-table .hn-section td{background:var(--moss-light);font-weight:700;color:var(--moss);border-top:2px solid var(--moss);font-size:12.5px}
+.hn-table .hn-highlight td{background:#fff8e1;font-weight:600}
+.hn-recipe{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-top:16px}
+.hn-recipe-title{font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--moss);font-weight:600;margin-bottom:10px}
+.hn-recipe-steps{display:flex;flex-wrap:wrap;gap:8px}
+.hn-recipe-step{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 12px;background:var(--paper);border-radius:8px;border:1px solid var(--line)}
+.hn-step-n{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--moss);color:#fff;font-size:12px;font-weight:700;flex-shrink:0}
+
 /* ---------- PALS flow diagrams ---------- */
 .pflow{margin:22px 0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .pflow-title{background:var(--moss);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;
@@ -8477,6 +8512,9 @@ function show(id){
     h += `<div id="palscalchost"></div>`;
     h += palsFlowHTML();
   }
+  if(d.id === "hyponatraemia"){
+    h += `<div id="hyponacalchost"></div>`;
+  }
   (d.sections||[]).forEach(s=>{
     const pts = sentences(s.body);
     if(pts.length > 1){
@@ -8511,6 +8549,8 @@ function show(id){
   });
   const ph = document.getElementById("palscalchost");
   if(ph){ ph.innerHTML = palsCalcShell(); wirePalsCalc(); }
+  const hnh = document.getElementById("hyponacalchost");
+  if(hnh){ hnh.innerHTML = hypoNaCalcShell(); wireHypoNaCalc(); }
   if(SCORES[d.id]) wireScoreCalc(d.id);
   document.querySelectorAll(".pflow-title").forEach(t => {
     t.onclick = () => t.parentElement.classList.toggle("open");
@@ -9275,6 +9315,141 @@ function wirePalsCalc(){
   };
   wEl.oninput = go;
   if(aEl) aEl.oninput = go;
+}
+
+/* ============ HYPONATRAEMIA CORRECTION CALCULATOR ============ */
+function hypoNaCalcShell(){
+  return `<div class="palscalc" style="background:var(--paper-2);border-color:var(--line)">
+    <div class="pchead" style="color:var(--ink)">🧪 Hyponatraemia Correction Calculator</div>
+    <div class="pcinputs" style="flex-wrap:wrap;gap:12px">
+      <label>Weight <input id="hnw" type="number" min="0.5" max="150" step="0.1" placeholder="kg" inputmode="decimal"> kg</label>
+      <label>Current Na⁺ <input id="hnna" type="number" min="95" max="140" step="1" placeholder="mmol/L" inputmode="numeric"> mmol/L</label>
+      <label>Target Na⁺ rise <input id="hntar" type="number" min="1" max="12" step="1" value="10" inputmode="numeric"> mmol/L</label>
+      <label>Glucose <input id="hnglu" type="number" min="1" max="80" step="0.1" placeholder="optional" inputmode="decimal"> mmol/L</label>
+    </div>
+    <div id="hnout" class="pcout" style="margin-top:10px">Enter weight and current sodium to see the correction plan.</div>
+    <div class="pcnote">Teaching calculator — always recheck Na⁺ every 2–4 h during correction. Formulae are guides; clinical monitoring is the safety net.</div>
+  </div>`;
+}
+
+function wireHypoNaCalc(){
+  const wEl=document.getElementById("hnw"), naEl=document.getElementById("hnna"),
+        tarEl=document.getElementById("hntar"), gluEl=document.getElementById("hnglu"),
+        out=document.getElementById("hnout");
+  if(!wEl||!naEl||!out) return;
+
+  const go=()=>{
+    const w=parseFloat(wEl.value), na=parseFloat(naEl.value),
+          tar=parseFloat(tarEl.value)||10, glu=parseFloat(gluEl.value);
+    if(!w||w<=0||!na){ out.textContent="Enter weight and current sodium to see the correction plan."; return; }
+
+    const r=(x,dp)=>{const f=Math.pow(10,dp===undefined?1:dp);return Math.round(x*f)/f;};
+    const tbw = r(0.6*w, 1);
+    const nacl3 = 513; /* mmol/L Na in 3% NaCl */
+    const deltaPer1L = r((nacl3 - na)/(tbw + 1), 1);
+    const mlPer1mmol = r(1000/deltaPer1L, 0);
+    const bolusLow = r(2*w, 0);
+    const bolusHigh = r(Math.min(5*w, 100), 0);
+    const bolusNaRise = r(bolusHigh * 0.513 / tbw, 1);
+    const mlForTarget = r(tar * mlPer1mmol, 0);
+    const maxRateMLh = r(mlPer1mmol * 0.5, 0); /* 0.5 mmol/L/h continuous */
+    const deficit = r((140 - na) * tbw, 0);
+
+    /* Severity assessment */
+    let severity, sClass, plan;
+    if(na < 120){ severity="Severe (<120)"; sClass="severe";
+      plan="⚠️ EMERGENCY if symptomatic — 3% NaCl bolus immediately. Max correction 6–8 mmol/L in first 24 h (high ODS risk).";
+    } else if(na < 125){ severity="Severe (120–124)"; sClass="severe";
+      plan="⚠️ High risk — 3% NaCl bolus if seizures/encephalopathy. Max correction 10 mmol/L in 24 h.";
+    } else if(na < 130){ severity="Moderate (125–129)"; sClass="moderate";
+      plan="Monitor closely. Treat cause. Consider 3% NaCl only if symptomatic. Max correction 10 mmol/L in 24 h.";
+    } else { severity="Mild (130–134)"; sClass="mild";
+      plan="Usually asymptomatic. Identify and treat cause. Fluid restriction if SIADH. Rarely needs 3% NaCl.";
+    }
+
+    /* Corrected sodium if glucose provided */
+    let corrNaHTML = "";
+    if(!isNaN(glu) && glu > 5.5){
+      const corrNa = r(na + 1.6*((glu - 5.5)/5.5), 1);
+      const diff = r(corrNa - na, 1);
+      corrNaHTML = `<tr class="hn-highlight"><td>📐 Corrected Na⁺ (for glucose ${r(glu,1)} mmol/L)</td><td><b>${corrNa} mmol/L</b> (true Na is ${diff > 0 ? '+'+diff : diff} higher than measured)</td></tr>`;
+    }
+
+    out.innerHTML = `
+      <div class="hn-severity hn-${sClass}">
+        <div class="hn-sev-label">${severity}</div>
+        <div class="hn-sev-na">Na⁺ ${na} mmol/L</div>
+        <div class="hn-sev-plan">${plan}</div>
+      </div>
+
+      <div class="hn-visual">
+        <div class="hn-bar-wrap">
+          <div class="hn-bar-track">
+            <div class="hn-zone hn-zone-severe" style="left:0;width:${(120-95)/(145-95)*100}%">
+              <span>&lt;120</span>
+            </div>
+            <div class="hn-zone hn-zone-mod" style="left:${(120-95)/(145-95)*100}%;width:${5/(145-95)*100}%">
+              <span>120–124</span>
+            </div>
+            <div class="hn-zone hn-zone-mild" style="left:${(125-95)/(145-95)*100}%;width:${10/(145-95)*100}%">
+              <span>125–134</span>
+            </div>
+            <div class="hn-zone hn-zone-norm" style="left:${(135-95)/(145-95)*100}%;width:${10/(145-95)*100}%">
+              <span>135–145</span>
+            </div>
+            <div class="hn-marker" style="left:${Math.max(0,Math.min(100,(na-95)/(145-95)*100))}%">
+              <div class="hn-marker-dot"></div>
+              <div class="hn-marker-label">${na}</div>
+            </div>
+            ${tar && na+tar<=145 ? `<div class="hn-target-marker" style="left:${((na+tar)-95)/(145-95)*100}%">
+              <div class="hn-target-dot"></div>
+              <div class="hn-target-label">${r(na+tar,0)}</div>
+            </div>` : ''}
+          </div>
+          <div class="hn-bar-labels">
+            <span>95</span><span>110</span><span>120</span><span>130</span><span>140</span><span>145</span>
+          </div>
+        </div>
+      </div>
+
+      <table class="hn-table">
+        <thead><tr><th colspan="2">Calculated values for ${w} kg, Na⁺ ${na} mmol/L</th></tr></thead>
+        <tbody>
+        ${corrNaHTML}
+        <tr><td>Total body water (0.6 × weight)</td><td><b>${tbw} L</b></td></tr>
+        <tr><td>Sodium deficit to 140 mmol/L</td><td><b>${deficit} mmol</b></td></tr>
+        <tr class="hn-section"><td colspan="2">🚨 Emergency bolus (for seizures / encephalopathy)</td></tr>
+        <tr><td>3% NaCl bolus dose (2–5 mL/kg)</td><td><b>${bolusLow}–${bolusHigh} mL</b> over 10–30 min</td></tr>
+        <tr><td>Expected Na⁺ rise per bolus</td><td><b>~${r(bolusLow*0.513/tbw,1)}–${bolusNaRise} mmol/L</b></td></tr>
+        <tr><td>May repeat</td><td>Up to 3× if still seizing (monitor Na⁺ between boluses)</td></tr>
+        <tr class="hn-section"><td colspan="2">📊 Adrogue–Madias calculation (1 L of 3% NaCl)</td></tr>
+        <tr><td>ΔNa per 1 L of 3% NaCl</td><td><b>${deltaPer1L} mmol/L</b></td></tr>
+        <tr><td>Volume of 3% NaCl to raise Na⁺ by 1 mmol/L</td><td><b>${mlPer1mmol} mL</b></td></tr>
+        <tr><td>Volume to raise Na⁺ by ${tar} mmol/L (24 h target)</td><td><b>${mlForTarget} mL</b> over 24 h</td></tr>
+        <tr><td>Continuous infusion rate (0.5 mmol/L/h rise)</td><td><b>${maxRateMLh} mL/h</b> of 3% NaCl</td></tr>
+        <tr class="hn-section"><td colspan="2">⏱️ Safe correction limits</td></tr>
+        <tr><td>Maximum rise in first 24 hours</td><td><b>${na < 120 ? '6–8' : '10'} mmol/L</b> → target Na⁺ ${r(na + (na < 120 ? 8 : 10), 0)} mmol/L</td></tr>
+        <tr><td>Maximum rise in subsequent 24 h periods</td><td><b>8 mmol/L</b></td></tr>
+        <tr><td>Recheck sodium</td><td><b>Every 2–4 hours</b> during active correction</td></tr>
+        <tr class="hn-section"><td colspan="2">🛑 If overcorrecting (Na rising too fast)</td></tr>
+        <tr><td>Step 1</td><td>STOP 3% NaCl</td></tr>
+        <tr><td>Step 2</td><td>Give D5W (free water) to re-lower Na⁺</td></tr>
+        <tr><td>Step 3</td><td>dDAVP 1–2 mcg IV q8–12h (dDAVP clamp)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="hn-recipe">
+        <div class="hn-recipe-title">📋 How to make 3% NaCl</div>
+        <div class="hn-recipe-steps">
+          <div class="hn-recipe-step"><span class="hn-step-n">1</span> Take <b>170 mL</b> of 0.9% NaCl</div>
+          <div class="hn-recipe-step"><span class="hn-step-n">2</span> Add <b>30 mL</b> of 20% NaCl</div>
+          <div class="hn-recipe-step"><span class="hn-step-n">3</span> Mix → <b>200 mL of ~3% NaCl</b> (513 mmol/L Na⁺)</div>
+          <div class="hn-recipe-step"><span class="hn-step-n">✓</span> Each mL contains <b>0.513 mmol Na⁺</b></div>
+        </div>
+      </div>`;
+  };
+
+  wEl.oninput=go; naEl.oninput=go; tarEl.oninput=go; gluEl.oninput=go;
 }
 
 /* ============ CASE ENGINE (stepwise think-then-reveal) ============ */
