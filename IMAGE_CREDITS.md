@@ -1,6 +1,6 @@
 # Image credits
 
-The 49 images distributed in `assets/` come from Wikimedia Commons and are
+The 59 images distributed in `assets/` come from Wikimedia Commons and are
 reproduced under the licence shown. Attribution was taken from the Commons API at
 download time. CC BY and CC BY-SA require this credit to accompany any redistribution.
 
@@ -14,13 +14,13 @@ download time. CC BY and CC BY-SA require this credit to accompany any redistrib
 
 | Licence | Images |
 |---|---|
-| Public domain | 21 |
-| CC BY-SA 4.0 | 13 |
-| CC BY-SA 3.0 | 6 |
+| Public domain | 23 |
+| CC BY-SA 4.0 | 14 |
+| CC BY-SA 3.0 | 10 |
 | CC BY 4.0 | 3 |
-| CC0 | 3 |
-| CC BY 2.5 | 1 |
-| CC BY 2.0 | 1 |
+| CC0 | 4 |
+| CC BY 2.5 | 2 |
+| CC BY 2.0 | 2 |
 | CC BY 3.0 | 1 |
 
 ## Full list
@@ -76,3 +76,13 @@ download time. CC BY and CC BY-SA require this credit to accompany any redistrib
 | Ventricular Septal Defect | `vsd_heart_right_vsd_jpg.jpg` | Patrick J. Lynch, medical illustrator | CC BY 2.5 | [source](https://commons.wikimedia.org/wiki/File:Heart_right_vsd.jpg) |
 | Viral Hepatitis | `hepatitis_child_hepatitis_b_virus_52444068124_jpg.jpg` | National Institute of Allergy and Infectious Diseases (NIAID) and Centers for Disease Control and Prevention (CDC) | Public domain | [source](https://commons.wikimedia.org/wiki/File:Hepatitis_B_Virus_(52444068124).jpg) |
 | Vitamin A Deficiency | `vitamina_bitot_jpg.jpg` | CDC/Nutrition Program | Public domain | [source](https://commons.wikimedia.org/wiki/File:Bitot.jpg) |
+| PALS | `ventricular_fibrillation.png` | Jer5150 | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Ventricular_fibrillation.png) |
+| PALS | `ventricular_tachycardia.jpg` | Glenlarson | Public domain | [source](https://commons.wikimedia.org/wiki/File:Lead_II_rhythm_ventricular_tachycardia_Vtach_VT.JPG) |
+| PALS | `torsades_de_pointes.png` | Jer5150 | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Torsades_de_Pointes_TdP.png) |
+| PALS | `asystole.svg` | Rocuronium Bromide | CC0 | [source](https://commons.wikimedia.org/wiki/File:Asystole.svg) |
+| PALS | `sinus_bradycardia.svg` | James Heilman, MD / Mysid | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:Sinus_bradycardia_lead2.svg) |
+| PALS | `complete_heart_block.jpg` | James Heilman, MD | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:CompleteHeartBlock.jpg) |
+| PALS | `svt_lead_ii.jpg` | Displaced / James Heilman, MD | Public domain | [source](https://commons.wikimedia.org/wiki/File:SVT_Lead_II-2.JPG) |
+| PALS | `long_qt_syndrome.jpg` | PeaBrainC | CC BY-SA 4.0 | [source](https://commons.wikimedia.org/wiki/File:Long_QT_syndrome_type_1.jpg) |
+| PALS | `broselow_tape.jpg` | Stkittschris | CC BY-SA 3.0 | [source](https://commons.wikimedia.org/wiki/File:BTape1.jpg) |
+| PALS | `io_access_pediatric.jpg` | tim kubacki | CC BY 2.0 | [source](https://commons.wikimedia.org/wiki/File:Intraosseous_infusion,_pediatric.jpg) |
